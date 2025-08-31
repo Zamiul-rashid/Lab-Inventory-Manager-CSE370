@@ -1,0 +1,413 @@
+{% extends 'base.html' %}
+
+{% block title %}Lab Inventory Manager - Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Dashboard header -->
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">
+            <i class="fas fa-chart-line"></i>
+            Dashboard Overview
+        </h1>
+        <p class="dashboard-subtitle">Welcome back, {{ user.get_full_name|default:user.username }}!</p>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-content">
+                <h3>{{ available_items }}</h3>
+                <p>Available Items</p>
+            </div>
+            <div class="stat-icon blue">
+                <i class="fas fa-boxes"></i>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-content">
+                <h3>{{ my_borrowed }}</h3>
+                <p>My Borrowed</p>
+            </div>
+            <div class="stat-icon green">
+                <i class="fas fa-hand-holding"></i>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-content">
+                <h3>{{ pending_requests }}</h3>
+                <p>Pending Requests</p>
+            </div>
+            <div class="stat-icon orange">
+                <i class="fas fa-clock"></i>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-content">
+                <h3>{{ total_categories }}</h3>
+                <p>Total Categories</p>
+            </div>
+            <div class="stat-icon cyan">
+                <i class="fas fa-tags"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions and Admin Actions sections -->
+    <div class="actions-section">
+        <div class="action-group">
+            <h2 class="action-title">
+                <i class="fas fa-bolt"></i>
+                Quick Actions
+            </h2>
+            <div class="action-grid">
+                <a href="{% url 'items_list' %}" class="action-button">
+                    <div class="action-icon blue">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="action-text">Browse Items</span>
+                </a>
+                <a href="{% url 'my_requests' %}" class="action-button">
+                    <div class="action-icon green">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <span class="action-text">My Requests</span>
+                </a>
+                <a href="{% url 'my_borrowed_items' %}" class="action-button">
+                    <div class="action-icon orange">
+                        <i class="fas fa-hand-holding"></i>
+                    </div>
+                    <span class="action-text">Borrowed Items</span>
+                </a>
+                <a href="{% url 'borrow_history' %}" class="action-button">
+                    <div class="action-icon cyan">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <span class="action-text">History</span>
+                </a>
+            </div>
+        </div>
+
+        {% if is_admin %}
+        <div class="action-group">
+            <h2 class="action-title">
+                <i class="fas fa-cog"></i>
+                Admin Actions
+            </h2>
+            <div class="action-grid">
+                <a href="{% url 'admin_pending_users' %}" class="action-button">
+                    <div class="action-icon" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <span class="action-text">Pending Users</span>
+                    {% if pending_users > 0 %}
+                    <span class="badge">{{ pending_users }}</span>
+                    {% endif %}
+                </a>
+                <a href="{% url 'admin_pending_requests' %}" class="action-button">
+                    <div class="action-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <span class="action-text">Pending Requests</span>
+                </a>
+                <a href="{% url 'add_item' %}" class="action-button">
+                    <div class="action-icon green">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <span class="action-text">Add New Item</span>
+                </a>
+                <a href="{% url 'reports' %}" class="action-button">
+                    <div class="action-icon cyan">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span class="action-text">View Reports</span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Recent Activity section -->
+    <div class="recent-activity">
+        <h2 class="activity-header">
+            <i class="fas fa-clock"></i>
+            Recent Activity
+        </h2>
+        <div class="activity-columns">
+            <div class="activity-column">
+                <h4>My Recent Requests</h4>
+                {% if recent_requests %}
+                    {% for request in recent_requests %}
+                    <div class="activity-item">
+                        <strong>{{ request.product.name }}</strong> - {{ request.get_status_display }}
+                        <br><small>{{ request.created_at|date:"M d, Y" }}</small>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-activity">No recent requests</p>
+                {% endif %}
+            </div>
+            <div class="activity-column">
+                <h4>Currently Borrowed</h4>
+                {% if currently_borrowed %}
+                    {% for borrow in currently_borrowed %}
+                    <div class="activity-item">
+                        <strong>{{ borrow.product.name }}</strong> - Due: {{ borrow.expected_return_date|date:"M d, Y" }}
+                        {% if borrow.is_overdue %}
+                            <br><small style="color: #e74c3c;"><i class="fas fa-exclamation-triangle"></i> Overdue</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-activity">No borrowed items</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-header {
+        margin-bottom: 32px;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .dashboard-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .stat-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .stat-content h3 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .stat-content p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .stat-icon.blue { background: linear-gradient(135deg, #4285f4, #1976d2); }
+    .stat-icon.green { background: linear-gradient(135deg, #34a853, #0d8043); }
+    .stat-icon.orange { background: linear-gradient(135deg, #fbbc04, #ea8600); }
+    .stat-icon.cyan { background: linear-gradient(135deg, #00bcd4, #0097a7); }
+
+    .actions-section {
+        margin-bottom: 40px;
+    }
+
+    .action-group {
+        margin-bottom: 40px;
+    }
+
+    .action-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .action-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .action-button {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px;
+        text-decoration: none;
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        box-shadow: var(--shadow);
+    }
+
+    .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        background: var(--hover-bg);
+    }
+
+    .action-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: white;
+    }
+
+    .action-text {
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #ff4444;
+        color: white;
+        border-radius: 12px;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .recent-activity {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+    }
+
+    .activity-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .activity-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .activity-column h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: var(--text-color);
+    }
+
+    .activity-item {
+        padding: 12px;
+        background: var(--hover-bg);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        border-left: 3px solid var(--primary-blue);
+    }
+
+    .no-activity {
+        color: var(--text-muted);
+        font-style: italic;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .action-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .activity-columns {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .dashboard-title {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .action-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-card {
+            padding: 16px;
+        }
+
+        .stat-content h3 {
+            font-size: 2rem;
+        }
+    }
+
+    /* Loading Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stat-card, .action-button, .recent-activity {
+        animation: fadeIn 0.6s ease forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+</style>
+{% endblock %}

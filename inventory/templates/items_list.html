@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+
+{% block title %}Lab Inventory Manager - Items{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-boxes"></i>
+            Laboratory Items
+        </h1>
+        {% if is_admin %}
+        <a href="{% url 'add_item' %}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Add New Item
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="search-section">
+        <form method="get" class="search-form">
+            <div class="form-group">
+                <label class="form-label">Search Items</label>
+                <input type="text" name="search" class="form-control" 
+                       placeholder="Search by name, description, brand..." 
+                       value="{{ search_query }}">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category</label>
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                        <option value="{{ category }}" 
+                            {% if category == category_filter %}selected{% endif %}>
+                            {{ category }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-control">
+                    <option value="">All Status</option>
+                    <option value="available" {% if status_filter == 'available' %}selected{% endif %}>Available</option>
+                    <option value="borrowed" {% if status_filter == 'borrowed' %}selected{% endif %}>Borrowed</option>
+                    <option value="maintenance" {% if status_filter == 'maintenance' %}selected{% endif %}>Maintenance</option>
+                    <option value="damaged" {% if status_filter == 'damaged' %}selected{% endif %}>Damaged</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </form>
+    </div>
+
+    <!-- Items Grid -->
+    {% if products %}
+    <div class="items-grid">
+        {% for product in products %}
+        <div class="item-card">
+            <div class="item-header">
+                <h3 class="item-name">{{ product.name }}</h3>
+                <span class="status-badge status-{{ product.status }}">
+                    {{ product.get_status_display }}
+                </span>
+            </div>
+            
+            <div class="item-details">
+                <div class="item-detail">
+                    <i class="fas fa-tag"></i>
+                    <span>{{ product.category }}</span>
+                </div>
+                {% if product.brand %}
+                <div class="item-detail">
+                    <i class="fas fa-industry"></i>
+                    <span>{{ product.brand }}</span>
+                </div>
+                {% endif %}
+                <div class="item-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{ product.current_location }}</span>
+                </div>
+                <div class="item-detail">
+                    <i class="fas fa-cubes"></i>
+                    <span>{{ product.quantity_available }} available</span>
+                </div>
+                {% if product.description %}
+                <div class="item-detail" style="margin-top: 12px;">
+                    <i class="fas fa-info-circle"></i>
+                    <span>{{ product.description|truncatechars:100 }}</span>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="item-actions">
+                <a href="{% url 'product_detail' product.pk %}" class="btn btn-outline btn-sm">
+                    <i class="fas fa-eye"></i> View Details
+                </a>
+                {% if is_admin %}
+                <a href="{% url 'update_product' product.pk %}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-items">
+        <i class="fas fa-search"></i>
+        <h3>No items found</h3>
+        <p>Try adjusting your search criteria or filters.</p>
+        {% if is_admin %}
+        <a href="{% url 'add_item' %}" class="btn btn-primary" style="margin-top: 20px;">
+            <i class="fas fa-plus"></i> Add First Item
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .search-section {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        margin-bottom: 24px;
+    }
+
+    .search-form {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr auto;
+        gap: 16px;
+        align-items: end;
+    }
+
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+    }
+
+    .item-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+        position: relative;
+    }
+
+    .item-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 12px;
+    }
+
+    .item-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin: 0;
+    }
+
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    .status-available { background: #e8f5e8; color: #2e7d32; }
+    .status-borrowed { background: #fff3e0; color: #ef6c00; }
+    .status-maintenance { background: #e3f2fd; color: #1976d2; }
+    .status-damaged { background: #ffebee; color: #d32f2f; }
+
+    [data-theme="dark"] .status-available { background: #1b5e20; color: #81c784; }
+    [data-theme="dark"] .status-borrowed { background: #e65100; color: #ffb74d; }
+    [data-theme="dark"] .status-maintenance { background: #0d47a1; color: #64b5f6; }
+    [data-theme="dark"] .status-damaged { background: #b71c1c; color: #e57373; }
+
+    .item-details {
+        margin-bottom: 16px;
+    }
+
+    .item-detail {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .item-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .no-items {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--text-muted);
+    }
+
+    .no-items i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+        .search-form {
+            grid-template-columns: 1fr;
+        }
+
+        .items-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .page-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+        }
+    }
+</style>
+{% endblock %}

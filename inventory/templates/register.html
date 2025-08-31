@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Inventory Manager - Register</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #4285f4;
+            --primary-blue-dark: #1976d2;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --text-muted: #666;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #ffffff;
+            --text-muted: #b0b0b0;
+            --border-color: #404040;
+            --shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid var(--border-color);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .register-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
+        }
+
+        .register-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .register-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .register-form {
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .login-link a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            opacity: 0.8;
+        }
+
+        .errorlist {
+            background: rgba(234, 67, 53, 0.1);
+            color: #d32f2f;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #d32f2f;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .errorlist li {
+            margin: 0;
+        }
+
+        .theme-toggle-register {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle-register:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .register-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle-register" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+    
+    <div class="register-container">
+        <div class="register-header">
+            <div class="register-logo">
+                ⚗
+            </div>
+            <h1 class="register-title">Create Account</h1>
+            <p class="register-subtitle">Join Lab Inventory Manager</p>
+        </div>
+
+        <form method="post" class="register-form">
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    {{ form.firstname }}
+                    {% if form.firstname.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.firstname.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    {{ form.lastname }}
+                    {% if form.lastname.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.lastname.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Role</label>
+                {{ form.role }}
+                {% if form.role.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.role.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password1.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password2.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="register-btn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </div>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{% url 'login' %}">Sign in here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                if (themeIcon) themeIcon.className = 'fas fa-sun';
+            }
+        });
+    </script>
+</body>
+</html>
