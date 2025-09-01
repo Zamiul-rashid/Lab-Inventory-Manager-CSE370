@@ -296,6 +296,7 @@ def admin_pending_requests(request):
             borrow.status = 'active'
             borrow.product.status = 'borrowed'
             borrow.product.save()
+            borrow.added_by = request.user  # Track which admin approved this
             borrow.save()
             
             # Create notification for user
@@ -309,6 +310,7 @@ def admin_pending_requests(request):
             
         elif action == 'reject':
             borrow.status = 'rejected'
+            borrow.added_by = request.user  # Track which admin rejected this
             borrow.save()
             
             # Create notification for user
@@ -432,7 +434,7 @@ def reports(request):
     
     return render(request, 'reports.html', context)
 
-# user_profile view
+# Updated user_profile view with proper admin/regular user differentiation
 @login_required
 def user_profile(request, user_id=None):
     if user_id:
@@ -440,21 +442,39 @@ def user_profile(request, user_id=None):
     else:
         profile_user = request.user
 
-    # For regular users, don't try to access admin-specific data
-    if profile_user.role == 'admin':
-        # Admin-specific statistics (commented out for now)
-        products_added = 0  # Product.objects.filter(created_by=profile_user).count()
-        users_approved = 0  # You'll need to implement this logic later
-        requests_processed = 0  # Borrow.objects.filter(added_by=profile_user).count()
+    # Base context that applies to all users
+    context = {
+        'profile_user': profile_user,
+        'form': UserProfileForm(instance=profile_user) if profile_user == request.user else None,
+        'is_admin': request.user.role == 'admin',
+    }
 
-        context = {
-            'profile_user': profile_user,
-            'form': UserProfileForm(instance=profile_user) if profile_user == request.user else None,
+    # Admin-specific data
+    if profile_user.role == 'admin':
+        # Get products added by this admin
+        admin_products = Product.objects.filter(created_by=profile_user).order_by('-created_at')
+        products_added = admin_products.count()
+        
+        # Count users approved by this admin (you may need to add a field to track this)
+        # For now, we'll use a placeholder or count from notifications
+        users_approved = User.objects.filter(is_active=True).count() if profile_user.is_superuser else 0
+        
+        # Count requests processed by this admin
+        requests_processed = Borrow.objects.filter(added_by=profile_user).count()
+        
+        # System-wide statistics that admins should see
+        total_system_users = User.objects.filter(is_active=True).count()
+        total_system_products = Product.objects.count()
+        
+        # Update context with admin-specific data
+        context.update({
+            'admin_products': admin_products,
             'products_added': products_added,
             'users_approved': users_approved,
             'requests_processed': requests_processed,
-            'is_admin': request.user.role == 'admin',
-        }
+            'total_system_users': total_system_users,
+            'total_system_products': total_system_products,
+        })
     else:
         # Regular user statistics
         total_borrowed = Borrow.objects.filter(user=profile_user).count()
@@ -481,18 +501,23 @@ def user_profile(request, user_id=None):
             user=profile_user
         ).select_related('product').order_by('-borrow_date')
 
-        context = {
-            'profile_user': profile_user,
-            'form': UserProfileForm(instance=profile_user) if profile_user == request.user else None,
+        # Get recent requests for activity display
+        recent_requests = Borrow.objects.filter(
+            user=profile_user
+        ).order_by('-created_at')[:5]
+
+        # Update context with regular user data
+        context.update({
             'total_borrowed': total_borrowed,
             'currently_borrowed': currently_borrowed,
             'returned_items': returned_items,
             'pending_requests': pending_requests,
             'overdue_items': overdue_items,
             'borrow_history': borrow_history,
-            'is_admin': request.user.role == 'admin',
-        }
+            'recent_requests': recent_requests,
+        })
 
+    # Handle profile update form submission
     if request.method == 'POST' and profile_user == request.user:
         form = UserProfileForm(request.POST, instance=profile_user)
         if form.is_valid():

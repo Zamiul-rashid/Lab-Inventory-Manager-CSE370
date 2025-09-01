@@ -4789,3 +4789,27 @@ Watching for file changes with StatReloader
 "POST /login/ HTTP/1.1" 302 0
 "GET /dashboard/ HTTP/1.1" 200 32839
 "GET /profile/ HTTP/1.1" 200 48478
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6347
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 32839
+"GET /profile/ HTTP/1.1" 200 48480
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26607
+"GET /login/ HTTP/1.1" 200 26332
+"GET /login/ HTTP/1.1" 200 26332
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 32839
+"GET /profile/ HTTP/1.1" 200 52929
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26607
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 31025
+"GET /profile/ HTTP/1.1" 200 52732
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26607
