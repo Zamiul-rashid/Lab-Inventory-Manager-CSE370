@@ -67,15 +67,15 @@ def user_register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            # Set user as inactive by default (admin needs to approve)
-            user.is_active = False
+            # Auto-activate new users (no admin approval needed)
+            user.is_active = True
             user.save()
             
             # Create success message with User ID
             messages.success(
                 request, 
                 f'Registration successful! Your unique User ID is: {user.user_id}. '
-                f'Please remember this ID and wait for admin approval before signing in.'
+                f'You can now log in with your credentials.'
             )
             return redirect('login')
     else:
@@ -96,14 +96,24 @@ def dashboard(request):
     user = request.user
     
     # Get statistics
+    # SQL: SELECT COUNT(*) FROM inventory_product WHERE status = 'available'
     available_items = Product.objects.filter(status='available').count()
+    
+    # SQL: SELECT COUNT(*) FROM inventory_borrow WHERE user_id = ? AND status = 'active'
     my_borrowed = Borrow.objects.filter(user=user, status='active').count()
+    
+    # SQL: SELECT COUNT(*) FROM inventory_borrow WHERE status = 'pending'
     pending_requests = Borrow.objects.filter(status='pending').count()
+    
+    # SQL: SELECT COUNT(DISTINCT category) FROM inventory_product
     total_categories = Product.objects.values('category').distinct().count()
     
-    # Get recent activity
-    recent_requests = Borrow.objects.filter(user=user).order_by('-created_at')[:5]
-    currently_borrowed = Borrow.objects.filter(user=user, status='active')[:5]
+    # Get recent activity with JOIN to avoid N+1 queries
+    # SQL: SELECT * FROM inventory_borrow INNER JOIN inventory_product ON ... WHERE user_id = ? ORDER BY created_at DESC LIMIT 5
+    recent_requests = Borrow.objects.select_related('product').filter(user=user).order_by('-created_at')[:5]
+    
+    # SQL: SELECT * FROM inventory_borrow INNER JOIN inventory_product ON ... WHERE user_id = ? AND status = 'active' LIMIT 5
+    currently_borrowed = Borrow.objects.select_related('product').filter(user=user, status='active')[:5]
     
     # Admin specific data
     pending_users = 0
@@ -125,9 +135,11 @@ def dashboard(request):
 
 @login_required
 def items_list(request):
+    # Base query - SQL: SELECT * FROM inventory_product
     products = Product.objects.all()
     
-    # Search functionality
+    # Search functionality with OR conditions
+    # SQL: SELECT * FROM inventory_product WHERE (name LIKE '%query%' OR description LIKE '%query%' OR category LIKE '%query%' OR brand LIKE '%query%')
     search_query = request.GET.get('search', '')
     if search_query:
         products = products.filter(
@@ -137,16 +149,17 @@ def items_list(request):
             Q(brand__icontains=search_query)
         )
     
-    # Filter by category
+    # Filter by category - SQL: SELECT * FROM inventory_product WHERE category = ?
     category_filter = request.GET.get('category', '')
     if category_filter:
         products = products.filter(category=category_filter)
     
-    # Filter by status
+    # Filter by status - SQL: SELECT * FROM inventory_product WHERE status = ?
     status_filter = request.GET.get('status', '')
     if status_filter:
         products = products.filter(status=status_filter)
     
+    # Get distinct categories for filter dropdown - SQL: SELECT DISTINCT category FROM inventory_product
     categories = Product.objects.values_list('category', flat=True).distinct()
     
     context = {
@@ -207,12 +220,20 @@ def product_detail(request, pk):
 def add_item(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
+        print(f"Add item form data: {request.POST}")
+        print(f"Form is valid: {form.is_valid()}")
+        
+        if not form.is_valid():
+            print(f"Form errors: {form.errors}")
+        
         if form.is_valid():
             product = form.save(commit=False)
             product.created_by = request.user  # Track who created this product
             product.save()
             messages.success(request, 'Item added successfully!')
             return redirect('items_list')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = ProductForm()
     
@@ -225,10 +246,20 @@ def update_product(request, pk):
     
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
+        print(f"Form data received: {request.POST}")
+        print(f"Form is valid: {form.is_valid()}")
+        
+        if not form.is_valid():
+            print(f"Form errors: {form.errors}")
+        
         if form.is_valid():
-            form.save()
+            print(f"Original product status: {product.status}")
+            updated_product = form.save()
+            print(f"New product status: {updated_product.status}")
             messages.success(request, 'Product updated successfully!')
             return redirect('items_list')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = ProductForm(instance=product)
     
@@ -401,22 +432,32 @@ def add_user(request):
 @login_required
 @user_passes_test(is_admin)
 def reports(request):
-    # Generate various reports
+    # Generate various reports with optimized queries
+    
+    # Basic counts - SQL: SELECT COUNT(*) FROM inventory_product
     total_products = Product.objects.count()
+    
+    # SQL: SELECT COUNT(*) FROM inventory_user WHERE is_active = 1
     total_users = User.objects.filter(is_active=True).count()
+    
+    # SQL: SELECT COUNT(*) FROM inventory_borrow
     total_borrows = Borrow.objects.count()
+    
+    # SQL: SELECT COUNT(*) FROM inventory_borrow WHERE status = 'active'
     active_borrows = Borrow.objects.filter(status='active').count()
+    
+    # Complex date filtering - SQL: SELECT COUNT(*) FROM inventory_borrow WHERE status = 'active' AND expected_return_date < CURRENT_DATE
     overdue_items = Borrow.objects.filter(
         status='active',
         expected_return_date__lt=timezone.now().date()
     ).count()
     
-    # Category distribution
+    # Aggregation with GROUP BY - SQL: SELECT category, COUNT(product_id) as count FROM inventory_product GROUP BY category ORDER BY count DESC
     category_stats = Product.objects.values('category').annotate(
         count=Count('pk')  # Changed from Count('product_id') to Count('pk')
     ).order_by('-count')
     
-    # Most borrowed items
+    # Complex aggregation with LEFT JOIN - SQL: SELECT p.*, COUNT(b.borrow_id) as borrow_count FROM inventory_product p LEFT JOIN inventory_borrow b ON p.product_id = b.product_id GROUP BY p.product_id ORDER BY borrow_count DESC LIMIT 10
     popular_items = Product.objects.annotate(
         borrow_count=Count('borrow_history')
     ).order_by('-borrow_count')[:10]
@@ -608,3 +649,178 @@ def change_password(request):
         'success': False,
         'error': 'Invalid request method.'
     })
+
+@login_required
+@user_passes_test(is_admin)
+def approve_request(request, request_id):
+    """Approve a borrow request"""
+    if request.method == 'POST':
+        borrow = get_object_or_404(Borrow, id=request_id)
+        borrow.status = 'approved'
+        borrow.product.status = 'borrowed'
+        borrow.product.save()
+        borrow.save()
+        
+        # Create notification for user
+        try:
+            Notification.objects.create(
+                recipient_user=borrow.user,
+                related_user=request.user,
+                message=f"Your request for {borrow.product.name} has been approved!"
+            )
+        except:
+            pass  # Skip if notification model has issues
+        
+        messages.success(request, f'Request for {borrow.product.name} approved!')
+    
+    return redirect('admin_pending_requests')
+
+@login_required
+@user_passes_test(is_admin)
+def reject_request(request, request_id):
+    """Reject a borrow request"""
+    if request.method == 'POST':
+        borrow = get_object_or_404(Borrow, id=request_id)
+        borrow.status = 'rejected'
+        borrow.save()
+        
+        # Create notification for user
+        try:
+            Notification.objects.create(
+                recipient_user=borrow.user,
+                related_user=request.user,
+                message=f"Your request for {borrow.product.name} has been rejected."
+            )
+        except:
+            pass  # Skip if notification model has issues
+        
+        messages.success(request, f'Request for {borrow.product.name} rejected!')
+    
+    return redirect('admin_pending_requests')
+
+@login_required
+def borrow_request(request, product_id):
+    """Create a borrow request for a product"""
+    product = get_object_or_404(Product, pk=product_id)
+    
+    # Check if user already has a pending request for this item
+    existing_request = Borrow.objects.filter(
+        user=request.user,
+        product=product,
+        status__in=['pending', 'approved', 'active']
+    ).exists()
+    
+    if existing_request:
+        messages.error(request, 'You already have a pending or active request for this item.')
+        return redirect('product_detail', pk=product_id)
+    
+    if request.method == 'POST':
+        # Create borrow request
+        borrow = Borrow.objects.create(
+            user=request.user,
+            product=product,
+            status='pending',
+            borrow_date=timezone.now().date(),
+            expected_return_date=timezone.now().date() + timedelta(days=7)  # Default 7 days
+        )
+        
+        messages.success(request, 'Borrow request submitted successfully!')
+        return redirect('product_detail', pk=product_id)
+    
+    return redirect('product_detail', pk=product_id)
+
+@login_required
+def return_item(request, borrow_id):
+    """Return a borrowed item"""
+    borrow = get_object_or_404(Borrow, id=borrow_id, user=request.user)
+    
+    if request.method == 'POST':
+        borrow.status = 'returned'
+        borrow.actual_return_date = timezone.now().date()
+        borrow.product.status = 'available'
+        borrow.product.save()
+        borrow.save()
+        
+        messages.success(request, f'Successfully returned {borrow.product.name}!')
+    
+    return redirect('my_borrowed_items')
+
+@login_required
+def extend_request(request, borrow_id):
+    """Request extension for a borrowed item"""
+    borrow = get_object_or_404(Borrow, id=borrow_id, user=request.user)
+    
+    if request.method == 'POST':
+        # Extend by 7 days (you can make this configurable)
+        if borrow.expected_return_date:
+            borrow.expected_return_date += timedelta(days=7)
+            borrow.save()
+            messages.success(request, f'Extension requested for {borrow.product.name}!')
+        else:
+            messages.error(request, 'Unable to extend this item.')
+    
+    return redirect('my_borrowed_items')
+
+@login_required
+@user_passes_test(is_admin) 
+def activate_user(request, user_id):
+    """Activate a user account"""
+    if request.method == 'POST':
+        user = get_object_or_404(User, id=user_id)
+        user.is_active = True
+        user.save()
+        messages.success(request, f'User {user.username} has been activated!')
+    
+    return redirect('user_list')
+
+@login_required
+@user_passes_test(is_admin)
+def deactivate_user(request, user_id):
+    """Deactivate a user account"""
+    if request.method == 'POST':
+        user = get_object_or_404(User, id=user_id)
+        if user != request.user:  # Don't allow deactivating self
+            user.is_active = False
+            user.save()
+            messages.success(request, f'User {user.username} has been deactivated!')
+        else:
+            messages.error(request, 'You cannot deactivate your own account!')
+    
+    return redirect('user_list')
+
+@login_required
+@user_passes_test(is_admin)
+def delete_user(request, user_id):
+    """Delete a user account"""
+    if request.method == 'POST':
+        user = get_object_or_404(User, id=user_id)
+        if user != request.user:  # Don't allow deleting self
+            username = user.username
+            user.delete()
+            messages.success(request, f'User {username} has been deleted!')
+        else:
+            messages.error(request, 'You cannot delete your own account!')
+    
+    return redirect('user_list')
+
+# Export views (placeholder implementations)
+@login_required
+@user_passes_test(is_admin)
+def export_csv(request):
+    """Export data as CSV"""
+    messages.info(request, 'CSV export feature coming soon!')
+    return redirect('reports')
+
+@login_required
+@user_passes_test(is_admin)
+def export_pdf(request):
+    """Export data as PDF"""
+    messages.info(request, 'PDF export feature coming soon!')
+    return redirect('reports')
+
+@login_required
+@user_passes_test(is_admin)
+def print_report(request):
+    """Print report"""
+    messages.info(request, 'Print report feature coming soon!')
+    return redirect('reports')

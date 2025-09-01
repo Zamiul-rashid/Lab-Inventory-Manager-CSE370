@@ -4813,3 +4813,583 @@ Watching for file changes with StatReloader
 "GET /profile/ HTTP/1.1" 200 52732
 "GET /logout/ HTTP/1.1" 302 0
 "GET /login/ HTTP/1.1" 200 26607
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6347
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 31010
+"GET /items/ HTTP/1.1" 200 26767
+"GET /dashboard/ HTTP/1.1" 200 31010
+Internal Server Error: /my-borrowed/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 285, in my_borrowed_items
+    return render(request, 'my_borrowed_items.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: my_borrowed_items.html
+"GET /my-borrowed/ HTTP/1.1" 500 94571
+Internal Server Error: /my-requests/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 271, in my_requests
+    return render(request, 'my_requests.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: my_requests.html
+"GET /my-requests/ HTTP/1.1" 500 94438
+"GET /items/ HTTP/1.1" 200 26767
+"GET /dashboard/ HTTP/1.1" 200 31010
+Internal Server Error: /history/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 296, in borrow_history
+    return render(request, 'borrow_history.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: borrow_history.html
+"GET /history/ HTTP/1.1" 500 94491
+"GET /dashboard/ HTTP/1.1" 200 31010
+"GET /dashboard/ HTTP/1.1" 200 31010
+Internal Server Error: /history/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 296, in borrow_history
+    return render(request, 'borrow_history.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: borrow_history.html
+"GET /history/ HTTP/1.1" 500 94491
+Internal Server Error: /my-borrowed/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 285, in my_borrowed_items
+    return render(request, 'my_borrowed_items.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: my_borrowed_items.html
+"GET /my-borrowed/ HTTP/1.1" 500 94571
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: '0.0.0.0:8000'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8000'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 76452
+Invalid HTTP_HOST header: '0.0.0.0:8000'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8000'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 76409
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/lit_project/settings_dev.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: '0.0.0.0:8001'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8001'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 76574
+Invalid HTTP_HOST header: '0.0.0.0:8001'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8001'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 76531
+"GET /?id=61002ef6-0ae5-45f2-abce-5021cab12eae&vscodeBrowserReqId=1756695024607 HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6345
+"GET /?id=8533b43b-7f22-4351-a98f-9fa214dc99ab&vscodeBrowserReqId=1756695169299 HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+"POST /login/ HTTP/1.1" 200 26819
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 31010
+"GET /my-requests/ HTTP/1.1" 200 25963
+"GET /history/ HTTP/1.1" 200 34343
+"GET /my-borrowed/ HTTP/1.1" 200 28463
+"GET /dashboard/ HTTP/1.1" 200 31010
+"GET /history/ HTTP/1.1" 200 34343
+"GET /dashboard/ HTTP/1.1" 200 31010
+"GET /my-requests/ HTTP/1.1" 200 25963
+"GET /dashboard/ HTTP/1.1" 200 31010
+"GET /items/ HTTP/1.1" 200 26767
+"GET /dashboard/ HTTP/1.1" 200 31010
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /items/ HTTP/1.1" 200 101126
+Internal Server Error: /items/15/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 216, in product_detail
+    return render(request, 'product_detail.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'update_product' with arguments '('',)' not found. 1 pattern(s) tried: ['update\\-product/(?P<pk>[0-9]+)/\\Z']
+"GET /items/15/ HTTP/1.1" 500 203684
+Internal Server Error: /items/14/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 216, in product_detail
+    return render(request, 'product_detail.html', context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'update_product' with arguments '('',)' not found. 1 pattern(s) tried: ['update\\-product/(?P<pk>[0-9]+)/\\Z']
+"GET /items/14/ HTTP/1.1" 500 203732
+"GET /?id=8533b43b-7f22-4351-a98f-9fa214dc99ab&vscodeBrowserReqId=1756695838672 HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+"GET /items/ HTTP/1.1" 200 100824
+Internal Server Error: /borrow-request/2/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 686, in borrow_request
+    product = get_object_or_404(Product, id=product_id)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'id' into field. Choices are: borrow_history, brand, category, created_at, created_by, created_by_id, current_location, description, loanhistory, name, notes, product_id, quantity_available, status
+"GET /borrow-request/2/ HTTP/1.1" 500 133481
+"GET /items/?search=&category=&status=borrowed HTTP/1.1" 200 41699
+"GET /items/?search=&category=&status= HTTP/1.1" 200 100824
+"GET /items/?search=&category=Microcontrollers&status= HTTP/1.1" 200 38718
+"GET /items/?search=&category=HATs+%26+Modules&status= HTTP/1.1" 200 34735
+"GET /items/?search=&category=Microcontrollers&status= HTTP/1.1" 200 38718
+"GET /items/?search=&category=Single+Board+Computers&status= HTTP/1.1" 200 33162
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26607
+"GET /register/ HTTP/1.1" 200 9972
+"POST /register/ HTTP/1.1" 200 10322
+"POST /register/ HTTP/1.1" 200 10421
+"POST /register/ HTTP/1.1" 200 10389
+"POST /register/ HTTP/1.1" 200 10295
+"POST /register/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26686
+"POST /login/ HTTP/1.1" 200 26818
+"POST /login/ HTTP/1.1" 200 26818
+"GET /register/ HTTP/1.1" 200 9972
+"GET /login/ HTTP/1.1" 200 26332
+"POST /login/ HTTP/1.1" 200 26819
+"POST /login/ HTTP/1.1" 200 26818
+"GET /register/ HTTP/1.1" 200 9972
+"POST /register/ HTTP/1.1" 200 10281
+"POST /register/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26686
+"POST /login/ HTTP/1.1" 200 26825
+"POST /login/ HTTP/1.1" 200 26835
+"POST /login/ HTTP/1.1" 200 26835
+"POST /login/ HTTP/1.1" 200 26835
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /my-requests/ HTTP/1.1" 200 25963
+"GET /items/ HTTP/1.1" 200 100824
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /my-borrowed/ HTTP/1.1" 200 28463
+"GET /history/ HTTP/1.1" 200 34343
+"GET /my-requests/ HTTP/1.1" 200 25963
+"GET /items/ HTTP/1.1" 200 100824
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /history/ HTTP/1.1" 200 34343
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 200 31012
+"GET /profile/ HTTP/1.1" 200 52687
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26607
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 32844
+"GET /items/ HTTP/1.1" 200 103610
+Internal Server Error: /update-product/1/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 248, in update_product
+    return render(request, 'update_product.html', {'form': form, 'product': product})
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /update-product/1/ HTTP/1.1" 500 189398
+"GET /add-item/ HTTP/1.1" 200 29587
+"GET /my-requests/ HTTP/1.1" 200 26312
+"GET /my-borrowed/ HTTP/1.1" 200 28812
+"GET /items/ HTTP/1.1" 200 103610
+Internal Server Error: /update-product/14/
+Traceback (most recent call last):
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py", line 248, in update_product
+    return render(request, 'update_product.html', {'form': form, 'product': product})
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/entropy/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /update-product/14/ HTTP/1.1" 500 189493
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /items/ HTTP/1.1" 200 103610
+"GET /update-product/11/ HTTP/1.1" 200 30495
+"POST /update-product/11/ HTTP/1.1" 200 30495
+"GET /items/ HTTP/1.1" 200 103610
+"GET /update-product/1/ HTTP/1.1" 200 30727
+"POST /update-product/1/ HTTP/1.1" 200 30521
+"GET /items/ HTTP/1.1" 200 103610
+"GET /items/ HTTP/1.1" 200 103610
+"GET /items/ HTTP/1.1" 200 103610
+"GET /items/ HTTP/1.1" 200 103610
+"GET /update-product/1/ HTTP/1.1" 200 30727
+"POST /update-product/1/ HTTP/1.1" 200 30521
+"GET /items/ HTTP/1.1" 200 103610
+"GET /my-borrowed/ HTTP/1.1" 200 28812
+"GET /history/ HTTP/1.1" 200 34692
+"GET /history/?filter=returned HTTP/1.1" 200 34692
+"GET /my-requests/ HTTP/1.1" 200 26312
+"GET /items/ HTTP/1.1" 200 103610
+"GET /add-item/ HTTP/1.1" 200 29587
+"POST /add-item/ HTTP/1.1" 200 29632
+"POST /add-item/ HTTP/1.1" 200 29632
+"GET /items/ HTTP/1.1" 200 103610
+"GET /items/?search=canbus&category=&status= HTTP/1.1" 200 29894
+"GET /items/?search=ard&category=&status= HTTP/1.1" 200 48268
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /update-product/1/ HTTP/1.1" 200 30727
+"POST /update-product/1/ HTTP/1.1" 200 30521
+"POST /update-product/1/ HTTP/1.1" 200 30521
+"GET /items/ HTTP/1.1" 200 103610
+"GET /items/ HTTP/1.1" 200 103610
+"GET /items/ HTTP/1.1" 200 103610
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8712
+"POST /login/ HTTP/1.1" 200 26835
+"POST /login/ HTTP/1.1" 200 26835
+"POST /login/ HTTP/1.1" 200 26819
+"POST /login/ HTTP/1.1" 200 26819
+"POST /login/ HTTP/1.1" 200 26835
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 32837
+"GET /items/ HTTP/1.1" 200 103558
+"GET /update-product/4/ HTTP/1.1" 200 30668
+"POST /update-product/4/ HTTP/1.1" 200 30462
+"GET /update-product/4/ HTTP/1.1" 200 30668
+"POST /update-product/4/ HTTP/1.1" 200 30462
+"GET /update-product/4/ HTTP/1.1" 200 30668
+"GET /update-product/31/ HTTP/1.1" 200 30483
+"POST /update-product/31/ HTTP/1.1" 200 30689
+"GET /items/ HTTP/1.1" 200 103558
+"GET /items/?search=i2c&category=&status= HTTP/1.1" 200 32456
+"GET /update-product/31/ HTTP/1.1" 200 30483
+"POST /update-product/31/ HTTP/1.1" 200 30689
+"GET /items/ HTTP/1.1" 200 103558
+"GET /items/?search=i2c&category=&status= HTTP/1.1" 200 32456
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /update-product/31/ HTTP/1.1" 200 30483
+"POST /update-product/31/ HTTP/1.1" 200 30741
+"POST /update-product/31/ HTTP/1.1" 200 30741
+"POST /update-product/31/ HTTP/1.1" 200 30947
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/lit_project/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /update-product/31/ HTTP/1.1" 200 32818
+"POST /update-product/31/ HTTP/1.1" 200 32818
+"POST /update-product/31/ HTTP/1.1" 302 0
+"GET /items/ HTTP/1.1" 200 103807
+"GET /update-product/1/ HTTP/1.1" 200 31906
+"POST /update-product/1/ HTTP/1.1" 302 0
+"GET /items/ HTTP/1.1" 200 103803
+"GET /add-item/ HTTP/1.1" 200 29583
+"POST /add-item/ HTTP/1.1" 200 29628
+"POST /add-item/ HTTP/1.1" 200 29628
+/home/entropy/Code/Lab-Inventory-Manager-CSE370/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader

@@ -18,7 +18,7 @@
 
     <!-- Search and Filter Section -->
     <div class="search-section">
-        <form method="get" class="search-form">
+        <form method="get" class="search-form" id="searchForm">
             <div class="form-group">
                 <label class="form-label">Search Items</label>
                 <input type="text" name="search" class="form-control" 
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Category</label>
-                <select name="category" class="form-control">
+                <select name="category" class="form-control" onchange="document.getElementById('searchForm').submit();">
                     <option value="">All Categories</option>
                     {% for category in categories %}
                         <option value="{{ category }}" 
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Status</label>
-                <select name="status" class="form-control">
+                <select name="status" class="form-control" onchange="document.getElementById('searchForm').submit();">
                     <option value="">All Status</option>
                     <option value="available" {% if status_filter == 'available' %}selected{% endif %}>Available</option>
                     <option value="borrowed" {% if status_filter == 'borrowed' %}selected{% endif %}>Borrowed</option>
@@ -93,9 +93,11 @@
             </div>
 
             <div class="item-actions">
-                <a href="{% url 'product_detail' product.pk %}" class="btn btn-outline btn-sm">
-                    <i class="fas fa-eye"></i> View Details
+                {% if product.status == 'available' and not is_admin %}
+                <a href="{% url 'borrow_request' product.pk %}" class="btn btn-success btn-sm">
+                    <i class="fas fa-hand-paper"></i> Request Borrow
                 </a>
+                {% endif %}
                 {% if is_admin %}
                 <a href="{% url 'update_product' product.pk %}" class="btn btn-primary btn-sm">
                     <i class="fas fa-edit"></i> Edit

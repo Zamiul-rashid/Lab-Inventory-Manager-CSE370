@@ -1,0 +1,653 @@
+{% extends 'base.html' %}
+
+{% block title %}Item Details - {{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="product-detail-container">
+        <div class="product-header">
+            <div class="product-main-info">
+                <h1 class="product-title">{{ product.name }}</h1>
+                <div class="product-meta">
+                    <span class="category-badge">{{ product.category }}</span>
+                    <span class="status-badge status-{{ product.status }}">
+                        {{ product.get_status_display }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="product-actions">
+                {% if user.is_staff %}
+                <a href="{% url 'update_product' product.pk %}" class="btn btn-outline">
+                    <i class="fas fa-edit"></i>
+                    Edit Item
+                </a>
+                <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                </a>
+                {% elif product.status == 'available' %}
+                <form method="post" action="{% url 'borrow_request' product.pk %}" class="borrow-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-hand-holding"></i>
+                        Request to Borrow
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="product-content">
+            <div class="product-details">
+                <div class="detail-section">
+                    <h3>
+                        <i class="fas fa-info-circle"></i>
+                        Product Information
+                    </h3>
+                    
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Name:</span>
+                            <span class="detail-value">{{ product.name }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Category:</span>
+                            <span class="detail-value">{{ product.category }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Status:</span>
+                            <span class="detail-value">
+                                <span class="status-indicator status-{{ product.status }}"></span>
+                                {{ product.get_status_display }}
+                            </span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Added by:</span>
+                            <span class="detail-value">{{ product.created_by.username|default:"System" }}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Date Added:</span>
+                            <span class="detail-value">{{ product.created_at|date:"M d, Y" }}</span>
+                        </div>
+                        
+                        {% if product.last_updated %}
+                        <div class="detail-item">
+                            <span class="detail-label">Last Updated:</span>
+                            <span class="detail-value">{{ product.last_updated|date:"M d, Y" }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if product.description %}
+                <div class="detail-section">
+                    <h3>
+                        <i class="fas fa-file-alt"></i>
+                        Description
+                    </h3>
+                    <div class="description-content">
+                        {{ product.description|linebreaks }}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Current Borrower Information -->
+                {% if current_borrow %}
+                <div class="detail-section">
+                    <h3>
+                        <i class="fas fa-user"></i>
+                        Current Borrower
+                    </h3>
+                    <div class="borrower-info">
+                        <div class="borrower-card">
+                            <div class="borrower-details">
+                                <h4>{{ current_borrow.user.get_full_name|default:current_borrow.user.username }}</h4>
+                                <p>{{ current_borrow.user.email }}</p>
+                                <div class="borrow-dates">
+                                    <span><i class="fas fa-calendar-alt"></i> Borrowed: {{ current_borrow.borrow_date|date:"M d, Y" }}</span>
+                                    <span><i class="fas fa-calendar-check"></i> Due: {{ current_borrow.expected_return_date|date:"M d, Y" }}</span>
+                                </div>
+                                {% if current_borrow.is_overdue %}
+                                <div class="overdue-warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Overdue by {{ current_borrow.days_overdue }} days
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Borrow History -->
+                {% if borrow_history %}
+                <div class="detail-section">
+                    <h3>
+                        <i class="fas fa-history"></i>
+                        Borrow History
+                    </h3>
+                    <div class="history-list">
+                        {% for borrow in borrow_history %}
+                        <div class="history-item">
+                            <div class="history-marker status-{{ borrow.status }}">
+                                {% if borrow.status == 'returned' %}
+                                    <i class="fas fa-check"></i>
+                                {% elif borrow.status == 'active' %}
+                                    <i class="fas fa-hand-holding"></i>
+                                {% elif borrow.status == 'overdue' %}
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                {% else %}
+                                    <i class="fas fa-clock"></i>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="history-content">
+                                <div class="history-header">
+                                    <h5>{{ borrow.user.get_full_name|default:borrow.user.username }}</h5>
+                                    <span class="history-status status-{{ borrow.status }}">
+                                        {{ borrow.get_status_display }}
+                                    </span>
+                                </div>
+                                
+                                <div class="history-dates">
+                                    <span>Borrowed: {{ borrow.borrow_date|date:"M d, Y" }}</span>
+                                    {% if borrow.actual_return_date %}
+                                    <span>Returned: {{ borrow.actual_return_date|date:"M d, Y" }}</span>
+                                    {% elif borrow.expected_return_date %}
+                                    <span>Due: {{ borrow.expected_return_date|date:"M d, Y" }}</span>
+                                    {% endif %}
+                                </div>
+                                
+                                {% if borrow.notes %}
+                                <p class="history-notes">{{ borrow.notes }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar with quick stats -->
+            <div class="product-sidebar">
+                <div class="stats-card">
+                    <h4>
+                        <i class="fas fa-chart-bar"></i>
+                        Statistics
+                    </h4>
+                    
+                    <div class="stat-item">
+                        <span class="stat-label">Total Borrows:</span>
+                        <span class="stat-value">{{ total_borrows }}</span>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <span class="stat-label">Current Status:</span>
+                        <span class="stat-value">
+                            <span class="status-indicator status-{{ product.status }}"></span>
+                            {{ product.get_status_display }}
+                        </span>
+                    </div>
+                    
+                    {% if average_borrow_duration %}
+                    <div class="stat-item">
+                        <span class="stat-label">Avg. Borrow Time:</span>
+                        <span class="stat-value">{{ average_borrow_duration }} days</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if similar_items %}
+                <div class="similar-items-card">
+                    <h4>
+                        <i class="fas fa-layer-group"></i>
+                        Similar Items
+                    </h4>
+                    
+                    <div class="similar-items-list">
+                        {% for item in similar_items %}
+                        <a href="{% url 'product_detail' item.pk %}" class="similar-item">
+                            <h5>{{ item.name }}</h5>
+                            <span class="status-badge status-{{ item.status }}">
+                                {{ item.get_status_display }}
+                            </span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .product-detail-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .product-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+    }
+
+    .product-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0 0 1rem 0;
+        color: var(--text-color);
+    }
+
+    .product-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .category-badge {
+        background: rgba(66, 133, 244, 0.1);
+        color: #1976d2;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status-badge.status-available {
+        background: rgba(52, 168, 83, 0.1);
+        color: #0d8043;
+        border: 1px solid rgba(52, 168, 83, 0.3);
+    }
+
+    .status-badge.status-borrowed {
+        background: rgba(251, 188, 4, 0.1);
+        color: #f57c00;
+        border: 1px solid rgba(251, 188, 4, 0.3);
+    }
+
+    .status-badge.status-maintenance {
+        background: rgba(158, 158, 158, 0.1);
+        color: #424242;
+        border: 1px solid rgba(158, 158, 158, 0.3);
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--primary-blue);
+        border: 1px solid var(--primary-blue);
+    }
+
+    .btn-danger {
+        background: #c62828;
+        color: white;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .product-content {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+    }
+
+    .detail-section {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .detail-section h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .detail-grid {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .detail-item {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+
+    .detail-value {
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .status-indicator.status-available {
+        background: var(--success-green);
+    }
+
+    .status-indicator.status-borrowed {
+        background: #f57c00;
+    }
+
+    .status-indicator.status-maintenance {
+        background: #9e9e9e;
+    }
+
+    .description-content {
+        background: rgba(66, 133, 244, 0.05);
+        border-radius: 8px;
+        padding: 1rem;
+        line-height: 1.6;
+    }
+
+    .borrower-card {
+        background: rgba(66, 133, 244, 0.05);
+        border: 1px solid rgba(66, 133, 244, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+
+    .borrower-details h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-color);
+    }
+
+    .borrower-details p {
+        margin: 0 0 1rem 0;
+        color: var(--text-muted);
+    }
+
+    .borrow-dates {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .borrow-dates span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-color);
+        font-size: 0.9rem;
+    }
+
+    .overdue-warning {
+        background: rgba(234, 67, 53, 0.1);
+        border: 1px solid rgba(234, 67, 53, 0.3);
+        border-radius: 6px;
+        padding: 0.75rem;
+        color: #c62828;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+    }
+
+    .history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .history-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(0,0,0,0.02);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .history-marker {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .history-marker.status-returned {
+        background: var(--success-green);
+    }
+
+    .history-marker.status-active {
+        background: var(--primary-blue);
+    }
+
+    .history-marker.status-overdue {
+        background: #c62828;
+    }
+
+    .history-marker.status-pending {
+        background: #f57c00;
+    }
+
+    .history-content {
+        flex: 1;
+    }
+
+    .history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .history-header h5 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .history-status {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .history-dates {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .history-notes {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        font-style: italic;
+        margin: 0;
+    }
+
+    .product-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .stats-card, .similar-items-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .stats-card h4, .similar-items-card h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+
+    .stat-label {
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    .stat-value {
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .similar-items-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .similar-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        background: rgba(0,0,0,0.02);
+        border-radius: 6px;
+        text-decoration: none;
+        color: var(--text-color);
+        transition: all 0.2s ease;
+    }
+
+    .similar-item:hover {
+        background: rgba(66, 133, 244, 0.1);
+        transform: translateX(4px);
+    }
+
+    .similar-item h5 {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .product-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.5rem;
+        }
+
+        .product-actions {
+            justify-content: flex-start;
+        }
+
+        .product-content {
+            grid-template-columns: 1fr;
+        }
+
+        .product-title {
+            font-size: 2rem;
+        }
+
+        .detail-item {
+            grid-template-columns: 1fr;
+        }
+
+        .history-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .history-dates {
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+    }
+</style>
+{% endblock %}

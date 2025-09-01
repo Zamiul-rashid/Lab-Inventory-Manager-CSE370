@@ -1,0 +1,579 @@
+{% extends 'base.html' %}
+
+{% block title %}Reports - Lab Inventory Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-chart-bar"></i>
+            Reports & Analytics
+        </h1>
+        <p class="page-subtitle">System insights and data analysis</p>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="stats-overview">
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <div class="stat-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ total_items }}</h3>
+                    <p>Total Items</p>
+                </div>
+            </div>
+
+            <div class="stat-card success">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ available_items }}</h3>
+                    <p>Available</p>
+                </div>
+            </div>
+
+            <div class="stat-card warning">
+                <div class="stat-icon">
+                    <i class="fas fa-hand-holding"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ borrowed_items }}</h3>
+                    <p>Currently Borrowed</p>
+                </div>
+            </div>
+
+            <div class="stat-card danger">
+                <div class="stat-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ overdue_items }}</h3>
+                    <p>Overdue</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts and Reports -->
+    <div class="reports-grid">
+        <!-- Category Distribution -->
+        <div class="report-card">
+            <h3>
+                <i class="fas fa-chart-pie"></i>
+                Items by Category
+            </h3>
+            {% if category_data %}
+            <div class="category-chart">
+                {% for category in category_data %}
+                <div class="category-item">
+                    <div class="category-bar">
+                        <div class="category-fill" style="width: {{ category.percentage }}%"></div>
+                    </div>
+                    <div class="category-info">
+                        <span class="category-name">{{ category.name }}</span>
+                        <span class="category-count">{{ category.count }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-data">
+                <p>No category data available</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Top Borrowers -->
+        <div class="report-card">
+            <h3>
+                <i class="fas fa-users"></i>
+                Top Borrowers
+            </h3>
+            {% if top_borrowers %}
+            <div class="borrowers-list">
+                {% for borrower in top_borrowers %}
+                <div class="borrower-item">
+                    <div class="borrower-info">
+                        <h4>{{ borrower.user__get_full_name|default:borrower.user__username }}</h4>
+                        <p>{{ borrower.user__email }}</p>
+                    </div>
+                    <div class="borrower-stats">
+                        <span class="borrow-count">{{ borrower.count }}</span>
+                        <span class="borrow-label">items</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-data">
+                <p>No borrowing data available</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="report-card full-width">
+            <h3>
+                <i class="fas fa-history"></i>
+                Recent Activity
+            </h3>
+            {% if recent_activity %}
+            <div class="activity-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User</th>
+                            <th>Item</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for activity in recent_activity %}
+                        <tr>
+                            <td>{{ activity.borrow_date|date:"M d, Y" }}</td>
+                            <td>{{ activity.user.get_full_name|default:activity.user.username }}</td>
+                            <td>{{ activity.product.name }}</td>
+                            <td>
+                                {% if activity.status == 'returned' %}
+                                    <span class="action-returned">Returned</span>
+                                {% elif activity.status == 'active' %}
+                                    <span class="action-borrowed">Borrowed</span>
+                                {% elif activity.status == 'pending' %}
+                                    <span class="action-requested">Requested</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="status-badge status-{{ activity.status }}">
+                                    {{ activity.get_status_display }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="no-data">
+                <p>No recent activity</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Monthly Statistics -->
+        <div class="report-card">
+            <h3>
+                <i class="fas fa-calendar-alt"></i>
+                This Month
+            </h3>
+            <div class="monthly-stats">
+                <div class="monthly-stat">
+                    <span class="stat-number">{{ monthly_borrows }}</span>
+                    <span class="stat-label">New Borrows</span>
+                </div>
+                <div class="monthly-stat">
+                    <span class="stat-number">{{ monthly_returns }}</span>
+                    <span class="stat-label">Returns</span>
+                </div>
+                <div class="monthly-stat">
+                    <span class="stat-number">{{ monthly_requests }}</span>
+                    <span class="stat-label">Requests</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Health -->
+        <div class="report-card">
+            <h3>
+                <i class="fas fa-heartbeat"></i>
+                System Health
+            </h3>
+            <div class="health-metrics">
+                <div class="health-item">
+                    <span class="health-label">Utilization Rate:</span>
+                    <span class="health-value">{{ utilization_rate }}%</span>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">Average Borrow Time:</span>
+                    <span class="health-value">{{ avg_borrow_time }} days</span>
+                </div>
+                <div class="health-item">
+                    <span class="health-label">On-time Return Rate:</span>
+                    <span class="health-value">{{ ontime_rate }}%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Options -->
+    <div class="export-section">
+        <h3>
+            <i class="fas fa-download"></i>
+            Export Data
+        </h3>
+        <div class="export-buttons">
+            <a href="{% url 'export_csv' %}" class="btn btn-outline">
+                <i class="fas fa-file-csv"></i>
+                Export as CSV
+            </a>
+            <a href="{% url 'export_pdf' %}" class="btn btn-outline">
+                <i class="fas fa-file-pdf"></i>
+                Export as PDF
+            </a>
+            <a href="{% url 'print_report' %}" class="btn btn-outline" target="_blank">
+                <i class="fas fa-print"></i>
+                Print Report
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stats-overview {
+        margin-bottom: 3rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .stat-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .stat-card.primary .stat-icon { background: var(--primary-blue); }
+    .stat-card.success .stat-icon { background: var(--success-green); }
+    .stat-card.warning .stat-icon { background: #f57c00; }
+    .stat-card.danger .stat-icon { background: #c62828; }
+
+    .stat-info h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-color);
+    }
+
+    .stat-info p {
+        margin: 0;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .reports-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .report-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .report-card.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .report-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-color);
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .category-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .category-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .category-bar {
+        flex: 1;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .category-fill {
+        height: 100%;
+        background: var(--primary-blue);
+        transition: width 0.3s ease;
+    }
+
+    .category-info {
+        display: flex;
+        justify-content: space-between;
+        min-width: 120px;
+    }
+
+    .category-name {
+        font-weight: 500;
+        color: var(--text-color);
+    }
+
+    .category-count {
+        color: var(--text-muted);
+        font-weight: 600;
+    }
+
+    .borrowers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .borrower-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.02);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .borrower-info h4 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .borrower-info p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .borrower-stats {
+        text-align: right;
+    }
+
+    .borrow-count {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+    }
+
+    .borrow-label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    .activity-table {
+        overflow-x: auto;
+    }
+
+    .activity-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .activity-table th,
+    .activity-table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .activity-table th {
+        background: rgba(66, 133, 244, 0.05);
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .action-returned { color: var(--success-green); font-weight: 500; }
+    .action-borrowed { color: var(--primary-blue); font-weight: 500; }
+    .action-requested { color: #f57c00; font-weight: 500; }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .status-badge.status-returned {
+        background: rgba(52, 168, 83, 0.1);
+        color: #0d8043;
+    }
+
+    .status-badge.status-active {
+        background: rgba(66, 133, 244, 0.1);
+        color: #1976d2;
+    }
+
+    .status-badge.status-pending {
+        background: rgba(251, 188, 4, 0.1);
+        color: #f57c00;
+    }
+
+    .monthly-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .monthly-stat {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: rgba(66, 133, 244, 0.05);
+        border-radius: 8px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+    }
+
+    .stat-label {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .health-metrics {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .health-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .health-item:last-child {
+        border-bottom: none;
+    }
+
+    .health-label {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .health-value {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    .export-section {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+    }
+
+    .export-section h3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .export-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--text-color);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+        background: var(--primary-blue);
+        color: white;
+        border-color: var(--primary-blue);
+        transform: translateY(-1px);
+    }
+
+    .no-data {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted);
+    }
+
+    .no-data p {
+        margin: 0;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .reports-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .export-buttons {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}

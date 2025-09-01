@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+
+{% block title %}My Borrowed Items - Lab Inventory Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-hand-holding"></i>
+            My Borrowed Items
+        </h1>
+        <p class="page-subtitle">Items currently in your possession</p>
+    </div>
+
+    {% if borrowed_items %}
+    <div class="borrowed-items-container">
+        {% for borrow in borrowed_items %}
+        <div class="borrowed-item-card {% if borrow.is_overdue %}overdue{% endif %}">
+            <div class="item-header">
+                <h3>{{ borrow.product.name }}</h3>
+                <div class="item-meta">
+                    <span class="category">{{ borrow.product.category }}</span>
+                    {% if borrow.is_overdue %}
+                    <span class="overdue-badge">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        OVERDUE
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="item-details">
+                <div class="detail-row">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Borrowed: {{ borrow.borrow_date|date:"M d, Y" }}</span>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Due: {{ borrow.expected_return_date|date:"M d, Y" }}</span>
+                    </div>
+                </div>
+                
+                {% if borrow.notes %}
+                <div class="detail-item notes">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Notes: {{ borrow.notes }}</span>
+                </div>
+                {% endif %}
+                
+                {% if borrow.is_overdue %}
+                <div class="overdue-info">
+                    <i class="fas fa-clock"></i>
+                    <span>Overdue by {{ borrow.days_overdue }} day{{ borrow.days_overdue|pluralize }}</span>
+                </div>
+                {% else %}
+                <div class="time-remaining">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>{{ borrow.days_until_due }} day{{ borrow.days_until_due|pluralize }} remaining</span>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="item-actions">
+                <form method="post" action="{% url 'return_item' borrow.id %}" class="return-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-undo"></i>
+                        Return Item
+                    </button>
+                </form>
+                
+                {% if not borrow.is_overdue %}
+                <a href="{% url 'extend_request' borrow.id %}" class="btn btn-outline">
+                    <i class="fas fa-clock"></i>
+                    Request Extension
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="summary-section">
+        <div class="summary-card">
+            <h3>
+                <i class="fas fa-chart-bar"></i>
+                Summary
+            </h3>
+            <div class="summary-stats">
+                <div class="stat">
+                    <span class="stat-number">{{ borrowed_items|length }}</span>
+                    <span class="stat-label">Total Borrowed</span>
+                </div>
+                <div class="stat overdue">
+                    <span class="stat-number">{{ overdue_count }}</span>
+                    <span class="stat-label">Overdue Items</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">{{ due_soon_count }}</span>
+                    <span class="stat-label">Due This Week</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    <div class="no-data">
+        <i class="fas fa-hand-holding"></i>
+        <h3>No Borrowed Items</h3>
+        <p>You don't have any items currently borrowed.</p>
+        <a href="{% url 'items_list' %}" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+            Browse Available Items
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
+    .borrowed-items-container {
+        display: grid;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .borrowed-item-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+
+    .borrowed-item-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .borrowed-item-card.overdue {
+        border-color: rgba(234, 67, 53, 0.5);
+        background: rgba(234, 67, 53, 0.02);
+    }
+
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .item-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .item-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+
+    .category {
+        background: rgba(66, 133, 244, 0.1);
+        color: #1976d2;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .overdue-badge {
+        background: rgba(234, 67, 53, 0.1);
+        color: #c62828;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .item-details {
+        margin-bottom: 1.5rem;
+    }
+
+    .detail-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-color);
+    }
+
+    .detail-item.notes {
+        grid-column: 1 / -1;
+        margin-top: 0.5rem;
+    }
+
+    .detail-item i {
+        color: var(--primary-blue);
+        width: 16px;
+        text-align: center;
+    }
+
+    .overdue-info {
+        background: rgba(234, 67, 53, 0.1);
+        border: 1px solid rgba(234, 67, 53, 0.3);
+        border-radius: 8px;
+        padding: 0.75rem;
+        color: #c62828;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+    }
+
+    .time-remaining {
+        background: rgba(52, 168, 83, 0.1);
+        border: 1px solid rgba(52, 168, 83, 0.3);
+        border-radius: 8px;
+        padding: 0.75rem;
+        color: #0d8043;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+    }
+
+    .item-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .return-form {
+        margin: 0;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-success {
+        background: var(--success-green);
+        color: white;
+    }
+
+    .btn-success:hover {
+        background: #0d8043;
+        transform: translateY(-1px);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--primary-blue);
+        border: 1px solid var(--primary-blue);
+    }
+
+    .btn-outline:hover {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .summary-section {
+        margin-top: 2rem;
+    }
+
+    .summary-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .summary-card h3 {
+        margin: 0 0 1.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .stat {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(66, 133, 244, 0.05);
+        border-radius: 8px;
+    }
+
+    .stat.overdue {
+        background: rgba(234, 67, 53, 0.05);
+    }
+
+    .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat.overdue .stat-number {
+        color: #c62828;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .no-data {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-muted);
+    }
+
+    .no-data i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+
+    .no-data h3 {
+        margin: 1rem 0 0.5rem;
+        font-size: 1.5rem;
+    }
+
+    .no-data p {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .item-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .item-meta {
+            align-items: flex-start;
+            flex-direction: row;
+            gap: 1rem;
+        }
+
+        .detail-row {
+            grid-template-columns: 1fr;
+        }
+
+        .item-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

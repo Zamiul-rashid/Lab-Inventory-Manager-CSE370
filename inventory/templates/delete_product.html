@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Item - {{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="delete-container">
+        <div class="delete-card">
+            <div class="delete-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            
+            <div class="delete-content">
+                <h1>Delete Item</h1>
+                <p class="delete-message">
+                    Are you sure you want to delete <strong>"{{ product.name }}"</strong>?
+                    This action cannot be undone.
+                </p>
+                
+                <div class="item-summary">
+                    <h3>Item Details</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="summary-label">Name:</span>
+                            <span class="summary-value">{{ product.name }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Category:</span>
+                            <span class="summary-value">{{ product.category }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Status:</span>
+                            <span class="summary-value">
+                                <span class="status-badge status-{{ product.status }}">
+                                    {{ product.get_status_display }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Added:</span>
+                            <span class="summary-value">{{ product.created_at|date:"M d, Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {% if active_borrows %}
+                <div class="warning-section">
+                    <div class="warning-card">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div class="warning-content">
+                            <h4>Warning: Active Borrows</h4>
+                            <p>This item has {{ active_borrows|length }} active borrow{{ active_borrows|length|pluralize }}. Deleting this item will affect:</p>
+                            <ul>
+                                {% for borrow in active_borrows %}
+                                <li>{{ borrow.user.get_full_name|default:borrow.user.username }} (due {{ borrow.expected_return_date|date:"M d, Y" }})</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="delete-actions">
+                    <form method="post" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Yes, Delete Item
+                        </button>
+                    </form>
+                    
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i>
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .delete-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .delete-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .delete-icon {
+        background: linear-gradient(135deg, #c62828, #d32f2f);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .delete-icon i {
+        font-size: 3rem;
+    }
+
+    .delete-content {
+        padding: 2rem;
+    }
+
+    .delete-content h1 {
+        margin: 0 0 1rem 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--text-color);
+        text-align: center;
+    }
+
+    .delete-message {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--text-color);
+        margin-bottom: 2rem;
+        line-height: 1.5;
+    }
+
+    .delete-message strong {
+        color: #c62828;
+    }
+
+    .item-summary {
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .item-summary h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .summary-grid {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .summary-item:last-child {
+        border-bottom: none;
+    }
+
+    .summary-label {
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    .summary-value {
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .status-badge.status-available {
+        background: rgba(52, 168, 83, 0.1);
+        color: #0d8043;
+    }
+
+    .status-badge.status-borrowed {
+        background: rgba(251, 188, 4, 0.1);
+        color: #f57c00;
+    }
+
+    .status-badge.status-maintenance {
+        background: rgba(158, 158, 158, 0.1);
+        color: #424242;
+    }
+
+    .warning-section {
+        margin-bottom: 2rem;
+    }
+
+    .warning-card {
+        background: rgba(234, 67, 53, 0.05);
+        border: 1px solid rgba(234, 67, 53, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .warning-card > i {
+        color: #c62828;
+        font-size: 1.25rem;
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .warning-content h4 {
+        margin: 0 0 0.5rem 0;
+        color: #c62828;
+        font-weight: 600;
+    }
+
+    .warning-content p {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-color);
+    }
+
+    .warning-content ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        color: var(--text-color);
+    }
+
+    .warning-content li {
+        margin-bottom: 0.25rem;
+    }
+
+    .delete-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .delete-form {
+        margin: 0;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 1rem;
+    }
+
+    .btn-danger {
+        background: #c62828;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background: #b71c1c;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(198, 40, 40, 0.4);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+        background: var(--border-color);
+        color: var(--text-color);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+        .delete-container {
+            margin: 1rem auto;
+        }
+
+        .delete-content {
+            padding: 1.5rem;
+        }
+
+        .delete-actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}

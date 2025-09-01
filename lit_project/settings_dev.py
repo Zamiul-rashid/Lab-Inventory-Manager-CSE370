@@ -1,4 +1,4 @@
-# settings.py
+# settings_dev.py - Development settings using SQLite
 import os
 from pathlib import Path
 
@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here-change-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 # Application definition
 INSTALLED_APPS = [
@@ -54,13 +54,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lit_project.wsgi.application'
 
-# Database configuration for SQLite (portable, file-based)
-# SQL: This creates a SQLite database file in your project directory
-# The database file (db.sqlite3) will travel with your project
+# Database configuration for SQLite (easier for development)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # SQLite database file path
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -69,7 +67,6 @@ AUTH_USER_MODEL = 'inventory.User'
 
 # Add custom authentication backend
 AUTHENTICATION_BACKENDS = [
-    #'inventory.backends.EmailOrUsernameModelBackend',  # Your custom backend
     'django.contrib.auth.backends.ModelBackend',       # Django's default backend
 ]
 
@@ -124,26 +121,12 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-# Email configuration (for notifications)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # For production
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your_email_password'
+# Email configuration (for development)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Session configuration
 SESSION_COOKIE_AGE = 86400  # 24 hours
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-# Security settings (for production)
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# X_FRAME_OPTIONS = 'DENY'
-# SECURE_HSTS_SECONDS = 31536000
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
 
 # Logging configuration
 LOGGING = {
