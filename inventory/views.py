@@ -1,4 +1,4 @@
-# views.py
+# views.py - Updated with User Approval Feature
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -21,11 +21,52 @@ def is_admin(user):
 @user_passes_test(is_admin)
 def admin_dashboard(request):
     """
-    Renders the admin dashboard with links to user/product management and approvals.
+    Renders the admin dashboard with comprehensive statistics and recent activity.
     """
-    return render(request, 'admin_dashboard.html', {
+    # Get comprehensive statistics
+    total_products = Product.objects.count()
+    available_products = Product.objects.filter(status='available').count()
+    borrowed_products = Product.objects.filter(status='borrowed').count()
+    maintenance_products = Product.objects.filter(status='maintenance').count()
+    damaged_products = Product.objects.filter(status='damaged').count()
+    
+    total_users = User.objects.filter(is_active=True).count()
+    pending_users = User.objects.filter(is_active=False).count()
+    
+    pending_requests = Borrow.objects.filter(status='pending').count()
+    active_borrows = Borrow.objects.filter(status='active').count()
+    
+    # Calculate overdue items
+    overdue_items = Borrow.objects.filter(
+        status='active',
+        expected_return_date__lt=timezone.now().date()
+    ).count()
+    
+    # Get recent borrow activity for the activity feed
+    recent_borrows = Borrow.objects.select_related('user', 'product', 'added_by').order_by('-created_at')[:10]
+    
+    # Get category breakdown
+    category_stats = Product.objects.values('category').annotate(
+        count=Count('pk')
+    ).order_by('-count')[:5]
+    
+    context = {
+        'total_products': total_products,
+        'available_products': available_products,
+        'borrowed_products': borrowed_products,
+        'maintenance_products': maintenance_products,
+        'damaged_products': damaged_products,
+        'total_users': total_users,
+        'pending_users': pending_users,
+        'pending_requests': pending_requests,
+        'active_borrows': active_borrows,
+        'overdue_items': overdue_items,
+        'recent_borrows': recent_borrows,
+        'category_stats': category_stats,
         'is_admin': True,
-    })
+    }
+    
+    return render(request, 'admin_dashboard.html', context)
 
 def user_login(request):
     if request.method == 'POST':
@@ -49,14 +90,26 @@ def user_login(request):
             print(f"Authentication result: {user}")
             
             if user is not None:
-                login(request, user)
-                user.last_login = timezone.now()
-                user.save()
-                return redirect('dashboard')
+                # Check if user account is active (approved by admin)
+                if user.is_active:
+                    login(request, user)
+                    user.last_login = timezone.now()
+                    user.save()
+                    
+                    # Redirect based on user role
+                    if user.role == 'admin':
+                        messages.success(request, f'Welcome back, {user.get_full_name()}!')
+                        return redirect('admin_dashboard')
+                    else:
+                        messages.success(request, f'Welcome back, {user.get_full_name()}!')
+                        return redirect('dashboard')
+                else:
+                    messages.error(request, 'Your account is pending approval. Please contact an administrator.')
             else:
                 print("authenticate() returned None")
-        
-        messages.error(request, 'Invalid username or password.')
+                messages.error(request, 'Invalid username or password.')
+        else:
+            messages.error(request, 'Please correct the errors in the form.')
     else:
         form = CustomLoginForm()
     
@@ -67,17 +120,31 @@ def user_register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            # Auto-activate new users (no admin approval needed)
-            user.is_active = True
+            # Set user as inactive until admin approval
+            user.is_active = False
             user.save()
+            
+            # Notify all admins about new user registration
+            admin_users = User.objects.filter(role='admin', is_active=True)
+            for admin in admin_users:
+                try:
+                    Notification.objects.create(
+                        recipient_user=admin,
+                        related_user=user,
+                        message=f"New user {user.username} ({user.get_full_name()}) has registered and is waiting for approval."
+                    )
+                except Exception as e:
+                    print(f"Failed to create notification: {e}")
             
             # Create success message with User ID
             messages.success(
                 request, 
                 f'Registration successful! Your unique User ID is: {user.user_id}. '
-                f'You can now log in with your credentials.'
+                f'Your account is pending approval by an administrator. You will be notified once approved.'
             )
             return redirect('login')
+        else:
+            messages.error(request, 'Please correct the errors in the form.')
     else:
         form = UserRegistrationForm()
     
@@ -117,8 +184,10 @@ def dashboard(request):
     
     # Admin specific data
     pending_users = 0
+    pending_borrow_requests = 0
     if user.role == 'admin':
         pending_users = User.objects.filter(is_active=False).count()
+        pending_borrow_requests = Borrow.objects.filter(status='pending').count()
     
     context = {
         'available_items': available_items,
@@ -128,6 +197,7 @@ def dashboard(request):
         'recent_requests': recent_requests,
         'currently_borrowed': currently_borrowed,
         'pending_users': pending_users,
+        'pending_borrow_requests': pending_borrow_requests,
         'is_admin': user.role == 'admin',
     }
     
@@ -175,7 +245,7 @@ def items_list(request):
 
 @login_required
 def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, product_id=pk)
     
     if request.method == 'POST':
         form = BorrowForm(request.POST)
@@ -188,11 +258,14 @@ def product_detail(request, pk):
             # Create notification for admin
             admin_users = User.objects.filter(role='admin')
             for admin in admin_users:
-                Notification.objects.create(
-                    recipient_user=admin,
-                    related_user=request.user,
-                    message=f"{request.user.username} requested to borrow {product.name}"
-                )
+                try:
+                    Notification.objects.create(
+                        recipient_user=admin,
+                        related_user=request.user,
+                        message=f"{request.user.username} requested to borrow {product.name}"
+                    )
+                except Exception as e:
+                    print(f"Failed to create notification: {e}")
             
             messages.success(request, 'Borrow request submitted successfully!')
             return redirect('product_detail', pk=pk)
@@ -242,7 +315,7 @@ def add_item(request):
 @login_required
 @user_passes_test(is_admin)
 def update_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, product_id=pk)
     
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
@@ -268,7 +341,7 @@ def update_product(request, pk):
 @login_required
 @user_passes_test(is_admin)
 def delete_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, product_id=pk)
     
     if request.method == 'POST':
         product.delete()
@@ -331,11 +404,14 @@ def admin_pending_requests(request):
             borrow.save()
             
             # Create notification for user
-            Notification.objects.create(
-                recipient_user=borrow.user,
-                related_user=request.user,
-                message=f"Your request for {borrow.product.name} has been approved!"
-            )
+            try:
+                Notification.objects.create(
+                    recipient_user=borrow.user,
+                    related_user=request.user,
+                    message=f"Your request for {borrow.product.name} has been approved!"
+                )
+            except Exception as e:
+                print(f"Failed to create notification: {e}")
             
             messages.success(request, f'Request for {borrow.product.name} approved!')
             
@@ -345,11 +421,14 @@ def admin_pending_requests(request):
             borrow.save()
             
             # Create notification for user
-            Notification.objects.create(
-                recipient_user=borrow.user,
-                related_user=request.user,
-                message=f"Your request for {borrow.product.name} has been rejected."
-            )
+            try:
+                Notification.objects.create(
+                    recipient_user=borrow.user,
+                    related_user=request.user,
+                    message=f"Your request for {borrow.product.name} has been rejected."
+                )
+            except Exception as e:
+                print(f"Failed to create notification: {e}")
             
             messages.success(request, f'Request for {borrow.product.name} rejected!')
     
@@ -366,17 +445,20 @@ def admin_pending_users(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         action = request.POST.get('action')
-        user = get_object_or_404(User, id=user_id)
+        user = get_object_or_404(User, user_id=user_id)
         
         if action == 'approve':
             user.is_active = True
             user.save()
             
-            # Create a notification for the approved user (optional)
-            Notification.objects.create(
-                recipient_user=user,
-                message=f"Your account has been approved! You can now log in to the system."
-            )
+            # Create a notification for the approved user
+            try:
+                Notification.objects.create(
+                    recipient_user=user,
+                    message=f"Your account has been approved! You can now log in to the system."
+                )
+            except Exception as e:
+                print(f"Failed to create notification: {e}")
             
             messages.success(request, f'User {user.username} ({user.get_full_name()}) has been approved!')
             
@@ -421,7 +503,10 @@ def add_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            # Admin-created users are active by default
+            user.is_active = True
+            user.save()
             messages.success(request, f'User {user.username} created successfully!')
             return redirect('user_list')
     else:
@@ -479,7 +564,7 @@ def reports(request):
 @login_required
 def user_profile(request, user_id=None):
     if user_id:
-        profile_user = get_object_or_404(User, id=user_id)
+        profile_user = get_object_or_404(User, user_id=user_id)
     else:
         profile_user = request.user
 
@@ -582,7 +667,7 @@ def search_products_api(request):
     )[:10]
     
     results = [{
-        'id': p.pk,  # Using pk instead of product_id
+        'id': p.product_id,  # Use product_id instead of pk
         'name': p.name,
         'category': p.category,
         'status': p.status
@@ -594,7 +679,7 @@ def search_products_api(request):
 @user_passes_test(is_admin)
 def update_product_status_api(request, pk):
     if request.method == 'POST':
-        product = get_object_or_404(Product, pk=pk)
+        product = get_object_or_404(Product, product_id=pk)
         new_status = request.POST.get('status')
         
         if new_status in dict(Product.PRODUCT_STATUS):
@@ -655,7 +740,7 @@ def change_password(request):
 def approve_request(request, request_id):
     """Approve a borrow request"""
     if request.method == 'POST':
-        borrow = get_object_or_404(Borrow, id=request_id)
+        borrow = get_object_or_404(Borrow, borrow_id=request_id)  # Changed from id to borrow_id
         borrow.status = 'approved'
         borrow.product.status = 'borrowed'
         borrow.product.save()
@@ -680,7 +765,7 @@ def approve_request(request, request_id):
 def reject_request(request, request_id):
     """Reject a borrow request"""
     if request.method == 'POST':
-        borrow = get_object_or_404(Borrow, id=request_id)
+        borrow = get_object_or_404(Borrow, borrow_id=request_id)  # Changed from id to borrow_id
         borrow.status = 'rejected'
         borrow.save()
         
@@ -701,7 +786,7 @@ def reject_request(request, request_id):
 @login_required
 def borrow_request(request, product_id):
     """Create a borrow request for a product"""
-    product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, product_id=product_id)  # Changed from pk to product_id
     
     # Check if user already has a pending request for this item
     existing_request = Borrow.objects.filter(
@@ -732,7 +817,7 @@ def borrow_request(request, product_id):
 @login_required
 def return_item(request, borrow_id):
     """Return a borrowed item"""
-    borrow = get_object_or_404(Borrow, id=borrow_id, user=request.user)
+    borrow = get_object_or_404(Borrow, borrow_id=borrow_id, user=request.user)  # Changed from id to borrow_id
     
     if request.method == 'POST':
         borrow.status = 'returned'
@@ -748,7 +833,7 @@ def return_item(request, borrow_id):
 @login_required
 def extend_request(request, borrow_id):
     """Request extension for a borrowed item"""
-    borrow = get_object_or_404(Borrow, id=borrow_id, user=request.user)
+    borrow = get_object_or_404(Borrow, borrow_id=borrow_id, user=request.user)  # Changed from id to borrow_id
     
     if request.method == 'POST':
         # Extend by 7 days (you can make this configurable)
@@ -766,7 +851,7 @@ def extend_request(request, borrow_id):
 def activate_user(request, user_id):
     """Activate a user account"""
     if request.method == 'POST':
-        user = get_object_or_404(User, id=user_id)
+        user = get_object_or_404(User, user_id=user_id)  # Changed from id to user_id
         user.is_active = True
         user.save()
         messages.success(request, f'User {user.username} has been activated!')
@@ -778,7 +863,7 @@ def activate_user(request, user_id):
 def deactivate_user(request, user_id):
     """Deactivate a user account"""
     if request.method == 'POST':
-        user = get_object_or_404(User, id=user_id)
+        user = get_object_or_404(User, user_id=user_id)  # Changed from id to user_id
         if user != request.user:  # Don't allow deactivating self
             user.is_active = False
             user.save()
@@ -793,7 +878,7 @@ def deactivate_user(request, user_id):
 def delete_user(request, user_id):
     """Delete a user account"""
     if request.method == 'POST':
-        user = get_object_or_404(User, id=user_id)
+        user = get_object_or_404(User, user_id=user_id)  # Changed from id to user_id
         if user != request.user:  # Don't allow deleting self
             username = user.username
             user.delete()

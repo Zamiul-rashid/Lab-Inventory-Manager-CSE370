@@ -9,7 +9,11 @@
             <i class="fas fa-tachometer-alt"></i>
             Admin Dashboard
         </h1>
-        <p class="page-subtitle">Manage your inventory system</p>
+        <p class="page-subtitle">Comprehensive system management</p>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline">
+            <i class="fas fa-arrow-left"></i>
+            Back to Main Dashboard
+        </a>
     </div>
 
     <!-- Quick Stats -->
@@ -60,20 +64,93 @@
             </div>
             <div class="stat-info">
                 <h3>{{ total_users }}</h3>
-                <p>Total Users</p>
+                <p>Active Users</p>
             </div>
         </div>
 
         <div class="stat-card pending">
             <div class="stat-icon">
-                <i class="fas fa-clock"></i>
+                <i class="fas fa-user-clock"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{ pending_users }}</h3>
+                <p>Pending Users</p>
+            </div>
+            {% if pending_users > 0 %}
+            <div class="notification-badge">{{ pending_users }}</div>
+            {% endif %}
+        </div>
+
+        <div class="stat-card requests">
+            <div class="stat-icon">
+                <i class="fas fa-clipboard-list"></i>
             </div>
             <div class="stat-info">
                 <h3>{{ pending_requests }}</h3>
                 <p>Pending Requests</p>
             </div>
         </div>
+
+        <div class="stat-card maintenance">
+            <div class="stat-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{ maintenance_products }}</h3>
+                <p>In Maintenance</p>
+            </div>
+        </div>
     </div>
+
+    <!-- Priority Actions - Highlight items that need immediate attention -->
+    {% if pending_users > 0 or pending_requests > 0 or overdue_items > 0 %}
+    <div class="priority-actions">
+        <h2>
+            <i class="fas fa-exclamation-circle"></i>
+            Requires Immediate Attention
+        </h2>
+        <div class="priority-grid">
+            {% if pending_users > 0 %}
+            <a href="{% url 'admin_pending_users' %}" class="priority-card urgent">
+                <div class="priority-icon">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+                <div class="priority-content">
+                    <h3>{{ pending_users }} User{{ pending_users|pluralize }} Waiting</h3>
+                    <p>New registrations need approval</p>
+                </div>
+                <div class="priority-badge">URGENT</div>
+            </a>
+            {% endif %}
+
+            {% if pending_requests > 0 %}
+            <a href="{% url 'admin_pending_requests' %}" class="priority-card important">
+                <div class="priority-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="priority-content">
+                    <h3>{{ pending_requests }} Borrow Request{{ pending_requests|pluralize }}</h3>
+                    <p>Items waiting for approval</p>
+                </div>
+                <div class="priority-badge">HIGH</div>
+            </a>
+            {% endif %}
+
+            {% if overdue_items > 0 %}
+            <a href="{% url 'reports' %}#overdue" class="priority-card critical">
+                <div class="priority-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="priority-content">
+                    <h3>{{ overdue_items }} Overdue Item{{ overdue_items|pluralize }}</h3>
+                    <p>Items past return date</p>
+                </div>
+                <div class="priority-badge">CRITICAL</div>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
 
     <!-- Quick Actions -->
     <div class="quick-actions">
@@ -117,8 +194,43 @@
                 <h3>View Inventory</h3>
                 <p>{{ total_products }} total items</p>
             </a>
+
+            <a href="{% url 'add_user' %}" class="action-card">
+                <i class="fas fa-user-plus"></i>
+                <h3>Add User</h3>
+                <p>Create new account</p>
+            </a>
+
+            <a href="{% url 'export_csv' %}" class="action-card">
+                <i class="fas fa-download"></i>
+                <h3>Export Data</h3>
+                <p>Download reports</p>
+            </a>
         </div>
     </div>
+
+    <!-- Category Breakdown -->
+    {% if category_stats %}
+    <div class="category-breakdown">
+        <h2>
+            <i class="fas fa-chart-pie"></i>
+            Inventory by Category
+        </h2>
+        <div class="category-grid">
+            {% for category in category_stats %}
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="category-info">
+                    <h4>{{ category.category }}</h4>
+                    <p>{{ category.count }} item{{ category.count|pluralize }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 
     <!-- Recent Activity -->
     <div class="recent-activity">
@@ -140,25 +252,41 @@
                         <i class="fas fa-hand-holding"></i>
                     {% elif borrow.status == 'returned' %}
                         <i class="fas fa-check"></i>
-                    {% else %}
+                    {% elif borrow.status == 'rejected' %}
                         <i class="fas fa-times"></i>
+                    {% else %}
+                        <i class="fas fa-info-circle"></i>
                     {% endif %}
                 </div>
                 
                 <div class="activity-content">
-                    <h4>{{ borrow.user.username }} {{ borrow.get_status_display|lower }} {{ borrow.product.name }}</h4>
-                    <p>{{ borrow.borrow_date|timesince }} ago</p>
+                    <h4>
+                        {% if borrow.status == 'pending' %}
+                            {{ borrow.user.username }} requested to borrow {{ borrow.product.name }}
+                        {% elif borrow.status == 'approved' %}
+                            Approved {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                        {% elif borrow.status == 'rejected' %}
+                            Rejected {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                        {% elif borrow.status == 'active' %}
+                            {{ borrow.user.username }} is currently borrowing {{ borrow.product.name }}
+                        {% elif borrow.status == 'returned' %}
+                            {{ borrow.user.username }} returned {{ borrow.product.name }}
+                        {% else %}
+                            {{ borrow.user.username }} {{ borrow.get_status_display|lower }} {{ borrow.product.name }}
+                        {% endif %}
+                    </h4>
+                    <p>{{ borrow.created_at|timesince }} ago</p>
                 </div>
                 
                 <div class="activity-actions">
                     {% if borrow.status == 'pending' %}
-                    <form method="post" action="{% url 'approve_request' borrow.id %}" style="display: inline;">
+                    <form method="post" action="{% url 'approve_request' borrow.borrow_id %}" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-success">
                             <i class="fas fa-check"></i>
                         </button>
                     </form>
-                    <form method="post" action="{% url 'reject_request' borrow.id %}" style="display: inline;">
+                    <form method="post" action="{% url 'reject_request' borrow.borrow_id %}" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-danger">
                             <i class="fas fa-times"></i>
@@ -176,14 +304,87 @@
         </div>
         {% endif %}
     </div>
+
+    <!-- System Status -->
+    <div class="system-status">
+        <h2>
+            <i class="fas fa-server"></i>
+            System Status
+        </h2>
+        <div class="status-grid">
+            <div class="status-card healthy">
+                <div class="status-indicator"></div>
+                <div class="status-info">
+                    <h4>Inventory System</h4>
+                    <p>All systems operational</p>
+                </div>
+            </div>
+            
+            <div class="status-card {% if pending_users > 5 %}warning{% else %}healthy{% endif %}">
+                <div class="status-indicator"></div>
+                <div class="status-info">
+                    <h4>User Management</h4>
+                    <p>{% if pending_users > 5 %}High pending users{% else %}Normal operations{% endif %}</p>
+                </div>
+            </div>
+            
+            <div class="status-card {% if overdue_items > 0 %}critical{% else %}healthy{% endif %}">
+                <div class="status-indicator"></div>
+                <div class="status-info">
+                    <h4>Borrow Management</h4>
+                    <p>{% if overdue_items > 0 %}{{ overdue_items }} overdue items{% else %}All items on time{% endif %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
+    .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: transparent;
+        color: var(--primary-blue);
+        border: 1px solid var(--primary-blue);
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .btn-outline:hover {
+        background: var(--primary-blue);
+        color: white;
+    }
+
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
         margin-bottom: 3rem;
     }
@@ -198,6 +399,7 @@
         align-items: center;
         gap: 1rem;
         transition: all 0.3s ease;
+        position: relative;
     }
 
     .stat-card:hover {
@@ -222,6 +424,8 @@
     .stat-card.danger .stat-icon { background: #c62828; }
     .stat-card.info .stat-icon { background: #0288d1; }
     .stat-card.pending .stat-icon { background: #fb8c00; }
+    .stat-card.requests .stat-icon { background: #7b1fa2; }
+    .stat-card.maintenance .stat-icon { background: #5d4037; }
 
     .stat-info h3 {
         margin: 0 0 0.5rem 0;
@@ -236,11 +440,34 @@
         font-weight: 500;
     }
 
-    .quick-actions, .recent-activity {
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #c62828;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    .priority-actions, .quick-actions, .recent-activity, .category-breakdown, .system-status {
         margin-bottom: 3rem;
     }
 
-    .quick-actions h2, .recent-activity h2 {
+    .priority-actions h2, .quick-actions h2, .recent-activity h2, .category-breakdown h2, .system-status h2 {
         display: flex;
         align-items: center;
         gap: 0.75rem;
@@ -248,9 +475,106 @@
         font-size: 1.5rem;
     }
 
+    .priority-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .priority-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-decoration: none;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+        position: relative;
+    }
+
+    .priority-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .priority-card.urgent {
+        border-left: 4px solid #c62828;
+    }
+
+    .priority-card.important {
+        border-left: 4px solid #f57c00;
+    }
+
+    .priority-card.critical {
+        border-left: 4px solid #d32f2f;
+        background: rgba(211, 47, 47, 0.05);
+    }
+
+    .priority-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: white;
+        background: var(--primary-blue);
+    }
+
+    .priority-card.urgent .priority-icon {
+        background: #c62828;
+    }
+
+    .priority-card.important .priority-icon {
+        background: #f57c00;
+    }
+
+    .priority-card.critical .priority-icon {
+        background: #d32f2f;
+    }
+
+    .priority-content {
+        flex: 1;
+    }
+
+    .priority-content h3 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .priority-content p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .priority-badge {
+        background: #c62828;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .priority-card.important .priority-badge {
+        background: #f57c00;
+    }
+
+    .priority-card.critical .priority-badge {
+        background: #d32f2f;
+    }
+
     .actions-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
     }
 
@@ -273,21 +597,61 @@
     }
 
     .action-card i {
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: var(--primary-blue);
         margin-bottom: 1rem;
     }
 
     .action-card h3 {
         margin: 0 0 0.5rem 0;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
     }
 
     .action-card p {
         margin: 0;
         color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .category-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        box-shadow: var(--shadow);
+    }
+
+    .category-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(66, 133, 244, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-blue);
+    }
+
+    .category-info h4 {
+        margin: 0 0 0.25rem 0;
         font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .category-info p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.8rem;
     }
 
     .activity-list {
@@ -370,6 +734,50 @@
         transform: translateY(-1px);
     }
 
+    .status-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .status-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: var(--shadow);
+    }
+
+    .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--success-green);
+    }
+
+    .status-card.warning .status-indicator {
+        background: #f57c00;
+    }
+
+    .status-card.critical .status-indicator {
+        background: #c62828;
+    }
+
+    .status-info h4 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .status-info p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+    }
+
     .no-activity {
         text-align: center;
         padding: 3rem;
@@ -386,11 +794,17 @@
     }
 
     @media (max-width: 768px) {
+        .page-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
         .stats-grid {
             grid-template-columns: 1fr;
         }
 
-        .actions-grid {
+        .priority-grid, .actions-grid, .category-grid, .status-grid {
             grid-template-columns: 1fr;
         }
 

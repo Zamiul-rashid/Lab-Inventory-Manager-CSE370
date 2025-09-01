@@ -60,7 +60,7 @@
             </div>
             
             <div class="request-actions">
-                <form method="post" action="{% url 'approve_request' request.id %}" class="action-form approve-form">
+                <form method="post" action="{% url 'approve_request' request.borrow_id %}" class="action-form approve-form">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-check"></i>
@@ -68,7 +68,7 @@
                     </button>
                 </form>
                 
-                <form method="post" action="{% url 'reject_request' request.id %}" class="action-form reject-form">
+                <form method="post" action="{% url 'reject_request' request.borrow_id %}" class="action-form reject-form">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">
                         <i class="fas fa-times"></i>
@@ -76,7 +76,7 @@
                     </button>
                 </form>
                 
-                <a href="{% url 'product_detail' request.product.id %}" class="btn btn-outline">
+                <a href="{% url 'product_detail' request.product.product_id %}" class="btn btn-outline">
                     <i class="fas fa-eye"></i>
                     View Item
                 </a>
@@ -126,6 +126,42 @@
 
 {% block extra_css %}
 <style>
+    :root {
+        --primary-blue: #4285f4;
+        --success-green: #34a853;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --text-color: #202124;
+        --text-muted: #5f6368;
+        --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        --hover-bg: #f8f9fa;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
+
+    .page-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
     .requests-container {
         display: grid;
         gap: 1.5rem;
@@ -361,6 +397,10 @@
     }
 
     @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+
         .request-header {
             grid-template-columns: 1fr;
             gap: 1rem;
