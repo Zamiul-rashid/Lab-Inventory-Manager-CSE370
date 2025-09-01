@@ -6917,3 +6917,11 @@ Traceback (most recent call last):
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'user_profile' with arguments '(3,)' not found. 1 pattern(s) tried: ['profile/\\Z']
 "GET /manage/users/ HTTP/1.1" 500 181719
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26332
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8712
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 43545
+"GET /profile/ HTTP/1.1" 200 151630
