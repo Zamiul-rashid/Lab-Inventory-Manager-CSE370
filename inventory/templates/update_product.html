@@ -1,0 +1,401 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Item - {{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-edit"></i>
+            Update Item
+        </h1>
+        <p class="page-subtitle">Editing: {{ product.name }}</p>
+    </div>
+
+    <div class="form-container">
+        <form method="post" class="item-form">
+            {% csrf_token %}
+            
+            <div class="form-section">
+                <h3>
+                    <i class="fas fa-box"></i>
+                    Item Information
+                </h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Item Name</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <div class="error-message">
+                                {% for error in form.name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.category.id_for_label }}">Category</label>
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                            <div class="error-message">
+                                {% for error in form.category.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.brand.id_for_label }}">Brand</label>
+                        {{ form.brand }}
+                        {% if form.brand.errors %}
+                            <div class="error-message">
+                                {% for error in form.brand.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.quantity_available.id_for_label }}">Quantity Available</label>
+                        {{ form.quantity_available }}
+                        {% if form.quantity_available.errors %}
+                            <div class="error-message">
+                                {% for error in form.quantity_available.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.current_location.id_for_label }}">Current Location</label>
+                        {{ form.current_location }}
+                        {% if form.current_location.errors %}
+                            <div class="error-message">
+                                {% for error in form.current_location.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.status.id_for_label }}">Status</label>
+                        {{ form.status }}
+                        {% if form.status.errors %}
+                            <div class="error-message">
+                                {% for error in form.status.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <small class="form-help">
+                            {% if product.status == 'borrowed' %}
+                                <i class="fas fa-info-circle"></i>
+                                This item is currently borrowed. Changing status may affect active borrowing.
+                            {% endif %}
+                        </small>
+                    </div>
+                </div>
+
+                {% if form.description %}
+                <div class="form-group">
+                    <label for="{{ form.description.id_for_label }}">Description</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                        <div class="error-message">
+                            {% for error in form.description.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if form.notes %}
+                <div class="form-group">
+                    <label for="{{ form.notes.id_for_label }}">Notes</label>
+                    {{ form.notes }}
+                    {% if form.notes.errors %}
+                        <div class="error-message">
+                            {% for error in form.notes.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Update Item
+                </button>
+                
+                <a href="{% url 'product_detail' product.pk %}" class="btn btn-outline">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </a>
+                
+                <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Delete Item
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="item-info">
+        <div class="info-card">
+            <h4>
+                <i class="fas fa-info-circle"></i>
+                Item Details
+            </h4>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Created:</span>
+                    <span class="info-value">{{ product.created_at|date:"M d, Y" }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Added by:</span>
+                    <span class="info-value">{{ product.created_by.username|default:"System" }}</span>
+                </div>
+                {% if product.last_updated %}
+                <div class="info-item">
+                    <span class="info-label">Last updated:</span>
+                    <span class="info-value">{{ product.last_updated|date:"M d, Y" }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto 2rem auto;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+    }
+
+    .form-section {
+        margin-bottom: 2rem;
+    }
+
+    .form-section h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-color);
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-help {
+        margin-top: 0.5rem;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-help i {
+        color: var(--primary-blue);
+    }
+
+    .error-message {
+        margin-top: 0.5rem;
+        color: #c62828;
+        font-size: 0.875rem;
+    }
+
+    .error-message span {
+        display: block;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #1976d2;
+        transform: translateY(-1px);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+        background: var(--border-color);
+        color: var(--text-color);
+    }
+
+    .btn-danger {
+        background: #c62828;
+        color: white;
+        margin-left: auto;
+    }
+
+    .btn-danger:hover {
+        background: #b71c1c;
+        transform: translateY(-1px);
+    }
+
+    .item-info {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .info-card {
+        background: rgba(66, 133, 244, 0.05);
+        border: 1px solid rgba(66, 133, 244, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+    }
+
+    .info-card h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0 0 1rem 0;
+        color: var(--primary-blue);
+        font-size: 1.125rem;
+    }
+
+    .info-grid {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(66, 133, 244, 0.1);
+    }
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: 500;
+        color: var(--text-muted);
+    }
+
+    .info-value {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .form-container {
+            margin: 0 1rem 2rem 1rem;
+            padding: 1.5rem;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            justify-content: center;
+        }
+
+        .btn-danger {
+            margin-left: 0;
+        }
+    }
+</style>
+{% endblock %}

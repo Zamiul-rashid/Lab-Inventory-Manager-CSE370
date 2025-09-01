@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+
+{% block title %}Pending Requests - Lab Inventory Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fas fa-clipboard-list"></i>
+            Pending Requests
+        </h1>
+        <p class="page-subtitle">Review and approve borrowing requests</p>
+    </div>
+
+    {% if pending_requests %}
+    <div class="requests-container">
+        {% for request in pending_requests %}
+        <div class="request-card">
+            <div class="request-header">
+                <div class="requester-info">
+                    <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
+                    <p>{{ request.user.email }}</p>
+                    <span class="request-date">{{ request.borrow_date|timesince }} ago</span>
+                </div>
+                
+                <div class="item-info">
+                    <h4>{{ request.product.name }}</h4>
+                    <span class="category-badge">{{ request.product.category }}</span>
+                </div>
+            </div>
+            
+            <div class="request-details">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Requested: {{ request.borrow_date|date:"M d, Y" }}</span>
+                    </div>
+                    
+                    {% if request.expected_return_date %}
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Expected Return: {{ request.expected_return_date|date:"M d, Y" }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Status: {{ request.product.get_status_display }}</span>
+                    </div>
+                </div>
+                
+                {% if request.notes %}
+                <div class="request-notes">
+                    <i class="fas fa-sticky-note"></i>
+                    <div class="notes-content">
+                        <strong>Notes:</strong> {{ request.notes }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="request-actions">
+                <form method="post" action="{% url 'approve_request' request.id %}" class="action-form approve-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check"></i>
+                        Approve
+                    </button>
+                </form>
+                
+                <form method="post" action="{% url 'reject_request' request.id %}" class="action-form reject-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-times"></i>
+                        Reject
+                    </button>
+                </form>
+                
+                <a href="{% url 'product_detail' request.product.id %}" class="btn btn-outline">
+                    <i class="fas fa-eye"></i>
+                    View Item
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="pagination-container">
+        <nav class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+                    <i class="fas fa-chevron-left"></i>
+                    Previous
+                </a>
+            {% endif %}
+            
+            <span class="page-info">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+                    Next
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
+    
+    {% else %}
+    <div class="no-requests">
+        <i class="fas fa-clipboard"></i>
+        <h3>No Pending Requests</h3>
+        <p>All borrowing requests have been processed.</p>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary">
+            <i class="fas fa-tachometer-alt"></i>
+            Back to Dashboard
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .requests-container {
+        display: grid;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .request-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+
+    .request-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .request-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .requester-info h3 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .requester-info p {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .request-date {
+        font-size: 0.875rem;
+        color: var(--primary-blue);
+        font-weight: 500;
+    }
+
+    .item-info {
+        text-align: right;
+    }
+
+    .item-info h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .category-badge {
+        background: rgba(66, 133, 244, 0.1);
+        color: #1976d2;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-color);
+    }
+
+    .detail-item i {
+        color: var(--primary-blue);
+        width: 16px;
+        text-align: center;
+    }
+
+    .request-notes {
+        background: rgba(66, 133, 244, 0.05);
+        border: 1px solid rgba(66, 133, 244, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+        display: flex;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .request-notes i {
+        color: var(--primary-blue);
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .notes-content {
+        flex: 1;
+        line-height: 1.5;
+    }
+
+    .notes-content strong {
+        color: var(--primary-blue);
+    }
+
+    .request-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .action-form {
+        margin: 0;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+    }
+
+    .btn-success {
+        background: var(--success-green);
+        color: white;
+    }
+
+    .btn-success:hover {
+        background: #0d8043;
+        transform: translateY(-1px);
+    }
+
+    .btn-danger {
+        background: #c62828;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background: #b71c1c;
+        transform: translateY(-1px);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--primary-blue);
+        border: 1px solid var(--primary-blue);
+    }
+
+    .btn-outline:hover {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .btn-primary {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    .pagination-container {
+        margin: 3rem 0;
+        text-align: center;
+    }
+
+    .pagination {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--card-bg);
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+    }
+
+    .page-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        color: var(--primary-blue);
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .page-link:hover {
+        background: rgba(66, 133, 244, 0.1);
+    }
+
+    .page-info {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .no-requests {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-muted);
+    }
+
+    .no-requests i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+
+    .no-requests h3 {
+        margin: 1rem 0 0.5rem;
+        font-size: 1.5rem;
+        color: var(--text-color);
+    }
+
+    .no-requests p {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .request-header {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .item-info {
+            text-align: left;
+        }
+
+        .detail-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .request-actions {
+            flex-direction: column;
+        }
+
+        .btn {
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
