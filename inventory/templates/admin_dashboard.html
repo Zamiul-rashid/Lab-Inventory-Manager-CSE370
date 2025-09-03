@@ -5,15 +5,13 @@
 {% block content %}
 <div class="container">
     <div class="page-header">
-        <h1 class="page-title">
-            <i class="fas fa-tachometer-alt"></i>
-            Admin Dashboard
-        </h1>
-        <p class="page-subtitle">Comprehensive system management</p>
-        <a href="{% url 'dashboard' %}" class="btn btn-outline">
-            <i class="fas fa-arrow-left"></i>
-            Back to Main Dashboard
-        </a>
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-tachometer-alt"></i>
+                Admin Dashboard
+            </h1>
+            <p class="page-subtitle">Comprehensive system management</p>
+        </div>
     </div>
 
     <!-- Quick Stats -->
@@ -343,9 +341,6 @@
 {% block extra_css %}
 <style>
     .page-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         margin-bottom: 2rem;
     }
 
@@ -361,25 +356,6 @@
     .page-subtitle {
         color: var(--text-muted);
         font-size: 1.1rem;
-    }
-
-    .btn-outline {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1rem;
-        background: transparent;
-        color: var(--primary-blue);
-        border: 1px solid var(--primary-blue);
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-    .btn-outline:hover {
-        background: var(--primary-blue);
-        color: white;
     }
 
     .stats-grid {
@@ -794,12 +770,6 @@
     }
 
     @media (max-width: 768px) {
-        .page-header {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 1rem;
-        }
-
         .stats-grid {
             grid-template-columns: 1fr;
         }

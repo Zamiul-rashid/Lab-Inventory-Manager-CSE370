@@ -5,7 +5,11 @@ from django.shortcuts import redirect
 
 def home_redirect(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        # Redirect based on user role
+        if request.user.role == 'admin':
+            return redirect('admin_dashboard')
+        else:
+            return redirect('dashboard')
     return redirect('login')
 
 urlpatterns = [
@@ -17,8 +21,9 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('register/', views.user_register, name='register'),
     
-    # Main dashboard (different URL)
-    path('dashboard/', views.dashboard, name='dashboard'),
+    # Dashboards - separate for admin and regular users
+    path('dashboard/', views.dashboard, name='dashboard'),  # Regular user dashboard
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),  # Admin dashboard
     
     # Product/Item management
     path('items/', views.items_list, name='items_list'),
@@ -37,7 +42,6 @@ urlpatterns = [
     path('manage/pending-users/', views.admin_pending_users, name='admin_pending_users'),
     path('manage/users/', views.user_list, name='user_list'),
     path('manage/add-user/', views.add_user, name='add_user'),
-    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('reports/', views.reports, name='reports'),
     
     # Request management
@@ -57,9 +61,9 @@ urlpatterns = [
     path('export-pdf/', views.export_pdf, name='export_pdf'),
     path('print-report/', views.print_report, name='print_report'),
     
-    # User profiles
+    # User profiles - Fixed URL pattern
     path('profile/', views.user_profile, name='user_profile'),
-    path('profile/<int:user_id>/', views.user_profile, name='user_profile_detail'),
+    path('profile/<int:user_id>/', views.user_profile, name='user_profile_with_id'),
     path('change-password/', views.change_password, name='change_password'),
     
     # API endpoints
