@@ -8078,3 +8078,544 @@ AttributeError: 'Product' object has no attribute 'location'
 "GET /profile/ HTTP/1.1" 200 151767
 "GET /logout/ HTTP/1.1" 302 0
 "GET /login/ HTTP/1.1" 200 26629
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 26354
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8713
+"GET /register/ HTTP/1.1" 200 9972
+"POST /register/ HTTP/1.1" 200 10646
+"POST /register/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26926
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45038
+"GET /manage/pending-users/ HTTP/1.1" 200 29209
+Not Found: /manage/pending-users/
+"POST /manage/pending-users/ HTTP/1.1" 404 5224
+"GET /manage/users/ HTTP/1.1" 200 41189
+Not Found: /deactivate-user/3/
+"POST /deactivate-user/3/ HTTP/1.1" 404 7184
+Not Found: /delete-user/4/
+"POST /delete-user/4/ HTTP/1.1" 404 7367
+Not Found: /delete-user/3/
+"POST /delete-user/3/ HTTP/1.1" 404 7367
+"GET /manage/users/ HTTP/1.1" 200 41218
+"GET /manage/users/ HTTP/1.1" 200 41218
+"POST /delete-user/58501/ HTTP/1.1" 302 0
+"GET /manage/users/ HTTP/1.1" 200 38404
+"POST /delete-user/51838/ HTTP/1.1" 302 0
+"GET /manage/users/ HTTP/1.1" 200 35402
+"POST /deactivate-user/47816/ HTTP/1.1" 302 0
+"GET /manage/users/ HTTP/1.1" 200 35410
+"POST /delete-user/47816/ HTTP/1.1" 302 0
+"GET /manage/users/ HTTP/1.1" 200 32315
+"GET /manage/users/ HTTP/1.1" 200 32042
+"GET /profile/62033/ HTTP/1.1" 200 151766
+"GET /admin-dashboard/ HTTP/1.1" 200 40630
+"GET /manage/users/ HTTP/1.1" 200 32042
+"GET /items/ HTTP/1.1" 200 103673
+"GET /manage/pending-requests/ HTTP/1.1" 200 29083
+"GET /manage/pending-requests/ HTTP/1.1" 200 29083
+"GET /reports/ HTTP/1.1" 200 34847
+"GET /manage/pending-users/ HTTP/1.1" 200 26985
+"GET /items/ HTTP/1.1" 200 103673
+"GET /update-product/32/ HTTP/1.1" 200 32015
+"GET /profile/ HTTP/1.1" 200 151767
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26629
+"GET /register/ HTTP/1.1" 200 9972
+"POST /register/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26727
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 41669
+"GET /manage/users/ HTTP/1.1" 200 35047
+"GET /manage/pending-users/ HTTP/1.1" 200 29226
+Not Found: /manage/pending-users/
+"POST /manage/pending-users/ HTTP/1.1" 404 5224
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /manage/pending-users/ HTTP/1.1" 302 0
+"GET /manage/pending-users/ HTTP/1.1" 200 27261
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26629
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 33617
+"GET /items/ HTTP/1.1" 200 101402
+"GET /borrow-request/32/ HTTP/1.1" 302 0
+"GET /items/32/ HTTP/1.1" 200 35623
+"POST /borrow-request/32/ HTTP/1.1" 302 0
+"GET /items/32/ HTTP/1.1" 200 35889
+"GET /items/32/ HTTP/1.1" 200 35623
+"GET /borrow-request/49/ HTTP/1.1" 302 0
+"GET /items/49/ HTTP/1.1" 200 35597
+"POST /borrow-request/49/ HTTP/1.1" 302 0
+"GET /items/49/ HTTP/1.1" 200 35863
+"GET /items/49/ HTTP/1.1" 200 35597
+"GET /borrow-request/27/ HTTP/1.1" 302 0
+"GET /items/27/ HTTP/1.1" 200 35578
+"GET /items/ HTTP/1.1" 200 101402
+"GET /my-requests/ HTTP/1.1" 200 28085
+"GET /my-borrowed/ HTTP/1.1" 200 28736
+"GET /history/ HTTP/1.1" 200 34616
+"GET /items/ HTTP/1.1" 200 101402
+"GET /my-requests/ HTTP/1.1" 200 28085
+"GET /items/ HTTP/1.1" 200 101402
+"GET /profile/ HTTP/1.1" 200 55628
+"GET /items/ HTTP/1.1" 200 101402
+"GET /borrow-request/32/ HTTP/1.1" 302 0
+"GET /items/32/ HTTP/1.1" 200 35908
+"GET /items/ HTTP/1.1" 200 101402
+"GET /borrow-request/32/ HTTP/1.1" 302 0
+"GET /items/32/ HTTP/1.1" 200 35908
+"GET /my-requests/ HTTP/1.1" 200 28085
+"GET / HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 34474
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26629
+"GET /register/ HTTP/1.1" 200 9972
+"POST /register/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26727
+"GET /profile/ HTTP/1.1" 302 0
+"GET /login/?next=/profile/ HTTP/1.1" 200 26354
+"POST /login/?next=/profile/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45203
+"GET /manage/pending-requests/ HTTP/1.1" 200 33959
+"GET /items/49/ HTTP/1.1" 200 35686
+"POST /approve-request/7/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 31690
+"POST /approve-request/6/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 29376
+"GET /manage/pending-requests/ HTTP/1.1" 200 29083
+"GET /manage/pending-users/ HTTP/1.1" 200 29207
+"POST /manage/pending-users/ HTTP/1.1" 302 0
+"GET /manage/pending-users/ HTTP/1.1" 200 27252
+"GET /manage/pending-users/ HTTP/1.1" 200 26985
+"GET /admin-dashboard/ HTTP/1.1" 200 41932
+"GET /manage/users/ HTTP/1.1" 200 38118
+"GET /items/ HTTP/1.1" 200 103669
+"GET /items/?search=&category=&status=maintenance HTTP/1.1" 200 32614
+"GET /items/?search=&category=&status=borrowed HTTP/1.1" 200 49641
+"GET /items/?search=&category=&status= HTTP/1.1" 200 103669
+"GET /items/?search=&category=Displays&status= HTTP/1.1" 200 35409
+"GET /items/?search=&category=&status= HTTP/1.1" 200 103669
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2518
+"GET /login/ HTTP/1.1" 200 29486
+"GET /login/ HTTP/1.1" 200 29486
+"GET /login/ HTTP/1.1" 200 29486
+"GET /login/ HTTP/1.1" 200 29486
+"GET /login/ HTTP/1.1" 200 29486
+"GET /login/ HTTP/1.1" 200 29486
+"GET /login/ HTTP/1.1" 200 29486
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 33600
+"GET /profile/ HTTP/1.1" 200 52941
+"POST /change-password/ HTTP/1.1" 200 62
+"POST /change-password/ HTTP/1.1" 200 62
+"GET /items/ HTTP/1.1" 302 0
+"GET /login/?next=/items/ HTTP/1.1" 200 26354
+"POST /login/?next=/items/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 33600
+"GET /items/ HTTP/1.1" 200 101019
+"GET /items/?search=4WD+Robot+Chassis+Kit&category=&status= HTTP/1.1" 200 30656
+"GET /items/ HTTP/1.1" 200 101019
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26629
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 42185
+"GET /items/ HTTP/1.1" 200 103669
+"GET /items/?search=4WD+Robot+Chassis+Kit&category=&status= HTTP/1.1" 200 31166
+"GET /update-product/49/ HTTP/1.1" 200 32193
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26629
+"GET /my-requests/ HTTP/1.1" 302 0
+"GET /login/?next=/my-requests/ HTTP/1.1" 200 26354
+"POST /login/?next=/my-requests/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 33600
+"GET /profile/ HTTP/1.1" 200 52941
+"POST /change-password/ HTTP/1.1" 200 62
+"POST /change-password/ HTTP/1.1" 200 62
+"GET /items/ HTTP/1.1" 302 0
+"GET /login/?next=/items/ HTTP/1.1" 200 26354
+"POST /login/?next=/items/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 33600
+"GET /items/ HTTP/1.1" 200 101019
+"GET /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 35570
+"POST /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 35836
+"GET /items/41/ HTTP/1.1" 200 35570
+"GET /borrow-request/21/ HTTP/1.1" 302 0
+"GET /items/21/ HTTP/1.1" 200 35606
+"POST /borrow-request/21/ HTTP/1.1" 302 0
+"GET /items/21/ HTTP/1.1" 200 35872
+"GET /items/21/ HTTP/1.1" 200 35606
+"GET /borrow-request/47/ HTTP/1.1" 302 0
+"GET /items/47/ HTTP/1.1" 200 35561
+"POST /borrow-request/47/ HTTP/1.1" 302 0
+"GET /items/47/ HTTP/1.1" 200 35827
+"GET /items/47/ HTTP/1.1" 200 35561
+"GET /borrow-request/38/ HTTP/1.1" 302 0
+"GET /items/38/ HTTP/1.1" 200 35589
+"POST /borrow-request/38/ HTTP/1.1" 302 0
+"GET /items/38/ HTTP/1.1" 200 35855
+"GET /my-borrowed/ HTTP/1.1" 200 28727
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26629
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 195, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189641
+"GET /login/ HTTP/1.1" 200 29283
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 195, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189641
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2518
+"GET /login/ HTTP/1.1" 200 29283
+"GET /login/ HTTP/1.1" 200 29283
+"GET /login/ HTTP/1.1" 200 29283
+"GET /login/ HTTP/1.1" 200 26354
+"GET /login/ HTTP/1.1" 200 26354
+"GET /login/ HTTP/1.1" 200 26354
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 195, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189641
+"GET /login/ HTTP/1.1" 200 29283
+"GET /login/ HTTP/1.1" 200 29283
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 195, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189249
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 49149
+"GET /manage/users/ HTTP/1.1" 200 38191
+"GET / HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 48896
+"GET /manage/pending-requests/ HTTP/1.1" 200 39025
+"POST /reject-request/8/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 36762
+"POST /approve-request/11/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 34215
+"POST /approve-request/9/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 31679
+"POST /reject-request/10/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 29363

@@ -466,28 +466,36 @@ def admin_pending_users(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         action = request.POST.get('action')
-        user = get_object_or_404(User, user_id=user_id)
         
-        if action == 'approve':
-            user.is_active = True
-            user.save()
+        try:
+            # Use Django's primary key (id) instead of custom user_id field
+            user = User.objects.get(pk=user_id)
             
-            # Create a notification for the approved user
-            try:
-                Notification.objects.create(
-                    recipient_user=user,
-                    message=f"Your account has been approved! You can now log in to the system."
-                )
-            except Exception as e:
-                print(f"Failed to create notification: {e}")
-            
-            messages.success(request, f'User {user.username} ({user.get_full_name()}) has been approved!')
-            
-        elif action == 'reject':
-            username = user.username
-            full_name = user.get_full_name()
-            user.delete()
-            messages.success(request, f'User {username} ({full_name}) has been rejected and removed.')
+            if action == 'approve':
+                user.is_active = True
+                user.save()
+                
+                # Create a notification for the approved user
+                try:
+                    Notification.objects.create(
+                        recipient_user=user,
+                        message=f"Your account has been approved! You can now log in to the system."
+                    )
+                except Exception as e:
+                    print(f"Failed to create notification: {e}")
+                
+                messages.success(request, f'User {user.username} ({user.get_full_name()}) has been approved!')
+                
+            elif action == 'reject':
+                username = user.username
+                full_name = user.get_full_name()
+                user.delete()
+                messages.success(request, f'User {username} ({full_name}) has been rejected and removed.')
+        
+        except User.DoesNotExist:
+            messages.error(request, f'User with ID {user_id} not found.')
+        except Exception as e:
+            messages.error(request, f'An error occurred: {str(e)}')
         
         return redirect('admin_pending_users')
     
@@ -505,7 +513,6 @@ def admin_pending_users(request):
     }
     
     return render(request, 'admin_pending_users.html', context)
-
 
 @login_required
 @user_passes_test(is_admin)
