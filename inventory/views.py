@@ -602,15 +602,20 @@ def reports(request):
     return render(request, 'reports.html', context)
 
 
+
 @login_required
 def user_profile(request, user_id=None):
     """Display and edit user profile"""
     if user_id:
-        profile_user = get_object_or_404(User, user_id=user_id)
-        # Only admins can view other users' profiles
-        if profile_user != request.user and request.user.role != 'admin':
-            messages.error(request, 'You can only view your own profile.')
-            return redirect('user_profile')
+        try:
+            profile_user = get_object_or_404(User, user_id=user_id)
+            # Only admins can view other users' profiles
+            if profile_user != request.user and request.user.role != 'admin':
+                messages.error(request, 'You can only view your own profile.')
+                return redirect('user_profile')
+        except:
+            messages.error(request, 'User not found.')
+            return redirect('user_list')
     else:
         profile_user = request.user
 
