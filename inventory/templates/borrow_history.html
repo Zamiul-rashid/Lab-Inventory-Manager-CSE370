@@ -12,35 +12,6 @@
         <p class="page-subtitle">Complete record of your borrowing activity</p>
     </div>
 
-    <div class="filters-section">
-        <div class="filter-tabs">
-            <a href="?filter=all" class="filter-tab {% if not request.GET.filter or request.GET.filter == 'all' %}active{% endif %}">
-                All Records
-            </a>
-            <a href="?filter=returned" class="filter-tab {% if request.GET.filter == 'returned' %}active{% endif %}">
-                Returned Items
-            </a>
-            <a href="?filter=active" class="filter-tab {% if request.GET.filter == 'active' %}active{% endif %}">
-                Currently Borrowed
-            </a>
-            <a href="?filter=overdue" class="filter-tab {% if request.GET.filter == 'overdue' %}active{% endif %}">
-                Overdue Items
-            </a>
-        </div>
-        
-        <div class="search-section">
-            <form method="get" class="search-form">
-                <div class="search-input-group">
-                    <input type="text" name="search" placeholder="Search by item name..." 
-                           value="{{ request.GET.search }}" class="search-input">
-                    <button type="submit" class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     {% if history_items %}
     <div class="history-container">
         <div class="timeline">
@@ -123,20 +94,15 @@
                         
                         {% if borrow.status == 'active' %}
                         <div class="card-actions">
-                            <form method="post" action="{% url 'return_item' borrow.id %}" class="inline-form">
+                            <form method="post" action="{% url 'return_item' borrow.borrow_id %}" class="return-form" style="display: inline-block;">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm btn-success">
+                                <button type="submit" class="btn btn-sm btn-success return-btn" 
+                                        onclick="return confirm('Are you sure you want to return this item?');"
+                                        style="background-color: #28a745; border: none; color: white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
                                     <i class="fas fa-undo"></i>
-                                    Return
+                                    Return Item
                                 </button>
                             </form>
-                            
-                            {% if not borrow.is_overdue %}
-                            <a href="{% url 'extend_request' borrow.id %}" class="btn btn-sm btn-outline">
-                                <i class="fas fa-clock"></i>
-                                Extend
-                            </a>
-                            {% endif %}
                         </div>
                         {% endif %}
                     </div>
@@ -175,48 +141,13 @@
     <div class="no-data">
         <i class="fas fa-history"></i>
         <h3>No History Records</h3>
-        <p>{% if request.GET.search %}No records found matching your search.{% else %}You haven't borrowed any items yet.{% endif %}</p>
-        {% if request.GET.search %}
-        <a href="{% url 'borrow_history' %}" class="btn btn-outline">
-            <i class="fas fa-times"></i>
-            Clear Search
-        </a>
-        {% else %}
+        <p>You haven't borrowed any items yet.</p>
         <a href="{% url 'items_list' %}" class="btn btn-primary">
             <i class="fas fa-search"></i>
             Browse Items
         </a>
-        {% endif %}
     </div>
     {% endif %}
-</div>
-
-<!-- Statistics Summary -->
-<div class="stats-summary">
-    <div class="container">
-        <h3>
-            <i class="fas fa-chart-line"></i>
-            Your Statistics
-        </h3>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">{{ total_borrows }}</div>
-                <div class="stat-label">Total Items Borrowed</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ returned_count }}</div>
-                <div class="stat-label">Items Returned</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">{{ active_count }}</div>
-                <div class="stat-label">Currently Borrowed</div>
-            </div>
-            <div class="stat-card overdue">
-                <div class="stat-number">{{ overdue_count }}</div>
-                <div class="stat-label">Overdue Items</div>
-            </div>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
@@ -238,80 +169,6 @@
     .page-subtitle {
         color: var(--text-muted);
         font-size: 1.1rem;
-    }
-
-    .filters-section {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-        box-shadow: var(--shadow);
-    }
-
-    .filter-tabs {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 1rem;
-    }
-
-    .filter-tab {
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        text-decoration: none;
-        color: var(--text-muted);
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-    .filter-tab:hover {
-        color: var(--primary-blue);
-        background: rgba(66, 133, 244, 0.1);
-    }
-
-    .filter-tab.active {
-        background: var(--primary-blue);
-        color: white;
-    }
-
-    .search-section {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .search-form {
-        display: flex;
-        align-items: center;
-    }
-
-    .search-input-group {
-        display: flex;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    .search-input {
-        padding: 0.75rem;
-        border: none;
-        outline: none;
-        font-size: 0.9rem;
-        width: 250px;
-    }
-
-    .search-btn {
-        padding: 0.75rem 1rem;
-        background: var(--primary-blue);
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .search-btn:hover {
-        background: #1976d2;
     }
 
     .history-container {
@@ -605,67 +462,7 @@
         opacity: 0.5;
     }
 
-    .stats-summary {
-        background: var(--card-bg);
-        border-top: 1px solid var(--border-color);
-        padding: 2rem 0;
-        margin-top: 3rem;
-    }
-
-    .stats-summary h3 {
-        margin: 0 0 1.5rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .stat-card {
-        background: rgba(66, 133, 244, 0.05);
-        border-radius: 12px;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .stat-card.overdue {
-        background: rgba(234, 67, 53, 0.05);
-    }
-
-    .stat-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--primary-blue);
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .stat-card.overdue .stat-number {
-        color: #c62828;
-    }
-
-    .stat-label {
-        color: var(--text-muted);
-        font-weight: 500;
-    }
-
     @media (max-width: 768px) {
-        .filter-tabs {
-            flex-wrap: wrap;
-        }
-
-        .search-section {
-            justify-content: stretch;
-        }
-
-        .search-input {
-            width: 100%;
-        }
-
         .timeline {
             padding-left: 1.5rem;
         }

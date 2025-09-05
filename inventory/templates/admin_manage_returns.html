@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Borrowing Overview - Admin{% endblock %}
+
+{% block extra_css %}
+<style>
+    .return-card {
+        border-radius: 10px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+    .return-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .overdue-item {
+        border-left: 5px solid #dc3545;
+        background-color: #fff5f5;
+    }
+    .due-soon {
+        border-left: 5px solid #ffc107;
+        background-color: #fffbf0;
+    }
+    .normal-item {
+        border-left: 5px solid #28a745;
+        background-color: #f8fff8;
+    }
+    .return-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+    .item-details {
+        flex-grow: 1;
+    }
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .status-overdue {
+        background-color: #dc3545;
+        color: white;
+    }
+    .status-due-soon {
+        background-color: #ffc107;
+        color: #212529;
+    }
+    .status-normal {
+        background-color: #28a745;
+        color: white;
+    }
+    .days-info {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .section-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .stats-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .stats-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--primary-blue);
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+    }
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+    .btn-warning {
+        background-color: #ffc107;
+        color: #212529;
+        border-color: #ffc107;
+    }
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border-color: #6c757d;
+    }
+    .btn-sm {
+        padding: 4px 12px;
+        font-size: 12px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2><i class="fas fa-undo"></i> Borrowing Overview</h2>
+                    </div>
+                    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-number">{{ active_borrows|length }}</div>
+                        <div>Items to Return</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="stats-card">
+                        <div class="stats-number">
+                            {% for borrow in active_borrows %}
+                                {% if borrow.is_overdue %}{{ forloop.counter }}{% endif %}
+                            {% empty %}0{% endfor %}
+                        </div>
+                        <div>Overdue Items</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Currently Borrowed Items -->
+            {% if active_borrows %}
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> Currently Borrowed Items & Overdue Items</h3>
+                </div>
+
+                {% for borrow in active_borrows %}
+                    {% if borrow.is_overdue %}
+                        <div class="card return-card overdue-item mb-3">
+                    {% elif borrow.days_until_due <= 2 %}
+                        <div class="card return-card due-soon mb-3">
+                    {% else %}
+                        <div class="card return-card normal-item mb-3">
+                    {% endif %}
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="user-info">
+                                        <div class="user-avatar">
+                                            {{ borrow.user.firstname|first|upper }}{{ borrow.user.lastname|first|upper }}
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">{{ borrow.user.get_full_name }}</h6>
+                                            <small class="text-muted">{{ borrow.user.username }}</small>
+                                            {% if borrow.is_overdue %}
+                                                <br><small class="text-danger"><strong>OVERDUE USER</strong></small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 class="mb-1">{{ borrow.product.name }}</h5>
+                                    <p class="mb-0 text-muted">{{ borrow.product.category }}</p>
+                                    {% if borrow.is_overdue %}
+                                        <small class="text-danger"><strong>OVERDUE ITEM</strong></small>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3">
+                                    <p class="mb-1"><strong>Borrowed:</strong> {{ borrow.borrow_date|date:"M d, Y" }}</p>
+                                    <p class="mb-0"><strong>Due:</strong> {{ borrow.expected_return_date|date:"M d, Y" }}</p>
+                                    {% if borrow.is_overdue %}
+                                        <p class="mb-0 text-danger"><strong>Overdue by:</strong> {{ borrow.days_overdue }} day{{ borrow.days_overdue|pluralize }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-2">
+                                    {% if borrow.is_overdue %}
+                                        <span class="status-badge status-overdue">
+                                            <i class="fas fa-exclamation-triangle"></i> 
+                                            OVERDUE
+                                        </span>
+                                    {% elif borrow.days_until_due <= 2 %}
+                                        <span class="status-badge status-due-soon">
+                                            <i class="fas fa-clock"></i> 
+                                            Due Soon
+                                        </span>
+                                    {% else %}
+                                        <span class="status-badge status-normal">
+                                            <i class="fas fa-check"></i> 
+                                            Active
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-check-circle" style="font-size: 3rem; color: #28a745; margin-bottom: 20px;"></i>
+                        <h4>No active borrows</h4>
+                        <p class="text-muted">All items are currently available.</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

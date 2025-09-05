@@ -147,8 +147,45 @@ class Borrow(models.Model):
         if self.status in ['active', 'approved'] and self.expected_return_date < timezone.now().date():
             return True
         return False
+    
+    @property
+    def days_until_due(self):
+        """Calculate days until the item is due"""
+        if self.expected_return_date:
+            today = timezone.now().date()
+            delta = self.expected_return_date - today
+            return max(0, delta.days)  # Don't return negative days
+        return 0
+    
+    @property
+    def days_overdue(self):
+        """Calculate how many days overdue the item is"""
+        if self.expected_return_date and self.status in ['active', 'approved']:
+            today = timezone.now().date()
+            if self.expected_return_date < today:
+                delta = today - self.expected_return_date
+                return delta.days
+        return 0
 
 class Notification(models.Model):
+    NOTIFICATION_TYPES = (
+        ('user_registration', 'User Registration'),
+        ('borrow_request', 'Borrow Request'),
+        ('borrow_approved', 'Borrow Approved'),
+        ('borrow_rejected', 'Borrow Rejected'),
+        ('return_reminder', 'Return Reminder'),
+        ('overdue_alert', 'Overdue Alert'),
+        ('item_returned', 'Item Returned'),
+        ('general', 'General'),
+    )
+    
+    PRIORITY_LEVELS = (
+        ('low', 'Low'),
+        ('medium', 'Medium'),
+        ('high', 'High'),
+        ('urgent', 'Urgent'),
+    )
+    
     # SQL: notification_id INT AUTO_INCREMENT PRIMARY KEY
     notification_id = models.AutoField(primary_key=True)
     
@@ -157,6 +194,18 @@ class Notification(models.Model):
     
     # SQL: related_user_id INT NULL, FOREIGN KEY REFERENCES inventory_user(id) ON DELETE SET NULL
     related_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    # SQL: related_borrow_id INT NULL, FOREIGN KEY REFERENCES inventory_borrow(borrow_id) ON DELETE SET NULL
+    related_borrow = models.ForeignKey('Borrow', on_delete=models.SET_NULL, null=True, blank=True, related_name='notifications')
+    
+    # SQL: notification_type VARCHAR(30) NOT NULL DEFAULT 'general'
+    notification_type = models.CharField(max_length=30, choices=NOTIFICATION_TYPES, default='general')
+    
+    # SQL: priority VARCHAR(10) NOT NULL DEFAULT 'medium'
+    priority = models.CharField(max_length=10, choices=PRIORITY_LEVELS, default='medium')
+    
+    # SQL: title VARCHAR(200) NOT NULL
+    title = models.CharField(max_length=200, default='Notification')
     
     # SQL: message TEXT NOT NULL
     message = models.TextField()
@@ -167,8 +216,20 @@ class Notification(models.Model):
     # SQL: is_read BOOLEAN NOT NULL DEFAULT 0
     is_read = models.BooleanField(default=False)
     
+    # SQL: read_at DATETIME NULL
+    read_at = models.DateTimeField(null=True, blank=True)
+    
+    def mark_as_read(self):
+        """Mark notification as read"""
+        self.is_read = True
+        self.read_at = timezone.now()
+        self.save()
+    
     def __str__(self):
-        return f"Notification to {self.recipient_user.username}: {self.message[:50]}"
+        return f"Notification to {self.recipient_user.username}: {self.title[:50]}"
+    
+    class Meta:
+        ordering = ['-created_at']
 
 class LoanHistory(models.Model):
     # SQL: user_id INT NOT NULL, FOREIGN KEY REFERENCES inventory_user(id) ON DELETE CASCADE

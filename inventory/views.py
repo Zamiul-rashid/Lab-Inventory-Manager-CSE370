@@ -4,13 +4,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
-from django.db.models import Q, Count
+from django.db.models import Q, Count, F
 from django.utils import timezone
 from datetime import datetime, timedelta
 from .models import User, Product, Borrow, Notification, LoanHistory
 from .forms import UserRegistrationForm, CustomLoginForm, ProductForm, BorrowForm, UserProfileForm, UserSearchForm, ProductSearchForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.template.defaultfilters import timesince
 import json
 import csv
 
@@ -29,7 +30,7 @@ def admin_dashboard(request):
     # Get comprehensive statistics
     total_products = Product.objects.count()
     available_products = Product.objects.filter(status='available').count()
-    borrowed_products = Product.objects.filter(status='borrowed').count()
+    borrowed_products = Borrow.objects.filter(status='active').count()  # Count active borrows, not borrowed products
     maintenance_products = Product.objects.filter(status='maintenance').count()
     damaged_products = Product.objects.filter(status='damaged').count()
     
@@ -48,6 +49,9 @@ def admin_dashboard(request):
     # Get recent borrow activity for the activity feed
     recent_borrows = Borrow.objects.select_related('user', 'product', 'added_by').order_by('-created_at')[:10]
     
+    # Get recent product additions
+    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:5]
+    
     # Get category breakdown
     category_stats = Product.objects.values('category').annotate(
         count=Count('pk')
@@ -65,6 +69,7 @@ def admin_dashboard(request):
         'active_borrows': active_borrows,
         'overdue_items': overdue_items,
         'recent_borrows': recent_borrows,
+        'recent_products': recent_products,
         'category_stats': category_stats,
         'is_admin': True,
     }
@@ -126,7 +131,10 @@ def user_register(request):
                     Notification.objects.create(
                         recipient_user=admin,
                         related_user=user,
-                        message=f"New user {user.username} ({user.get_full_name()}) has registered and is waiting for approval."
+                        notification_type='user_registration',
+                        priority='medium',
+                        title=f"New User Registration: {user.username}",
+                        message=f"New user {user.username} ({user.get_full_name()}) has registered and is waiting for approval.\n\nUser Details:\n- Username: {user.username}\n- Email: {user.email}\n- User ID: {user.user_id}\n\nPlease review and approve the user registration."
                     )
                 except Exception as e:
                     print(f"Failed to create notification: {e}")
@@ -161,13 +169,21 @@ def dashboard(request):
     
     # Get statistics
     available_items = Product.objects.filter(status='available').count()
-    my_borrowed = Borrow.objects.filter(user=user, status='active').count()
+    my_borrowed = Borrow.objects.filter(
+        user=user, 
+        status='active', 
+        actual_return_date__isnull=True
+    ).count()
     pending_requests = Borrow.objects.filter(status='pending').count()
     total_categories = Product.objects.values('category').distinct().count()
     
     # Get recent activity with optimized queries
     recent_requests = Borrow.objects.select_related('product').filter(user=user).order_by('-created_at')[:5]
-    currently_borrowed = Borrow.objects.select_related('product').filter(user=user, status='active')[:5]
+    currently_borrowed = Borrow.objects.select_related('product').filter(
+        user=user, 
+        status='active',
+        actual_return_date__isnull=True  # Ensure item hasn't been returned yet
+    )[:5]
     
     # Admin specific data
     pending_users = 0
@@ -265,18 +281,6 @@ def product_detail(request, pk):
             borrow_date=timezone.now().date(),
             expected_return_date=timezone.now().date() + timedelta(days=7)  # Default 7 days
         )
-        
-        # Create notification for admins
-        admin_users = User.objects.filter(role='admin', is_active=True)
-        for admin in admin_users:
-            try:
-                Notification.objects.create(
-                    recipient_user=admin,
-                    related_user=request.user,
-                    message=f"{request.user.username} requested to borrow {product.name}"
-                )
-            except Exception as e:
-                print(f"Failed to create notification: {e}")
         
         messages.success(request, 'Borrow request submitted successfully!')
         return redirect('product_detail', pk=pk)
@@ -391,11 +395,19 @@ def my_borrowed_items(request):
 
 @login_required
 def borrow_history(request):
-    """Display user's complete borrow history"""
-    history = Borrow.objects.filter(user=request.user).select_related('product').order_by('-created_at')
+    """Display user's returned items history"""
+    # Only show returned items
+    history = Borrow.objects.filter(
+        user=request.user,
+        status='returned'
+    ).select_related('product')
+    
+    # Order by creation date (newest first)
+    history = history.order_by('-created_at')
     
     context = {
         'history': history,
+        'history_items': history,  # Template expects this name
         'is_admin': request.user.role == 'admin',
     }
     
@@ -418,32 +430,12 @@ def admin_pending_requests(request):
             borrow.added_by = request.user
             borrow.save()
             
-            # Create notification for user
-            try:
-                Notification.objects.create(
-                    recipient_user=borrow.user,
-                    related_user=request.user,
-                    message=f"Your request for {borrow.product.name} has been approved!"
-                )
-            except Exception as e:
-                print(f"Failed to create notification: {e}")
-            
             messages.success(request, f'Request for "{borrow.product.name}" approved!')
             
         elif action == 'reject':
             borrow.status = 'rejected'
             borrow.added_by = request.user
             borrow.save()
-            
-            # Create notification for user
-            try:
-                Notification.objects.create(
-                    recipient_user=borrow.user,
-                    related_user=request.user,
-                    message=f"Your request for {borrow.product.name} has been rejected."
-                )
-            except Exception as e:
-                print(f"Failed to create notification: {e}")
             
             messages.success(request, f'Request for "{borrow.product.name}" rejected!')
         
@@ -474,15 +466,6 @@ def admin_pending_users(request):
             if action == 'approve':
                 user.is_active = True
                 user.save()
-                
-                # Create a notification for the approved user
-                try:
-                    Notification.objects.create(
-                        recipient_user=user,
-                        message=f"Your account has been approved! You can now log in to the system."
-                    )
-                except Exception as e:
-                    print(f"Failed to create notification: {e}")
                 
                 messages.success(request, f'User {user.username} ({user.get_full_name()}) has been approved!')
                 
@@ -565,7 +548,9 @@ def add_user(request):
 def reports(request):
     """Generate system reports (Admin only)"""
     # Basic counts
-    total_products = Product.objects.count()
+    total_items = Product.objects.count()
+    available_items = Product.objects.filter(status='available').count()
+    borrowed_items = Borrow.objects.filter(status='active').count()  # Count of active borrows, not products
     total_users = User.objects.filter(is_active=True).count()
     total_borrows = Borrow.objects.count()
     active_borrows = Borrow.objects.filter(status='active').count()
@@ -576,10 +561,36 @@ def reports(request):
         expected_return_date__lt=timezone.now().date()
     ).count()
     
-    # Category statistics
+    # Category statistics with percentage calculation
+    total_products_for_category = Product.objects.count()
+    category_data = []
     category_stats = Product.objects.values('category').annotate(
         count=Count('pk')
     ).order_by('-count')
+    
+    for category in category_stats:
+        percentage = (category['count'] / total_products_for_category * 100) if total_products_for_category > 0 else 0
+        category_data.append({
+            'name': category['category'],
+            'count': category['count'],
+            'percentage': round(percentage, 1)
+        })
+    
+    # Top borrowers
+    top_borrowers = Borrow.objects.values(
+        'user__username', 'user__firstname', 'user__lastname', 'user__email'
+    ).annotate(count=Count('user')).order_by('-count')[:5]
+    
+    # Format top borrowers for template
+    formatted_top_borrowers = []
+    for borrower in top_borrowers:
+        full_name = f"{borrower['user__firstname']} {borrower['user__lastname']}".strip()
+        formatted_top_borrowers.append({
+            'user__username': borrower['user__username'],
+            'user__get_full_name': full_name if full_name else borrower['user__username'],
+            'user__email': borrower['user__email'],
+            'count': borrower['count']
+        })
     
     # Popular items
     popular_items = Product.objects.annotate(
@@ -594,15 +605,81 @@ def reports(request):
         created_at__year=current_year
     ).count()
     
+    monthly_returns = Borrow.objects.filter(
+        actual_return_date__month=current_month,
+        actual_return_date__year=current_year,
+        status='returned'
+    ).count()
+    
+    monthly_requests = Borrow.objects.filter(
+        created_at__month=current_month,
+        created_at__year=current_year
+    ).count()
+    
+    # System health metrics
+    total_active_borrows = Borrow.objects.filter(status='active').count()
+    utilization_rate = round((borrowed_items / total_items * 100), 1) if total_items > 0 else 0
+    
+    # Average borrow time calculation
+    returned_borrows = Borrow.objects.filter(status='returned', actual_return_date__isnull=False)
+    if returned_borrows.exists():
+        total_days = 0
+        count = 0
+        for borrow in returned_borrows:
+            if borrow.actual_return_date and borrow.borrow_date:
+                # Convert both to date objects to avoid datetime.date vs datetime.datetime issues
+                if hasattr(borrow.actual_return_date, 'date'):
+                    actual_date = borrow.actual_return_date.date()
+                else:
+                    actual_date = borrow.actual_return_date
+                    
+                if hasattr(borrow.borrow_date, 'date'):
+                    borrow_date = borrow.borrow_date.date()
+                else:
+                    borrow_date = borrow.borrow_date
+                    
+                days = (actual_date - borrow_date).days
+                total_days += days
+                count += 1
+        avg_borrow_time = round(total_days / count, 1) if count > 0 else 0
+    else:
+        avg_borrow_time = 0
+    
+    # On-time return rate
+    total_returns = Borrow.objects.filter(status='returned').count()
+    ontime_returns = Borrow.objects.filter(
+        status='returned',
+        actual_return_date__lte=F('expected_return_date')
+    ).count()
+    ontime_rate = round((ontime_returns / total_returns * 100), 1) if total_returns > 0 else 0
+    
+    # Recent activity (admin actions only)
+    recent_activity = Borrow.objects.filter(
+        status__in=['approved', 'rejected']
+    ).select_related('user', 'product').order_by('-created_at')[:10]
+    
+    # Recent product additions
+    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:5]
+    
     context = {
-        'total_products': total_products,
+        'total_items': total_items,
+        'available_items': available_items,
+        'borrowed_items': borrowed_items,
+        'overdue_items': overdue_items,
         'total_users': total_users,
         'total_borrows': total_borrows,
         'active_borrows': active_borrows,
-        'overdue_items': overdue_items,
-        'category_stats': category_stats,
+        'category_data': category_data,
+        'top_borrowers': formatted_top_borrowers,
         'popular_items': popular_items,
         'monthly_borrows': monthly_borrows,
+        'monthly_returns': monthly_returns,
+        'monthly_requests': monthly_requests,
+        'utilization_rate': utilization_rate,
+        'avg_borrow_time': avg_borrow_time,
+        'ontime_rate': ontime_rate,
+        'recent_activity': recent_activity,
+        'recent_products': recent_products,
         'is_admin': True,
     }
     
@@ -747,20 +824,15 @@ def approve_request(request, request_id):
     if request.method == 'POST':
         borrow = get_object_or_404(Borrow, borrow_id=request_id)
         borrow.status = 'active'
+        
+        # Update product status and decrement available quantity
         borrow.product.status = 'borrowed'
+        if borrow.product.quantity_available > 0:
+            borrow.product.quantity_available -= 1
         borrow.product.save()
+        
         borrow.added_by = request.user
         borrow.save()
-        
-        # Create notification for user
-        try:
-            Notification.objects.create(
-                recipient_user=borrow.user,
-                related_user=request.user,
-                message=f"Your request for {borrow.product.name} has been approved!"
-            )
-        except Exception:
-            pass
         
         messages.success(request, f'Request for "{borrow.product.name}" approved!')
     
@@ -776,16 +848,6 @@ def reject_request(request, request_id):
         borrow.status = 'rejected'
         borrow.added_by = request.user
         borrow.save()
-        
-        # Create notification for user
-        try:
-            Notification.objects.create(
-                recipient_user=borrow.user,
-                related_user=request.user,
-                message=f"Your request for {borrow.product.name} has been rejected."
-            )
-        except Exception:
-            pass
         
         messages.success(request, f'Request for "{borrow.product.name}" rejected!')
     
@@ -822,18 +884,6 @@ def borrow_request(request, product_id):
             expected_return_date=timezone.now().date() + timedelta(days=7)
         )
         
-        # Notify admins
-        admin_users = User.objects.filter(role='admin', is_active=True)
-        for admin in admin_users:
-            try:
-                Notification.objects.create(
-                    recipient_user=admin,
-                    related_user=request.user,
-                    message=f"{request.user.username} requested to borrow {product.name}"
-                )
-            except Exception:
-                pass
-        
         messages.success(request, 'Borrow request submitted successfully!')
         return redirect('product_detail', pk=product_id)
     
@@ -848,7 +898,10 @@ def return_item(request, borrow_id):
     if request.method == 'POST':
         borrow.status = 'returned'
         borrow.actual_return_date = timezone.now().date()
+        
+        # Update product status and increment available quantity
         borrow.product.status = 'available'
+        borrow.product.quantity_available += 1
         borrow.product.save()
         borrow.save()
         
@@ -865,6 +918,13 @@ def return_item(request, borrow_id):
             print(f"Failed to create loan history: {e}")
         
         messages.success(request, f'Successfully returned "{borrow.product.name}"!')
+        
+        # Redirect back to the referring page if it's the history page, otherwise to my_borrowed_items
+        referer = request.META.get('HTTP_REFERER', '')
+        if 'history' in referer:
+            return redirect('borrow_history')
+        else:
+            return redirect('my_borrowed_items')
     
     return redirect('my_borrowed_items')
 
@@ -880,18 +940,6 @@ def extend_request(request, borrow_id):
             old_date = borrow.expected_return_date
             borrow.expected_return_date += timedelta(days=7)
             borrow.save()
-            
-            # Notify admins about extension
-            admin_users = User.objects.filter(role='admin', is_active=True)
-            for admin in admin_users:
-                try:
-                    Notification.objects.create(
-                        recipient_user=admin,
-                        related_user=request.user,
-                        message=f"{request.user.username} extended return date for {borrow.product.name} to {borrow.expected_return_date}"
-                    )
-                except Exception:
-                    pass
             
             messages.success(request, f'Extension granted for "{borrow.product.name}" until {borrow.expected_return_date}!')
         else:
@@ -909,15 +957,6 @@ def activate_user(request, user_id):
         user = get_object_or_404(User, user_id=user_id)
         user.is_active = True
         user.save()
-        
-        # Notify user of activation
-        try:
-            Notification.objects.create(
-                recipient_user=user,
-                message="Your account has been activated! You can now log in to the system."
-            )
-        except Exception:
-            pass
             
         messages.success(request, f'User "{user.username}" has been activated!')
     
@@ -933,15 +972,6 @@ def deactivate_user(request, user_id):
         if user != request.user:  # Don't allow deactivating self
             user.is_active = False
             user.save()
-            
-            # Notify user of deactivation
-            try:
-                Notification.objects.create(
-                    recipient_user=user,
-                    message="Your account has been deactivated. Please contact an administrator if you believe this is an error."
-                )
-            except Exception:
-                pass
                 
             messages.success(request, f'User "{user.username}" has been deactivated!')
         else:
@@ -1167,29 +1197,6 @@ def get_overdue_items():
     ).select_related('user', 'product')
 
 
-def send_overdue_notifications():
-    """Send notifications for overdue items (can be called from management command)"""
-    overdue_items = get_overdue_items()
-    
-    for borrow in overdue_items:
-        # Check if notification already sent today
-        today = timezone.now().date()
-        existing_notification = Notification.objects.filter(
-            recipient_user=borrow.user,
-            message__contains=f"overdue: {borrow.product.name}",
-            created_at__date=today
-        ).exists()
-        
-        if not existing_notification:
-            try:
-                Notification.objects.create(
-                    recipient_user=borrow.user,
-                    message=f"Item overdue: {borrow.product.name} was due on {borrow.expected_return_date}"
-                )
-            except Exception as e:
-                print(f"Failed to create overdue notification: {e}")
-
-
 def get_system_stats():
     """Get system-wide statistics"""
     return {
@@ -1202,3 +1209,315 @@ def get_system_stats():
         'overdue_items': get_overdue_items().count(),
         'pending_requests': Borrow.objects.filter(status='pending').count(),
     }
+
+@login_required
+def get_notifications_api(request):
+    """API endpoint to get user notifications"""
+    if request.user.role == 'admin':
+        # Admin gets all types of notifications
+        notifications = Notification.objects.filter(
+            recipient_user=request.user,
+            is_read=False
+        ).order_by('-created_at')[:10]
+    else:
+        # Regular users get return reminders and overdue alerts
+        notifications = Notification.objects.filter(
+            recipient_user=request.user,
+            is_read=False
+        ).order_by('-created_at')[:10]
+    
+    results = []
+    for n in notifications:
+        notification_type = 'info'
+        icon = 'fas fa-info-circle'
+        
+        # Determine notification type and icon
+        if 'registered' in n.message.lower():
+            notification_type = 'info'
+            icon = 'fas fa-user-plus'
+        elif 'requested' in n.message.lower():
+            notification_type = 'warning'
+            icon = 'fas fa-hand-holding'
+        elif 'overdue' in n.message.lower():
+            notification_type = 'danger'
+            icon = 'fas fa-exclamation-triangle'
+        elif 'approved' in n.message.lower():
+            notification_type = 'success'
+            icon = 'fas fa-check-circle'
+        
+        results.append({
+            'id': n.notification_id,
+            'message': n.message,
+            'created_at': n.created_at.strftime('%Y-%m-%d %H:%M'),
+            'time_ago': timesince(n.created_at),
+            'type': notification_type,
+            'icon': icon,
+            'related_user': n.related_user.username if n.related_user else None
+        })
+    
+    return JsonResponse({
+        'notifications': results,
+        'count': len(results)
+    })
+
+@login_required
+def mark_notification_read_api(request, notification_id):
+    """Mark notification as read"""
+    if request.method == 'POST':
+        try:
+            notification = Notification.objects.get(
+                notification_id=notification_id,
+                recipient_user=request.user
+            )
+            notification.is_read = True
+            notification.save()
+            return JsonResponse({'success': True})
+        except Notification.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Notification not found'})
+
+
+@login_required
+def notifications_view(request):
+    """Display notifications for the current user"""
+    # Check if user wants to see all notifications or just unread
+    show_all = request.GET.get('show_all', 'false').lower() == 'true'
+    
+    if show_all:
+        notifications = Notification.objects.filter(
+            recipient_user=request.user
+        ).select_related('related_user', 'related_borrow__product').order_by('-created_at')
+    else:
+        # By default, only show unread notifications
+        notifications = Notification.objects.filter(
+            recipient_user=request.user,
+            is_read=False
+        ).select_related('related_user', 'related_borrow__product').order_by('-created_at')
+    
+    # Mark all as read if requested
+    if request.GET.get('mark_all_read') == 'true':
+        notifications.filter(is_read=False).update(is_read=True, read_at=timezone.now())
+        messages.success(request, 'All notifications marked as read.')
+        return redirect('notifications')
+    
+    # Pagination
+    from django.core.paginator import Paginator
+    paginator = Paginator(notifications, 20)  # Show 20 notifications per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    # Get counts
+    total_notifications = Notification.objects.filter(recipient_user=request.user).count()
+    unread_count = Notification.objects.filter(recipient_user=request.user, is_read=False).count()
+    read_count = total_notifications - unread_count
+    
+    context = {
+        'notifications': page_obj,
+        'unread_count': unread_count,
+        'total_count': total_notifications,
+        'read_count': read_count,
+        'show_all': show_all,
+        'current_showing': notifications.count(),
+    }
+    
+    return render(request, 'notifications.html', context)
+
+
+@login_required
+def mark_notification_read(request, notification_id):
+    """Mark a specific notification as read"""
+    try:
+        notification = Notification.objects.get(
+            notification_id=notification_id,
+            recipient_user=request.user
+        )
+        notification.mark_as_read()
+        messages.success(request, 'Notification marked as read.')
+    except Notification.DoesNotExist:
+        messages.error(request, 'Notification not found.')
+    
+    return redirect('notifications')
+
+
+@login_required
+def get_notifications_count(request):
+    """Get unread notifications count for the current user"""
+    unread_count = Notification.objects.filter(
+        recipient_user=request.user,
+        is_read=False
+    ).count()
+    
+    return JsonResponse({'unread_count': unread_count})
+
+
+@login_required
+def get_recent_notifications(request):
+    """Get recent notifications for dropdown display"""
+    notifications = Notification.objects.filter(
+        recipient_user=request.user
+    ).select_related('related_user', 'related_borrow__product').order_by('-created_at')[:10]
+    
+    results = []
+    for n in notifications:
+        # Set notification style based on type and priority
+        if n.notification_type == 'overdue_alert':
+            notification_type = 'danger'
+            icon = 'fas fa-exclamation-triangle'
+        elif n.notification_type == 'return_reminder':
+            notification_type = 'warning'
+            icon = 'fas fa-clock'
+        elif n.notification_type == 'borrow_approved':
+            notification_type = 'success'
+            icon = 'fas fa-check-circle'
+        elif n.notification_type == 'borrow_request':
+            notification_type = 'info'
+            icon = 'fas fa-hand-holding'
+        elif n.notification_type == 'user_registration':
+            notification_type = 'primary'
+            icon = 'fas fa-user-plus'
+        else:
+            notification_type = 'secondary'
+            icon = 'fas fa-bell'
+        
+        results.append({
+            'id': n.notification_id,
+            'title': n.title,
+            'message': n.message[:100] + '...' if len(n.message) > 100 else n.message,
+            'created_at': n.created_at.strftime('%Y-%m-%d %H:%M'),
+            'time_ago': timesince(n.created_at),
+            'type': notification_type,
+            'icon': icon,
+            'is_read': n.is_read,
+            'priority': n.priority,
+            'related_user': n.related_user.username if n.related_user else None
+        })
+    
+    return JsonResponse({
+        'notifications': results,
+        'count': len(results)
+    })
+
+
+def get_notification_action_url(notification):
+    """
+    Generate the appropriate URL for notification action based on notification type
+    """
+    if notification.notification_type == 'user_registration':
+        # Take admin to pending users page
+        return '/manage/pending-users/'
+    
+    elif notification.notification_type == 'return_reminder':
+        # Take user to their borrowed items to return
+        return '/my-borrowed/'
+    
+    elif notification.notification_type == 'overdue_alert':
+        # Take user to their borrowed items
+        return '/my-borrowed/'
+    
+    elif notification.related_borrow:
+        # If there's a related borrow, go to product detail
+        return f'/items/{notification.related_borrow.product.product_id}/'
+    
+    else:
+        # Default: go to dashboard
+        if notification.recipient_user.role == 'admin':
+            return '/admin-dashboard/'
+        else:
+            return '/dashboard/'
+
+
+@login_required
+def mark_notification_read_and_redirect(request, notification_id):
+    """Mark notification as read and redirect to appropriate action page"""
+    try:
+        notification = Notification.objects.get(
+            notification_id=notification_id,
+            recipient_user=request.user
+        )
+        
+        # Get the action URL before marking as read
+        action_url = get_notification_action_url(notification)
+        
+        # Mark as read
+        notification.mark_as_read()
+        
+        # Add a success message
+        messages.success(request, f'Notification "{notification.title}" marked as read.')
+        
+        # Redirect to action URL
+        return redirect(action_url)
+        
+    except Notification.DoesNotExist:
+        messages.error(request, 'Notification not found.')
+        return redirect('notifications')
+    return JsonResponse({'success': False, 'error': 'Invalid method'})
+
+
+@login_required
+@user_passes_test(is_admin)
+def admin_manage_returns(request):
+    """
+    Admin view to manage item returns - mark items as returned when users return them in person
+    """
+    if request.method == 'POST':
+        borrow_id = request.POST.get('borrow_id')
+        action = request.POST.get('action')
+        
+        try:
+            borrow = get_object_or_404(Borrow, borrow_id=borrow_id)
+            
+            if action == 'mark_returned':
+                if borrow.status in ['active', 'overdue']:
+                    # Mark borrow as returned
+                    borrow.status = 'returned'
+                    borrow.actual_return_date = timezone.now().date()
+                    borrow.save()
+                    
+                    # Update product status to available
+                    if borrow.product:
+                        borrow.product.status = 'available'
+                        borrow.product.save()
+                    
+                    messages.success(request, f"Successfully marked '{borrow.product.name}' as returned for user {borrow.user.get_full_name()}.")
+                else:
+                    messages.error(request, f"Cannot mark this item as returned. Current status: {borrow.get_status_display()}")
+            
+            elif action == 'mark_active':
+                if borrow.status == 'returned':
+                    borrow.status = 'active'
+                    borrow.actual_return_date = None
+                    borrow.save()
+                    
+                    # Update product status to borrowed
+                    if borrow.product:
+                        borrow.product.status = 'borrowed'
+                        borrow.product.save()
+                    
+                    messages.success(request, f"Successfully reactivated borrow for '{borrow.product.name}'.")
+                else:
+                    messages.error(request, "Can only reactivate returned items.")
+        
+        except Borrow.DoesNotExist:
+            messages.error(request, "Borrow record not found.")
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
+        
+        return redirect('admin_manage_returns')
+    
+    # Get all active and overdue borrows for admin to manage
+    active_borrows = Borrow.objects.filter(
+        status__in=['active', 'overdue']
+    ).select_related('user', 'product').order_by('-created_at')
+    
+    # Get recently returned items (last 30 days) for reference
+    recent_returns = Borrow.objects.filter(
+        status='returned',
+        actual_return_date__gte=timezone.now().date() - timedelta(days=30)
+    ).select_related('user', 'product').order_by('-actual_return_date')[:20]
+    
+    context = {
+        'active_borrows': active_borrows,
+        'recent_returns': recent_returns,
+        'today': timezone.now().date(),
+    }
+    
+    return render(request, 'admin_manage_returns.html', context)

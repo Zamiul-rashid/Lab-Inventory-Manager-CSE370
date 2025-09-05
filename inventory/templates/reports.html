@@ -41,7 +41,7 @@
                 </div>
                 <div class="stat-info">
                     <h3>{{ borrowed_items }}</h3>
-                    <p>Currently Borrowed</p>
+                    <p>Currently Borrowing</p>
                 </div>
             </div>
 
@@ -82,84 +82,6 @@
             {% else %}
             <div class="no-data">
                 <p>No category data available</p>
-            </div>
-            {% endif %}
-        </div>
-
-        <!-- Top Borrowers -->
-        <div class="report-card">
-            <h3>
-                <i class="fas fa-users"></i>
-                Top Borrowers
-            </h3>
-            {% if top_borrowers %}
-            <div class="borrowers-list">
-                {% for borrower in top_borrowers %}
-                <div class="borrower-item">
-                    <div class="borrower-info">
-                        <h4>{{ borrower.user__get_full_name|default:borrower.user__username }}</h4>
-                        <p>{{ borrower.user__email }}</p>
-                    </div>
-                    <div class="borrower-stats">
-                        <span class="borrow-count">{{ borrower.count }}</span>
-                        <span class="borrow-label">items</span>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="no-data">
-                <p>No borrowing data available</p>
-            </div>
-            {% endif %}
-        </div>
-
-        <!-- Recent Activity -->
-        <div class="report-card full-width">
-            <h3>
-                <i class="fas fa-history"></i>
-                Recent Activity
-            </h3>
-            {% if recent_activity %}
-            <div class="activity-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>User</th>
-                            <th>Item</th>
-                            <th>Action</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for activity in recent_activity %}
-                        <tr>
-                            <td>{{ activity.borrow_date|date:"M d, Y" }}</td>
-                            <td>{{ activity.user.get_full_name|default:activity.user.username }}</td>
-                            <td>{{ activity.product.name }}</td>
-                            <td>
-                                {% if activity.status == 'returned' %}
-                                    <span class="action-returned">Returned</span>
-                                {% elif activity.status == 'active' %}
-                                    <span class="action-borrowed">Borrowed</span>
-                                {% elif activity.status == 'pending' %}
-                                    <span class="action-requested">Requested</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <span class="status-badge status-{{ activity.status }}">
-                                    {{ activity.get_status_display }}
-                                </span>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <div class="no-data">
-                <p>No recent activity</p>
             </div>
             {% endif %}
         </div>
@@ -206,28 +128,6 @@
                     <span class="health-value">{{ ontime_rate }}%</span>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Export Options -->
-    <div class="export-section">
-        <h3>
-            <i class="fas fa-download"></i>
-            Export Data
-        </h3>
-        <div class="export-buttons">
-            <a href="{% url 'export_csv' %}" class="btn btn-outline">
-                <i class="fas fa-file-csv"></i>
-                Export as CSV
-            </a>
-            <a href="{% url 'export_pdf' %}" class="btn btn-outline">
-                <i class="fas fa-file-pdf"></i>
-                Export as PDF
-            </a>
-            <a href="{% url 'print_report' %}" class="btn btn-outline" target="_blank">
-                <i class="fas fa-print"></i>
-                Print Report
-            </a>
         </div>
     </div>
 </div>
@@ -428,6 +328,9 @@
     .action-returned { color: var(--success-green); font-weight: 500; }
     .action-borrowed { color: var(--primary-blue); font-weight: 500; }
     .action-requested { color: #f57c00; font-weight: 500; }
+    .action-added { color: #4caf50; font-weight: 500; }
+    .action-approved { color: var(--primary-blue); font-weight: 500; }
+    .action-rejected { color: #c62828; font-weight: 500; }
 
     .status-badge {
         padding: 0.25rem 0.75rem;
@@ -450,6 +353,21 @@
     .status-badge.status-pending {
         background: rgba(251, 188, 4, 0.1);
         color: #f57c00;
+    }
+
+    .status-badge.status-added {
+        background: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+    }
+
+    .status-badge.status-approved {
+        background: rgba(66, 133, 244, 0.1);
+        color: #1976d2;
+    }
+
+    .status-badge.status-rejected {
+        background: rgba(244, 67, 54, 0.1);
+        color: #c62828;
     }
 
     .monthly-stats {

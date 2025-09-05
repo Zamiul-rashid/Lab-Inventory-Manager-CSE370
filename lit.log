@@ -8619,3 +8619,2637 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with argumen
 "GET /manage/pending-requests/ HTTP/1.1" 200 31679
 "POST /reject-request/10/ HTTP/1.1" 302 0
 "GET /manage/pending-requests/ HTTP/1.1" 200 29363
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 26354
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8713
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 44948
+"GET /manage/users/ HTTP/1.1" 200 38215
+"GET /profile/ HTTP/1.1" 200 151758
+"GET /items/ HTTP/1.1" 200 103665
+"GET /manage/pending-requests/ HTTP/1.1" 200 29083
+"GET /admin-dashboard/ HTTP/1.1" 200 44695
+"GET /items/ HTTP/1.1" 200 103665
+"GET /manage/pending-requests/ HTTP/1.1" 200 29083
+"GET /manage/users/ HTTP/1.1" 200 38214
+"GET /reports/ HTTP/1.1" 200 34847
+"GET /admin-dashboard/ HTTP/1.1" 200 44695
+"GET /manage/pending-requests/ HTTP/1.1" 200 29083
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45794
+"GET /api/notifications/count/ HTTP/1.1" 200 20
+"GET /notifications/ HTTP/1.1" 200 51304
+"GET /api/notifications/count/ HTTP/1.1" 200 20
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27344
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 9772
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 46047
+"GET /api/notifications/count/ HTTP/1.1" 200 20
+"GET /notifications/ HTTP/1.1" 200 51304
+"GET /api/notifications/count/ HTTP/1.1" 200 20
+"GET /notifications/mark-read/21/ HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 51645
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/mark-read/20/ HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 51731
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/mark-read/10/ HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 51817
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/mark-read/19/ HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 51903
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/mark-read/1/ HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 51990
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/mark-read/8/ HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 52077
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?mark_all_read=true HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 52219
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 46047
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 39342
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /register/ HTTP/1.1" 200 9972
+"POST /register/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27717
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 46833
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 54740
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 54740
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?id=db2ce24f-cd77-4038-9a8b-00148d920f7a&vscodeBrowserReqId=1757093704498 HTTP/1.1" 302 0
+"GET /login/?next=/notifications/%3Fid%3Ddb2ce24f-cd77-4038-9a8b-00148d920f7a%26vscodeBrowserReqId%3D1757093704498 HTTP/1.1" 200 27344
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+Watching for file changes with StatReloader
+"GET /notifications/?id=d7a2e330-584d-411a-be9f-486ba2dc5209&vscodeBrowserReqId=1757093982248 HTTP/1.1" 302 0
+"GET /login/?next=/notifications/%3Fid%3Dd7a2e330-584d-411a-be9f-486ba2dc5209%26vscodeBrowserReqId%3D1757093982248 HTTP/1.1" 200 27344
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 46833
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 36853
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/action/26/ HTTP/1.1" 302 0
+"GET /manage/pending-users/ HTTP/1.1" 200 30658
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /api/notifications/mark-read/26/ HTTP/1.1" 200 17
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?show_all=true HTTP/1.1" 200 68112
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/? HTTP/1.1" 200 33625
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 35795
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-users/ HTTP/1.1" 200 30361
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 46835
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35107
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?show_all=true HTTP/1.1" 200 70672
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 46582
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 46582
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35056
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 35988
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 45416
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/add-user/ HTTP/1.1" 200 32374
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /delete-user/46100/ HTTP/1.1" 302 0
+"GET /manage/users/ HTTP/1.1" 200 42622
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 30224
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42351
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 30224
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33846
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?show_all=true HTTP/1.1" 200 69462
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /login/ HTTP/1.1" 200 30627
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 46835
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33599
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 35795
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-users/ HTTP/1.1" 200 30361
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /manage/pending-users/ HTTP/1.1" 302 0
+"GET /manage/pending-users/ HTTP/1.1" 200 28399
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-users/ HTTP/1.1" 200 28126
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 34759
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 36442
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52328)
+"GET /notifications/action/27/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 34784
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33393
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101792
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/27/ HTTP/1.1" 302 0
+"GET /items/27/ HTTP/1.1" 200 36716
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/27/ HTTP/1.1" 302 0
+"GET /items/27/ HTTP/1.1" 200 36982
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/27/ HTTP/1.1" 200 36716
+"GET /borrow-request/19/ HTTP/1.1" 302 0
+"GET /items/19/ HTTP/1.1" 200 36703
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/19/ HTTP/1.1" 302 0
+"GET /items/19/ HTTP/1.1" 200 36969
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/19/ HTTP/1.1" 200 36703
+"GET /borrow-request/34/ HTTP/1.1" 302 0
+"GET /items/34/ HTTP/1.1" 200 36717
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/34/ HTTP/1.1" 302 0
+"GET /items/34/ HTTP/1.1" 200 36983
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/34/ HTTP/1.1" 200 36717
+"GET /my-requests/ HTTP/1.1" 200 30244
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101792
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /profile/ HTTP/1.1" 200 58270
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /profile/ HTTP/1.1" 200 58270
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 51448
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 43413
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52417)
+"GET /notifications/action/28/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 37906
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 40142
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/12/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 35344
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/13/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32807
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 32530
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 40142
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52449)
+"GET /notifications/action/29/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32830
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 36885
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/action/30/ HTTP/1.1" 302 0
+- Broken pipe from ('127.0.0.1', 52450)
+"GET /notifications/action/30/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32837
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 32530
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49418
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 199, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189346
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2518
+"GET /login/ HTTP/1.1" 200 30421
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 199, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189346
+"GET /login/ HTTP/1.1" 200 30421
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 199, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189346
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 199, in dashboard
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'product_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['items/(?P<pk>[0-9]+)/\\Z']
+"GET /dashboard/ HTTP/1.1" 500 189346
+"GET / HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38513
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38769
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 39070
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 38513
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 38513
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 37772
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52470)
+"GET /notifications/action/31/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38794
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35581
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52535)
+"GET /notifications/action/32/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38794
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=all HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 38513
+"GET /profile/ HTTP/1.1" 200 58266
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Internal Server Error: /my-borrowed/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 393, in my_borrowed_items
+    return render(request, 'my_borrowed_items.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'return_item' with arguments '('',)' not found. 1 pattern(s) tried: ['return\\-item/(?P<borrow_id>[0-9]+)/\\Z']
+"GET /my-borrowed/ HTTP/1.1" 500 178361
+Internal Server Error: /my-borrowed/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 393, in my_borrowed_items
+    return render(request, 'my_borrowed_items.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'return_item' with arguments '('',)' not found. 1 pattern(s) tried: ['return\\-item/(?P<borrow_id>[0-9]+)/\\Z']
+"GET /my-borrowed/ HTTP/1.1" 500 178363
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Internal Server Error: /my-borrowed/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 393, in my_borrowed_items
+    return render(request, 'my_borrowed_items.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'return_item' with arguments '('',)' not found. 1 pattern(s) tried: ['return\\-item/(?P<borrow_id>[0-9]+)/\\Z']
+"GET /my-borrowed/ HTTP/1.1" 500 178363
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 38516
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 34119
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /extend-request/12/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 34119
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /extend-request/13/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 34119
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /extend-request/13/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 34119
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=all HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=all HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 49678
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Watching for file changes with StatReloader
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2518
+"GET /login/ HTTP/1.1" 200 30627
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /login/ HTTP/1.1" 200 30627
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 49678
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38772
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 34119
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 43839
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41712
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41712
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /extend-request/13/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 34119
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 38516
+"GET /dashboard/ HTTP/1.1" 200 38516
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 38516
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33659
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/13/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 32328
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 31545
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 31545
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 42867
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 37985
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 38342
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET / HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 37511
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 49659
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 32530
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104804
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=motor&category=&status= HTTP/1.1" 200 46495
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104804
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=Brushless+DC+Motor&category=&status= HTTP/1.1" 200 32292
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /update-product/27/ HTTP/1.1" 200 33316
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /update-product/27/ HTTP/1.1" 302 0
+"GET /items/ HTTP/1.1" 200 105094
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49406
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 35954
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /api/notifications/count/ HTTP/1.1" 302 0
+"GET /login/?next=/api/notifications/count/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 37767
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 42867
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 37985
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/admin.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/admin.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /login/ HTTP/1.1" 200 30421
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /login/ HTTP/1.1" 200 30421
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 37767
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 31545
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 42867
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 37985
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101792
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 36717
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 36983
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/41/ HTTP/1.1" 200 36717
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 51421
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 36228
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52837)
+"GET /notifications/action/33/ HTTP/1.1" 302 0
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 35377
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/15/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32811
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 39439
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35585
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35585
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52855)
+"GET /notifications/action/34/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 39464
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101605
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=12V+5A+Power+Supply&category=&status= HTTP/1.1" 200 31785
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=12V+5A+Power+Supply&category=&status= HTTP/1.1" 200 31785
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101605
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/42/ HTTP/1.1" 302 0
+"GET /items/42/ HTTP/1.1" 200 36731
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/42/ HTTP/1.1" 302 0
+"GET /items/42/ HTTP/1.1" 200 36997
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/42/ HTTP/1.1" 200 36731
+"GET /borrow-request/36/ HTTP/1.1" 302 0
+"GET /items/36/ HTTP/1.1" 200 36734
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/36/ HTTP/1.1" 302 0
+"GET /items/36/ HTTP/1.1" 200 37000
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/36/ HTTP/1.1" 200 36734
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 200 39838
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 39838
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /api/notifications/count/ HTTP/1.1" 302 0
+"GET /login/?next=/api/notifications/count/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 52277
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 38878
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52929)
+"GET /notifications/action/36/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 37929
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/17/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 35359
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/16/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32813
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 32530
+- Broken pipe from ('127.0.0.1', 52930)
+"GET /notifications/action/36/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32837
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52934)
+"GET /notifications/action/35/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32836
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 42138
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 37782
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52936)
+"GET /notifications/action/38/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 42163
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35588
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 36910
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/12/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 35577
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/15/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 33960
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 50464
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104802
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=dc+motor&category=&status= HTTP/1.1" 200 36568
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=12v&category=&status= HTTP/1.1" 200 33691
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 40113
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33678
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 50464
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104802
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=NRF24L01+2.4GHz+Module&category=&status= HTTP/1.1" 200 32302
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33599
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 40113
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35588
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52938)
+"GET /notifications/action/37/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 40138
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33969
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /api/notifications/count/ HTTP/1.1" 302 0
+"GET /login/?next=/api/notifications/count/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 50464
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 32539
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/14/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 30508
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 30224
+"GET /manage/users/ HTTP/1.1" 200 42427
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 41130
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 35588
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+- Broken pipe from ('127.0.0.1', 52957)
+"GET /notifications/action/39/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 41155
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33967
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 35295
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 35301
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 35301
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 51077
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 42795
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 43869
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35754
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=all HTTP/1.1" 200 51077
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 42795
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 43869
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/14/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 33967
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 50725
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41111
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 45201
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101418
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=WS2812B+LED+Strip+%281m%29&category=&status= HTTP/1.1" 200 31973
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 50725
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41111
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101418
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=NRF24L01+2.4GHz+Module&category=&status= HTTP/1.1" 200 31798
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 50725
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41111
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41659
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41659
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 41659
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/16/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 32344
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 52027
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 38624
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 32060
+"GET /dashboard/ HTTP/1.1" 200 38863
+"GET /history/ HTTP/1.1" 200 50692
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 47610
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=active HTTP/1.1" 200 38669
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/17/ HTTP/1.1" 302 0
+"GET /history/ HTTP/1.1" 200 50306
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 29874
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 50021
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 50021
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101792
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 38264
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 38530
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/41/ HTTP/1.1" 200 38264
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 49811
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35544
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 49811
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 29874
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 51933
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 29874
+"GET /dashboard/ HTTP/1.1" 200 37599
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 29874
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101792
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 38549
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 38549
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/admin.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/41/ HTTP/1.1" 200 38264
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/41/ HTTP/1.1" 200 38264
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/41/ HTTP/1.1" 302 0
+"GET /items/41/ HTTP/1.1" 200 38549
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 50429
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 36228
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 36228
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?mark_all_read=true HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 33860
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33599
+"GET /admin-dashboard/ HTTP/1.1" 200 50176
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 32540
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/18/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 30505
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Forbidden (CSRF token from POST incorrect.): /borrow-request/41/
+"POST /borrow-request/41/ HTTP/1.1" 403 2518
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 38163
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 39849
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?mark_all_read=true HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 33657
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33396
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101608
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/43/ HTTP/1.1" 302 0
+"GET /items/43/ HTTP/1.1" 200 36741
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/43/ HTTP/1.1" 302 0
+"GET /items/43/ HTTP/1.1" 200 37007
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/43/ HTTP/1.1" 200 36741
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/9/ HTTP/1.1" 302 0
+"GET /items/9/ HTTP/1.1" 200 36762
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/9/ HTTP/1.1" 302 0
+"GET /items/9/ HTTP/1.1" 200 37028
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 51303
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 35094
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/20/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32818
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /reject-request/19/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 30506
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 40502
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 35315
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /return-item/7/ HTTP/1.1" 302 0
+"GET /my-borrowed/ HTTP/1.1" 200 33980
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33696
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/49/ HTTP/1.1" 200 38283
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/49/ HTTP/1.1" 302 0
+"GET /items/49/ HTTP/1.1" 200 38549
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/49/ HTTP/1.1" 200 38283
+"GET /my-borrowed/ HTTP/1.1" 200 33696
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33696
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101609
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /borrow-request/52/ HTTP/1.1" 302 0
+"GET /items/52/ HTTP/1.1" 200 36734
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /borrow-request/52/ HTTP/1.1" 302 0
+"GET /items/52/ HTTP/1.1" 200 37000
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/52/ HTTP/1.1" 200 36734
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 200 39873
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 39873
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 51327
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 35085
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /approve-request/22/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 32820
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /reject-request/21/ HTTP/1.1" 302 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 30507
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /api/notifications/count/ HTTP/1.1" 302 0
+"GET /login/?next=/api/notifications/count/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 41149
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 40895
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 35317
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 40896
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 35317
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 51296
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 35547
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 37787
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 51296
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 49379
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 49379
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?search=4WD+Robot+Chassis+Kit HTTP/1.1" 200 38016
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 49379
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 33630
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /history/ HTTP/1.1" 200 35864
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /history/ HTTP/1.1" 200 34634
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=overdue HTTP/1.1" 200 32382
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 34640
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 34634
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /history/ HTTP/1.1" 200 34528
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 34534
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 34528
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/?filter=returned HTTP/1.1" 200 34534
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 33296
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33386
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33607
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 40900
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 33296
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 101422
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 33607
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33396
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33396
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /api/notifications/count/ HTTP/1.1" 302 0
+"GET /login/?next=/api/notifications/count/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 48855
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104802
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=&category=&status=maintenance HTTP/1.1" 200 33755
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=&category=&status=borrowed HTTP/1.1" 200 56451
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=&category=&status=damaged HTTP/1.1" 200 32313
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42423
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104802
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 64927
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"POST /manage/returns/ HTTP/1.1" 302 0
+"GET /manage/returns/ HTTP/1.1" 200 64922
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 104804
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/?search=acrylic&category=&status= HTTP/1.1" 200 32289
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 40139
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 31986
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 33806
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 48836
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 64606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 64606
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 28348
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 30224
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42430
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 28348
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 28342
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 28342
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 37753
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 37501
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 38402
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42433
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 48585
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 48585
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 38410
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 48591
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 47518
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin-dashboard/ HTTP/1.1" 200 45304
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45304
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45304
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 35989
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /reports/ HTTP/1.1" 200 43387
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 43387
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Internal Server Error: /export-csv/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 939, in export_csv
+    product.location,
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'Product' object has no attribute 'location'
+"GET /export-csv/ HTTP/1.1" 500 72068
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 630, in reports
+    days = (borrow.actual_return_date - borrow.borrow_date).days
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+"GET /reports/ HTTP/1.1" 500 79612
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 630, in reports
+    days = (borrow.actual_return_date - borrow.borrow_date).days
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+"GET /reports/ HTTP/1.1" 500 79612
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 630, in reports
+    days = (borrow.actual_return_date - borrow.borrow_date).days
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+"GET /reports/ HTTP/1.1" 500 79612
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 630, in reports
+    days = (borrow.actual_return_date - borrow.borrow_date).days
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+"GET /reports/ HTTP/1.1" 500 79612
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 630, in reports
+    days = (borrow.actual_return_date - borrow.borrow_date).days
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+"GET /reports/ HTTP/1.1" 500 79612
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 630, in reports
+    days = (borrow.actual_return_date - borrow.borrow_date).days
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'datetime.date' and 'datetime.datetime'
+"GET /reports/ HTTP/1.1" 500 79612
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /reports/ HTTP/1.1" 200 50511
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Internal Server Error: /export-csv/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 1023, in export_csv
+    product.location,
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'Product' object has no attribute 'location'
+"GET /export-csv/ HTTP/1.1" 500 72075
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45304
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 50469
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45304
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 50469
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 46700
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 46001
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 38410
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 46001
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /reports/ HTTP/1.1" 200 45999
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 46000
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45319
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45319
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45324
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 46000
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/returns/ HTTP/1.1" 200 38410
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 46000
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /reports/ HTTP/1.1" 200 40944
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45324
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 40944
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 40944
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33599
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33599
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45324
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45125
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 40944
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /profile/ HTTP/1.1" 200 152899
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 45126
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 44895
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 44895
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 40712
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 44895
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /login/ HTTP/1.1" 200 30838
+"GET /login/ HTTP/1.1" 200 30838
+"GET /login/ HTTP/1.1" 200 30838
+"GET /register/ HTTP/1.1" 200 14207
+"GET /login/ HTTP/1.1" 200 29323
+"GET /register/ HTTP/1.1" 200 12727
+"GET /login/ HTTP/1.1" 200 28731
+"GET /login/ HTTP/1.1" 200 28731
+"GET /login/ HTTP/1.1" 200 28731
+"GET /login/ HTTP/1.1" 200 28731
+"GET /login/ HTTP/1.1" 200 29287
+"GET /login/ HTTP/1.1" 200 29287
+"GET /login/ HTTP/1.1" 200 29287
+"GET /login/ HTTP/1.1" 200 29287
+"GET /login/ HTTP/1.1" 200 29283
+"GET /login/ HTTP/1.1" 200 29416
+"GET /login/ HTTP/1.1" 200 29359
+"GET /login/ HTTP/1.1" 200 29359
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /register/ HTTP/1.1" 200 9972
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"GET /login/ HTTP/1.1" 200 27344
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45148
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27619
+"GET /login/ HTTP/1.1" 200 27400
+"GET /login/ HTTP/1.1" 200 27400
+"GET /register/ HTTP/1.1" 200 10676
+"GET /login/ HTTP/1.1" 200 27400
+"GET /login/ HTTP/1.1" 200 27400
+"GET /login/ HTTP/1.1" 200 27400
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/Documents/LITproject/inventory/views.py", line 114, in user_login
+    return render(request, 'login.html', {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/lmh/miniconda3/lib/python3.12/site-packages/django/template/base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 12: 'static', expected 'endblock'. Did you forget to register or load this tag?
+"GET /login/ HTTP/1.1" 500 191043
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /register/ HTTP/1.1" 200 10326
+"GET /static/bg.jpg HTTP/1.1" 200 88974
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+"GET /login/ HTTP/1.1" 200 27066
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 302 0
+"GET /login/?next=/api/notifications/count/ HTTP/1.1" 200 27066
+"GET /admin-dashboard/ HTTP/1.1" 302 0
+"GET /login/?next=/admin-dashboard/ HTTP/1.1" 200 27066
+"GET /reports/ HTTP/1.1" 302 0
+"GET /login/?next=/reports/ HTTP/1.1" 200 27066
+"GET /notifications/ HTTP/1.1" 302 0
+"GET /login/?next=/notifications/ HTTP/1.1" 200 27066
+"GET /manage/returns/ HTTP/1.1" 302 0
+"GET /login/?next=/manage/returns/ HTTP/1.1" 200 27066
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27066
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 27066
+"GET /static/bg.jpg HTTP/1.1" 200 235463
+"GET /login/ HTTP/1.1" 200 27066
+"GET /register/ HTTP/1.1" 200 10326
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 27401
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 10326
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45136
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 27676
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 10777
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 10777
+"GET /register/ HTTP/1.1" 200 10777
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 10781
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 10741
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 10741
+"GET /login/ HTTP/1.1" 200 27877
+"GET /login/ HTTP/1.1" 200 27877
+"GET /login/ HTTP/1.1" 200 27877
+"GET /login/ HTTP/1.1" 200 27877
+"GET /login/ HTTP/1.1" 200 27877
+"GET /register/ HTTP/1.1" 200 11292
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 27877
+"GET /login/ HTTP/1.1" 200 27877
+"GET /login/ HTTP/1.1" 200 28555
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 11292
+"GET /login/ HTTP/1.1" 200 28535
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 11272
+"GET /login/ HTTP/1.1" 200 28535
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 39446
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 44198
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 44198
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 44198
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/?mark_all_read=true HTTP/1.1" 302 0
+"GET /notifications/ HTTP/1.1" 200 33627
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /notifications/ HTTP/1.1" 200 33366
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 28810
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"GET /register/ HTTP/1.1" 200 11296
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45150
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 28811
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 45628
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /static/bg2.jpg HTTP/1.1" 200 76826
+"GET /items/ HTTP/1.1" 200 105050
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 30470
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42682
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 41190
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /profile/ HTTP/1.1" 200 153144
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /add-item/ HTTP/1.1" 200 32573
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /static/bg2.jpg HTTP/1.1" 304 0
+"GET /manage/pending-requests/ HTTP/1.1" 200 30470
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-users/ HTTP/1.1" 200 28372
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 41190
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42682
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 105050
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /profile/ HTTP/1.1" 200 153144
+"GET /static/bg2.jpg HTTP/1.1" 304 0
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 29288
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"POST /login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 39608
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /history/ HTTP/1.1" 200 45777
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-borrowed/ HTTP/1.1" 200 30803
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /my-requests/ HTTP/1.1" 200 36065
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 102063
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /profile/ HTTP/1.1" 200 67270
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /dashboard/ HTTP/1.1" 200 39352
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 29288

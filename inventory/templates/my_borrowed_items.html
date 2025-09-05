@@ -63,46 +63,16 @@
             </div>
             
             <div class="item-actions">
-                <form method="post" action="{% url 'return_item' borrow.id %}" class="return-form">
+                <form method="post" action="{% url 'return_item' borrow.borrow_id %}" class="return-form">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-undo"></i>
                         Return Item
                     </button>
                 </form>
-                
-                {% if not borrow.is_overdue %}
-                <a href="{% url 'extend_request' borrow.id %}" class="btn btn-outline">
-                    <i class="fas fa-clock"></i>
-                    Request Extension
-                </a>
-                {% endif %}
             </div>
         </div>
         {% endfor %}
-    </div>
-    
-    <div class="summary-section">
-        <div class="summary-card">
-            <h3>
-                <i class="fas fa-chart-bar"></i>
-                Summary
-            </h3>
-            <div class="summary-stats">
-                <div class="stat">
-                    <span class="stat-number">{{ borrowed_items|length }}</span>
-                    <span class="stat-label">Total Borrowed</span>
-                </div>
-                <div class="stat overdue">
-                    <span class="stat-number">{{ overdue_count }}</span>
-                    <span class="stat-label">Overdue Items</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">{{ due_soon_count }}</span>
-                    <span class="stat-label">Due This Week</span>
-                </div>
-            </div>
-        </div>
     </div>
     
     {% else %}
@@ -237,15 +207,27 @@
     }
 
     .overdue-info {
-        background: rgba(234, 67, 53, 0.1);
-        border: 1px solid rgba(234, 67, 53, 0.3);
+        background: rgba(244, 67, 54, 0.15);
+        border: 2px solid #f44336;
         border-radius: 8px;
         padding: 0.75rem;
-        color: #c62828;
+        color: #d32f2f;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .overdue-info i {
+        color: #d32f2f;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
     }
 
     .time-remaining {
@@ -302,61 +284,6 @@
     .btn-outline:hover {
         background: var(--primary-blue);
         color: white;
-    }
-
-    .summary-section {
-        margin-top: 2rem;
-    }
-
-    .summary-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: var(--shadow);
-    }
-
-    .summary-card h3 {
-        margin: 0 0 1.5rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.25rem;
-    }
-
-    .summary-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .stat {
-        text-align: center;
-        padding: 1rem;
-        background: rgba(66, 133, 244, 0.05);
-        border-radius: 8px;
-    }
-
-    .stat.overdue {
-        background: rgba(234, 67, 53, 0.05);
-    }
-
-    .stat-number {
-        display: block;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary-blue);
-        margin-bottom: 0.5rem;
-    }
-
-    .stat.overdue .stat-number {
-        color: #c62828;
-    }
-
-    .stat-label {
-        font-size: 0.875rem;
-        color: var(--text-muted);
-        font-weight: 500;
     }
 
     .no-data {

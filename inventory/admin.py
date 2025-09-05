@@ -1,6 +1,8 @@
 # admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils import timezone
+from django.contrib import messages
 from .models import User, Product, Borrow, Notification, LoanHistory
 
 @admin.register(User)
@@ -46,6 +48,7 @@ class BorrowAdmin(admin.ModelAdmin):
     list_filter = ('status', 'borrow_date', 'expected_return_date')
     search_fields = ('user__username', 'product__name', 'notes')
     ordering = ('-created_at',)
+    actions = ['mark_as_returned', 'mark_as_active']
     
     fieldsets = (
         ('Borrow Information', {
@@ -66,6 +69,53 @@ class BorrowAdmin(admin.ModelAdmin):
         return obj.is_overdue
     is_overdue.boolean = True
     is_overdue.short_description = 'Overdue'
+    
+    def mark_as_returned(self, request, queryset):
+        """Admin action to mark selected borrows as returned"""
+        updated_count = 0
+        for borrow in queryset:
+            if borrow.status in ['active', 'overdue']:
+                # Mark borrow as returned
+                borrow.status = 'returned'
+                borrow.actual_return_date = timezone.now().date()
+                borrow.save()
+                
+                # Update product status to available
+                if borrow.product:
+                    borrow.product.status = 'available'
+                    borrow.product.save()
+                
+                updated_count += 1
+        
+        if updated_count:
+            messages.success(request, f'{updated_count} borrow(s) marked as returned and products set to available.')
+        else:
+            messages.warning(request, 'No eligible borrows were updated. Only active/overdue borrows can be marked as returned.')
+    
+    mark_as_returned.short_description = "Mark selected borrows as returned"
+    
+    def mark_as_active(self, request, queryset):
+        """Admin action to mark selected borrows as active (in case of mistakes)"""
+        updated_count = 0
+        for borrow in queryset:
+            if borrow.status == 'returned':
+                borrow.status = 'active'
+                borrow.actual_return_date = None
+                borrow.save()
+                
+                # Update product status to borrowed
+                if borrow.product:
+                    borrow.product.status = 'borrowed'
+                    borrow.product.save()
+                
+                updated_count += 1
+        
+        if updated_count:
+            messages.success(request, f'{updated_count} borrow(s) marked as active and products set to borrowed.')
+        else:
+            messages.warning(request, 'No returned borrows were found to reactivate.')
+    
+    mark_as_active.short_description = "Mark selected borrows as active (undo return)"
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):

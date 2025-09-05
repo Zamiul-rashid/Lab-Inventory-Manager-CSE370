@@ -42,7 +42,7 @@
             </div>
             <div class="stat-info">
                 <h3>{{ borrowed_products }}</h3>
-                <p>Borrowed Items</p>
+                <p>Currently Borrowing</p>
             </div>
         </div>
 
@@ -199,10 +199,10 @@
                 <p>Create new account</p>
             </a>
 
-            <a href="{% url 'export_csv' %}" class="action-card">
-                <i class="fas fa-download"></i>
-                <h3>Export Data</h3>
-                <p>Download reports</p>
+            <a href="{% url 'admin_manage_returns' %}" class="action-card">
+                <i class="fas fa-undo"></i>
+                <h3>Borrowing Overview</h3>
+                <p>{{ active_borrows }} items to return</p>
             </a>
         </div>
     </div>
@@ -237,62 +237,51 @@
             Recent Activity
         </h2>
         
-        {% if recent_borrows %}
+        {% if recent_borrows or recent_products %}
         <div class="activity-list">
-            {% for borrow in recent_borrows %}
+            <!-- Product Additions -->
+            {% for product in recent_products %}
             <div class="activity-item">
-                <div class="activity-icon status-{{ borrow.status }}">
-                    {% if borrow.status == 'pending' %}
-                        <i class="fas fa-clock"></i>
-                    {% elif borrow.status == 'approved' %}
-                        <i class="fas fa-thumbs-up"></i>
-                    {% elif borrow.status == 'active' %}
-                        <i class="fas fa-hand-holding"></i>
-                    {% elif borrow.status == 'returned' %}
-                        <i class="fas fa-check"></i>
-                    {% elif borrow.status == 'rejected' %}
-                        <i class="fas fa-times"></i>
-                    {% else %}
-                        <i class="fas fa-info-circle"></i>
-                    {% endif %}
+                <div class="activity-icon status-added">
+                    <i class="fas fa-plus"></i>
                 </div>
                 
                 <div class="activity-content">
                     <h4>
-                        {% if borrow.status == 'pending' %}
-                            {{ borrow.user.username }} requested to borrow {{ borrow.product.name }}
-                        {% elif borrow.status == 'approved' %}
-                            Approved {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
-                        {% elif borrow.status == 'rejected' %}
-                            Rejected {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
-                        {% elif borrow.status == 'active' %}
-                            {{ borrow.user.username }} is currently borrowing {{ borrow.product.name }}
-                        {% elif borrow.status == 'returned' %}
-                            {{ borrow.user.username }} returned {{ borrow.product.name }}
-                        {% else %}
-                            {{ borrow.user.username }} {{ borrow.get_status_display|lower }} {{ borrow.product.name }}
+                        Added new product: {{ product.name }}
+                        {% if product.created_by %}
+                            by {{ product.created_by.username }}
                         {% endif %}
                     </h4>
-                    <p>{{ borrow.created_at|timesince }} ago</p>
-                </div>
-                
-                <div class="activity-actions">
-                    {% if borrow.status == 'pending' %}
-                    <form method="post" action="{% url 'approve_request' borrow.borrow_id %}" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-success">
-                            <i class="fas fa-check"></i>
-                        </button>
-                    </form>
-                    <form method="post" action="{% url 'reject_request' borrow.borrow_id %}" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </form>
-                    {% endif %}
+                    <p>{{ product.created_at|timesince }} ago</p>
                 </div>
             </div>
+            {% endfor %}
+            
+            <!-- Admin Borrow Actions -->
+            {% for borrow in recent_borrows %}
+                {% if borrow.status == 'approved' or borrow.status == 'rejected' %}
+                <div class="activity-item">
+                    <div class="activity-icon status-{{ borrow.status }}">
+                        {% if borrow.status == 'approved' %}
+                            <i class="fas fa-thumbs-up"></i>
+                        {% elif borrow.status == 'rejected' %}
+                            <i class="fas fa-times"></i>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="activity-content">
+                        <h4>
+                            {% if borrow.status == 'approved' %}
+                                Approved {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                            {% elif borrow.status == 'rejected' %}
+                                Rejected {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                            {% endif %}
+                        </h4>
+                        <p>{{ borrow.created_at|timesince }} ago</p>
+                    </div>
+                </div>
+                {% endif %}
             {% endfor %}
         </div>
         {% else %}
@@ -301,39 +290,6 @@
             <p>No recent activity</p>
         </div>
         {% endif %}
-    </div>
-
-    <!-- System Status -->
-    <div class="system-status">
-        <h2>
-            <i class="fas fa-server"></i>
-            System Status
-        </h2>
-        <div class="status-grid">
-            <div class="status-card healthy">
-                <div class="status-indicator"></div>
-                <div class="status-info">
-                    <h4>Inventory System</h4>
-                    <p>All systems operational</p>
-                </div>
-            </div>
-            
-            <div class="status-card {% if pending_users > 5 %}warning{% else %}healthy{% endif %}">
-                <div class="status-indicator"></div>
-                <div class="status-info">
-                    <h4>User Management</h4>
-                    <p>{% if pending_users > 5 %}High pending users{% else %}Normal operations{% endif %}</p>
-                </div>
-            </div>
-            
-            <div class="status-card {% if overdue_items > 0 %}critical{% else %}healthy{% endif %}">
-                <div class="status-indicator"></div>
-                <div class="status-info">
-                    <h4>Borrow Management</h4>
-                    <p>{% if overdue_items > 0 %}{{ overdue_items }} overdue items{% else %}All items on time{% endif %}</p>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock %}
@@ -665,6 +621,7 @@
     .activity-icon.status-active { background: var(--success-green); }
     .activity-icon.status-returned { background: #9e9e9e; }
     .activity-icon.status-rejected { background: #c62828; }
+    .activity-icon.status-added { background: #4caf50; }
 
     .activity-content {
         flex: 1;

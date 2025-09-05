@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block extra_css %}
+<style>
+    .notification-card {
+        border-left: 4px solid #007bff;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+    .notification-card.unread {
+        background-color: #f8f9fa;
+        border-left-color: #007bff;
+    }
+    .notification-card.read {
+        background-color: #ffffff;
+        border-left-color: #dee2e6;
+        opacity: 0.8;
+    }
+    .notification-card.priority-urgent {
+        border-left-color: #dc3545 !important;
+    }
+    .notification-card.priority-high {
+        border-left-color: #fd7e14 !important;
+    }
+    .notification-card.priority-medium {
+        border-left-color: #007bff !important;
+    }
+    .notification-card.priority-low {
+        border-left-color: #6c757d !important;
+    }
+    .notification-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .notification-icon.overdue_alert {
+        background-color: #dc3545;
+        color: white;
+    }
+    .notification-icon.return_reminder {
+        background-color: #ffc107;
+        color: white;
+    }
+    .notification-icon.borrow_approved {
+        background-color: #28a745;
+        color: white;
+    }
+    .notification-icon.borrow_request {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .notification-icon.user_registration {
+        background-color: #6f42c1;
+        color: white;
+    }
+    .notification-icon.general {
+        background-color: #6c757d;
+        color: white;
+    }
+    .notification-stats {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .notification-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .notification-card.clickable {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .notification-actions button {
+        transition: all 0.2s ease;
+    }
+    .notification-actions button:hover {
+        transform: scale(1.05);
+    }
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+    }
+    .btn-primary {
+        background-color: var(--primary-blue);
+        color: white;
+        border-color: var(--primary-blue);
+    }
+    .btn-primary:hover {
+        background-color: var(--primary-blue-dark);
+        border-color: var(--primary-blue-dark);
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #545b62;
+        border-color: #545b62;
+    }
+    .btn-outline-info {
+        background-color: transparent;
+        color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    .btn-outline-info:hover {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .btn-outline-primary {
+        background-color: transparent;
+        color: var(--primary-blue);
+        border-color: var(--primary-blue);
+    }
+    .btn-outline-primary:hover {
+        background-color: var(--primary-blue);
+        color: white;
+    }
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" data-show-all="{{ show_all|yesno:'true,false' }}">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <div>
+                    {% if unread_count > 0 %}
+                        <a href="?mark_all_read=true" class="btn btn-primary">
+                            <i class="fas fa-check-double"></i> Mark All Read
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- Notifications List -->
+            {% if notifications %}
+                <div class="notifications-container">
+                    {% for notification in notifications %}
+                        <div class="card notification-card {% if not notification.is_read %}unread{% else %}read{% endif %} priority-{{ notification.priority }}" 
+                             data-notification-id="{{ notification.notification_id }}"
+                             onclick="handleNotificationClick(this.dataset.notificationId)" 
+                             style="cursor: pointer; transition: transform 0.2s ease;">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start">
+                                    <div class="notification-icon {{ notification.notification_type }}">
+                                        {% if notification.notification_type == 'overdue_alert' %}
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        {% elif notification.notification_type == 'return_reminder' %}
+                                            <i class="fas fa-clock"></i>
+                                        {% elif notification.notification_type == 'borrow_approved' %}
+                                            <i class="fas fa-check-circle"></i>
+                                        {% elif notification.notification_type == 'borrow_rejected' %}
+                                            <i class="fas fa-times-circle"></i>
+                                        {% elif notification.notification_type == 'borrow_request' %}
+                                            <i class="fas fa-hand-holding"></i>
+                                        {% elif notification.notification_type == 'user_registration' %}
+                                            <i class="fas fa-user-plus"></i>
+                                        {% elif notification.notification_type == 'item_returned' %}
+                                            <i class="fas fa-undo"></i>
+                                        {% else %}
+                                            <i class="fas fa-bell"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h6 class="mb-0 fw-bold">{{ notification.title }}</h6>
+                                            <small class="text-muted">{{ notification.created_at|date:"M d, Y H:i" }}</small>
+                                        </div>
+                                        <p class="mb-2">{{ notification.message|linebreaksbr }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                {% if notification.priority == 'urgent' %}
+                                                    <span class="badge bg-danger">{{ notification.get_priority_display }}</span>
+                                                {% elif notification.priority == 'high' %}
+                                                    <span class="badge bg-warning">{{ notification.get_priority_display }}</span>
+                                                {% elif notification.priority == 'medium' %}
+                                                    <span class="badge bg-primary">{{ notification.get_priority_display }}</span>
+                                                {% else %}
+                                                    <span class="badge bg-secondary">{{ notification.get_priority_display }}</span>
+                                                {% endif %}
+                                                
+                                                {% if notification.related_user %}
+                                                    <span class="badge bg-info">{{ notification.related_user.get_full_name }}</span>
+                                                {% endif %}
+                                                
+                                                {% if notification.related_borrow %}
+                                                    <span class="badge bg-success">{{ notification.related_borrow.product.name }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination -->
+                {% if notifications.has_other_pages %}
+                    <nav aria-label="Notifications pagination">
+                        <ul class="pagination justify-content-center">
+                            {% if notifications.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ notifications.previous_page_number }}">Previous</a>
+                                </li>
+                            {% endif %}
+
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    Page {{ notifications.number }} of {{ notifications.paginator.num_pages }}
+                                </span>
+                            </li>
+
+                            {% if notifications.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ notifications.next_page_number }}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ notifications.paginator.num_pages }}">Last</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-bell-slash fa-3x text-muted mb-3"></i>
+                    {% if show_all %}
+                        <h4 class="text-muted">No notifications yet</h4>
+                        <p class="text-muted">You'll see notifications here when there are updates about your account or borrowed items.</p>
+                    {% else %}
+                        <h4 class="text-muted">No unread notifications</h4>
+                        <p class="text-muted">All caught up! No new notifications to show.</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Get the show_all state from data attribute
+    const showingAll = document.querySelector('.container-fluid').dataset.showAll === 'true';
+
+    // Handle notification card click - go to action
+    function handleNotificationClick(notificationId) {
+        window.location.href = `/notifications/action/${notificationId}/`;
+    }
+
+    // Mark notification as read without redirect
+    function markAsRead(notificationId) {
+        fetch(`/api/notifications/mark-read/${notificationId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Hide the notification if we're showing unread only
+                if (!showingAll) {
+                    const notificationCard = document.querySelector(`[data-notification-id="${notificationId}"]`);
+                    if (notificationCard) {
+                        notificationCard.style.transition = 'opacity 0.3s ease';
+                        notificationCard.style.opacity = '0';
+                        setTimeout(() => {
+                            notificationCard.remove();
+                            // Update counts
+                            updateNotificationCounts();
+                        }, 300);
+                    }
+                } else {
+                    // Just update the visual state
+                    location.reload();
+                }
+                
+                // Update notification badge
+                updateNotificationBadge();
+            } else {
+                alert('Failed to mark notification as read');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred');
+        });
+    }
+
+    // Go to action page
+    function goToAction(notificationId) {
+        window.location.href = `/notifications/action/${notificationId}/`;
+    }
+
+    // Update notification counts
+    function updateNotificationCounts() {
+        const currentShowing = document.querySelectorAll('.notification-card').length;
+        // Update the showing count if element exists
+        const showingElement = document.querySelector('.notification-stats h3');
+        if (showingElement) {
+            showingElement.textContent = currentShowing;
+        }
+    }
+
+    // Update notification badge in navbar
+    function updateNotificationBadge() {
+        fetch('/api/notifications/count/')
+            .then(response => response.json())
+            .then(data => {
+                const badge = document.getElementById('notification-badge');
+                if (badge) {
+                    badge.textContent = data.unread_count;
+                    badge.style.display = data.unread_count > 0 ? 'inline-flex' : 'none';
+                }
+            })
+            .catch(error => console.log('Error updating badge:', error));
+    }
+
+    // Get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Add hover effect to notification cards and set up event delegation
+    document.addEventListener('DOMContentLoaded', function() {
+        const notificationCards = document.querySelectorAll('.notification-card');
+        notificationCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+
+            // Add click handler for the main card
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking on buttons
+                if (!e.target.closest('.notification-actions')) {
+                    const notificationId = this.dataset.notificationId;
+                    if (notificationId) {
+                        handleNotificationClick(notificationId);
+                    }
+                }
+            });
+        });
+
+        // Event delegation for mark as read buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.mark-read-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                const button = e.target.closest('[data-notification-id]');
+                if (button) {
+                    markAsRead(button.dataset.notificationId);
+                }
+            }
+        });
+
+        // Event delegation for go to action buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.go-to-action-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                const button = e.target.closest('[data-notification-id]');
+                if (button) {
+                    goToAction(button.dataset.notificationId);
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

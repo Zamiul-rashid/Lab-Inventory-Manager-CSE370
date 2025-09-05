@@ -40,6 +40,7 @@ urlpatterns = [
     # Admin functions
     path('manage/pending-requests/', views.admin_pending_requests, name='admin_pending_requests'),
     path('manage/pending-users/', views.admin_pending_users, name='admin_pending_users'),
+    path('manage/returns/', views.admin_manage_returns, name='admin_manage_returns'),
     path('manage/users/', views.user_list, name='user_list'),
     path('manage/add-user/', views.add_user, name='add_user'),
     path('reports/', views.reports, name='reports'),
@@ -69,4 +70,12 @@ urlpatterns = [
     # API endpoints
     path('api/search-products/', views.search_products_api, name='search_products_api'),
     path('api/update-product-status/<int:pk>/', views.update_product_status_api, name='update_product_status_api'),
+    
+    # Notification management
+    path('notifications/', views.notifications_view, name='notifications'),
+    path('notifications/mark-read/<int:notification_id>/', views.mark_notification_read, name='mark_notification_read'),
+    path('notifications/action/<int:notification_id>/', views.mark_notification_read_and_redirect, name='notification_action'),
+    path('api/notifications/count/', views.get_notifications_count, name='get_notifications_count'),
+    path('api/notifications/recent/', views.get_recent_notifications, name='get_recent_notifications'),
+    path('api/notifications/mark-read/<int:notification_id>/', views.mark_notification_read_api, name='mark_notification_read_api'),
 ]

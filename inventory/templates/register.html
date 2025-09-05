@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,93 +35,134 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            background: url('{% static "bg.jpg" %}') no-repeat center center;
+            background-size: cover;
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            opacity: 1;
         }
 
         .register-container {
-            background: var(--card-bg);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             width: 100%;
-            max-width: 500px;
-            border: 1px solid var(--border-color);
+            max-width: 420px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] .register-container {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
         .register-header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .register-logo {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
+            margin: 0 auto 16px;
+            font-size: 1.8rem;
             color: white;
             box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
         }
 
         .register-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-color);
+            margin-bottom: 6px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .register-subtitle {
-            color: var(--text-muted);
+            color: rgba(255,255,255,0.9);
             font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         .register-form {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .form-label {
             display: block;
             font-weight: 500;
-            margin-bottom: 6px;
-            color: var(--text-color);
+            margin-bottom: 4px;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
         .form-control {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid var(--border-color);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            background: var(--card-bg);
-            color: var(--text-color);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+            border-color: rgba(66, 133, 244, 0.8);
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="dark"] .form-control {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        [data-theme="dark"] .form-control:focus {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(66, 133, 244, 0.8);
         }
 
         .register-btn {
@@ -145,11 +187,12 @@
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255,255,255,0.9);
         }
 
         .login-link a {
-            color: var(--primary-blue);
+            color: rgba(66, 133, 244, 0.9);
             text-decoration: none;
             font-weight: 500;
         }
@@ -216,7 +259,7 @@
     <div class="register-container">
         <div class="register-header">
             <div class="register-logo">
-                ⚗
+                <i class="fas fa-bolt"></i>
             </div>
             <h1 class="register-title">Create Account</h1>
             <p class="register-subtitle">Join Lab Inventory Manager</p>
