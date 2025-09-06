@@ -19,7 +19,11 @@
             <div class="request-header">
                 <div class="requester-info">
                     <h3>{{ request.user.get_full_name|default:request.user.username }}</h3>
-                    <p>{{ request.user.email }}</p>
+                    <div class="user-identifiers">
+                        <p><i class="fas fa-user"></i> Username: <strong>{{ request.user.username }}</strong></p>
+                        <p><i class="fas fa-id-badge"></i> User ID: <strong>{{ request.user.user_id }}</strong></p>
+                        <p><i class="fas fa-envelope"></i> {{ request.user.email }}</p>
+                    </div>
                     <span class="request-date">{{ request.borrow_date|timesince }} ago</span>
                 </div>
                 

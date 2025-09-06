@@ -183,6 +183,39 @@
 
 {% block extra_css %}
 <style>
+    /* Theme-aware styling for update product page */
+    
+    /* Light Theme (Default) */
+    .container {
+        background: var(--bg-color);
+        color: var(--text-color);
+        min-height: 100vh;
+        padding: 2rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .page-header {
+        background: var(--card-bg);
+        color: var(--text-color);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+
+    .page-title {
+        color: var(--text-color);
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
     .form-container {
         max-width: 800px;
         margin: 0 auto 2rem auto;
@@ -191,6 +224,7 @@
         border-radius: 12px;
         padding: 2rem;
         box-shadow: var(--shadow);
+        transition: all 0.3s ease;
     }
 
     .form-section {
@@ -207,6 +241,11 @@
         color: var(--text-color);
         padding-bottom: 1rem;
         border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+
+    .form-section h3 i {
+        color: var(--primary-blue);
     }
 
     .form-row {
@@ -225,8 +264,11 @@
         font-weight: 600;
         margin-bottom: 0.5rem;
         color: var(--text-color);
+        font-size: 1rem;
+        transition: color 0.3s ease;
     }
 
+    /* Form Inputs - Light Theme */
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -235,7 +277,8 @@
         border-radius: 8px;
         font-size: 1rem;
         transition: all 0.2s ease;
-        background: white;
+        background: #ffffff;
+        color: #2c3e50;
     }
 
     .form-group input:focus,
@@ -244,6 +287,8 @@
         outline: none;
         border-color: var(--primary-blue);
         box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        background: #ffffff;
+        color: #2c3e50;
     }
 
     .form-group textarea {
@@ -258,6 +303,7 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        transition: color 0.3s ease;
     }
 
     .form-help i {
@@ -266,7 +312,7 @@
 
     .error-message {
         margin-top: 0.5rem;
-        color: #c62828;
+        color: var(--error-color);
         font-size: 0.875rem;
     }
 
@@ -279,6 +325,7 @@
         gap: 1rem;
         padding-top: 2rem;
         border-top: 1px solid var(--border-color);
+        transition: border-color 0.3s ease;
     }
 
     .btn {
@@ -297,12 +344,13 @@
 
     .btn-primary {
         background: var(--primary-blue);
-        color: white;
+        color: #ffffff;
     }
 
     .btn-primary:hover {
-        background: #1976d2;
-        transform: translateY(-1px);
+        background: var(--primary-blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
     }
 
     .btn-outline {
@@ -312,19 +360,21 @@
     }
 
     .btn-outline:hover {
-        background: var(--border-color);
+        background: var(--hover-bg);
         color: var(--text-color);
+        transform: translateY(-1px);
     }
 
     .btn-danger {
-        background: #c62828;
-        color: white;
+        background: var(--error-color);
+        color: #ffffff;
         margin-left: auto;
     }
 
     .btn-danger:hover {
-        background: #b71c1c;
-        transform: translateY(-1px);
+        background: #c62828;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(234, 67, 53, 0.4);
     }
 
     .item-info {
@@ -333,10 +383,12 @@
     }
 
     .info-card {
-        background: rgba(66, 133, 244, 0.05);
-        border: 1px solid rgba(66, 133, 244, 0.2);
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
         border-radius: 12px;
         padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
     }
 
     .info-card h4 {
@@ -357,7 +409,8 @@
         display: flex;
         justify-content: space-between;
         padding: 0.5rem 0;
-        border-bottom: 1px solid rgba(66, 133, 244, 0.1);
+        border-bottom: 1px solid var(--border-color);
+        transition: border-color 0.3s ease;
     }
 
     .info-item:last-child {
@@ -367,13 +420,67 @@
     .info-label {
         font-weight: 500;
         color: var(--text-muted);
+        transition: color 0.3s ease;
     }
 
     .info-value {
         color: var(--text-color);
         font-weight: 600;
+        transition: color 0.3s ease;
     }
 
+    /* Select options styling */
+    select option {
+        background: #ffffff;
+        color: #2c3e50;
+    }
+
+    /* Placeholder styling */
+    input::-webkit-input-placeholder { color: #999; }
+    input::-moz-placeholder { color: #999; }
+    input:-ms-input-placeholder { color: #999; }
+    input::placeholder { color: #999; }
+
+    /* Dark Theme Overrides */
+    [data-theme="dark"] .form-group input,
+    [data-theme="dark"] .form-group select,
+    [data-theme="dark"] .form-group textarea {
+        background: #1a1a1a;
+        color: #ffffff;
+        border-color: #404040;
+    }
+
+    [data-theme="dark"] .form-group input:focus,
+    [data-theme="dark"] .form-group select:focus,
+    [data-theme="dark"] .form-group textarea:focus {
+        background: #1a1a1a;
+        color: #ffffff;
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3);
+    }
+
+    [data-theme="dark"] select option {
+        background: #1a1a1a;
+        color: #ffffff;
+    }
+
+    [data-theme="dark"] input::-webkit-input-placeholder { color: #666; }
+    [data-theme="dark"] input::-moz-placeholder { color: #666; }
+    [data-theme="dark"] input:-ms-input-placeholder { color: #666; }
+    [data-theme="dark"] input::placeholder { color: #666; }
+
+    /* Dark theme button adjustments */
+    [data-theme="dark"] .btn-outline {
+        border-color: #404040;
+        color: #b0b0b0;
+    }
+
+    [data-theme="dark"] .btn-outline:hover {
+        background: #404040;
+        color: #ffffff;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
         .form-row {
             grid-template-columns: 1fr;

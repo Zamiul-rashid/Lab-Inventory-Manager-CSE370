@@ -1,10 +1,31 @@
 /* Base Styles */
+:root {
+    /* Color Palette */
+    --primary-blue: #4285f4;
+    --primary-dark: #1976d2;
+    --text-color: #2c3e50;
+    --text-muted: #6c757d;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --error-color: #c62828;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    
+    /* Background Colors */
+    --bg-light: #f8f9fa;
+    --bg-primary: #e3f2fd;
+    --bg-danger: #ffebee;
+    --bg-success: #e8f5e8;
+    --bg-warning: #fff3e0;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: var(--text-color);
     background-color: #f5f5f5;
 }
 
@@ -82,17 +103,238 @@ tr:hover {
 form {
     margin: 1rem 0;
     padding: 1rem;
-    background-color: white;
+    background-color: var(--card-bg);
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
 }
 
 input, select, textarea {
     width: 100%;
     padding: 0.5rem;
     margin: 0.5rem 0;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
+    background-color: white !important;
+    color: #2c3e50 !important;
+    font-size: 1rem;
+}
+
+/* Specific input field styling to override any theme conflicts */
+input[type="text"],
+input[type="email"], 
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    background-color: #ffffff !important;
+    color: #2c3e50 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Django form widget overrides */
+.form-control,
+.django-ckeditor-widget,
+input.form-control,
+select.form-control,
+textarea.form-control {
+    background-color: #ffffff !important;
+    color: #2c3e50 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Form field values */
+input:not([type="submit"]):not([type="button"]) {
+    background-color: #ffffff !important;
+    color: #2c3e50 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+label {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: white;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Form Container */
+.form-container {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.form-section h3 {
+    color: var(--text-color);
+}
+
+/* Ensure all text is visible */
+.item-form label,
+.item-form input,
+.item-form select,
+.item-form textarea,
+.form-section h3,
+.info-label,
+.info-value {
+    color: var(--text-color) !important;
+}
+
+/* Ultra-specific rules for update product form */
+.form-container input,
+.form-container select,
+.form-container textarea,
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: #ffffff !important;
+    color: #2c3e50 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Target all possible input states */
+input::-webkit-input-placeholder { color: #999 !important; }
+input::-moz-placeholder { color: #999 !important; }
+input:-ms-input-placeholder { color: #999 !important; }
+input::placeholder { color: #999 !important; }
+
+/* Make sure input values are dark */
+input[value], select option, textarea {
+    color: #2c3e50 !important;
+    background-color: #ffffff !important;
+}
+
+/* Target Django form fields specifically */
+form .form-group input[type="text"],
+form .form-group input[type="number"], 
+form .form-group select,
+form .form-group textarea {
+    background: #ffffff !important;
+    color: #2c3e50 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Override any theme or framework styles */
+* input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]) {
+    background-color: #ffffff !important;
+    color: #2c3e50 !important;
+}
+
+/* Force dark text in all input fields - CRITICAL FIX */
+input, select, textarea {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Target specific form field values */
+input[value] {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* For autocomplete and saved values */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #000000 !important;
+    color: #000000 !important;
+}
+
+/* Force all form elements to have dark text */
+form input,
+form select,
+form textarea,
+.form-container input,
+.form-container select,
+.form-container textarea,
+.form-group input,
+.form-group select,
+.form-group textarea {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Ensure option text is visible */
+select option {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Force text color for all text inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"] {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* CRITICAL: Override dark theme for form inputs */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea,
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-container input,
+[data-theme="dark"] .form-container select,
+[data-theme="dark"] .form-container textarea {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Override dark theme for input values and placeholder */
+[data-theme="dark"] input::-webkit-input-placeholder { color: #666 !important; }
+[data-theme="dark"] input::-moz-placeholder { color: #666 !important; }
+[data-theme="dark"] input:-ms-input-placeholder { color: #666 !important; }
+[data-theme="dark"] input::placeholder { color: #666 !important; }
+
+/* Force select options to be visible in dark theme */
+[data-theme="dark"] select option {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Universal input override for both light and dark themes */
+html input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+html select,
+html textarea {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important;
 }
 
 /* Admin sections */
@@ -106,4 +348,170 @@ input, select, textarea {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+/* Pending Requests Styles */
+.requests-container {
+    margin: 2rem 0;
+}
+
+.request-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-left: 4px solid #3498db;
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 2rem;
+}
+
+.requester-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+.user-identifiers {
+    margin: 0.5rem 0;
+}
+
+.user-identifiers p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.user-identifiers i {
+    width: 16px;
+    margin-right: 0.5rem;
+    color: #3498db;
+}
+
+.user-identifiers strong {
+    color: #2c3e50;
+}
+
+.request-date {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.item-info h4 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.category-badge {
+    background: #e8f4fd;
+    color: #2980b9;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.request-details {
+    margin: 1rem 0;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.detail-item i {
+    margin-right: 0.5rem;
+    color: #3498db;
+    width: 16px;
+}
+
+.request-notes {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #f39c12;
+    margin-top: 1rem;
+}
+
+.notes-content {
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.request-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.action-form {
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #219a52;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #3498db;
+    border: 2px solid #3498db;
+}
+
+.btn-outline:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-1px);
 }

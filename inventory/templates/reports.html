@@ -57,6 +57,106 @@
         </div>
     </div>
 
+    <!-- Current Borrowers Section -->
+    <div class="current-borrowers-section">
+        <div class="section-header">
+            <h2>
+                <i class="fas fa-users"></i>
+                Current Borrowers
+            </h2>
+        </div>
+        
+        {% if current_borrowers %}
+        <div class="borrowers-grid">
+            {% for borrower in current_borrowers %}
+            <div class="borrower-card">
+                <div class="borrower-header">
+                    <div class="borrower-info">
+                        <h4>{{ borrower.user_full_name }}</h4>
+                        <div class="borrower-details">
+                            <p><i class="fas fa-user"></i> Username: <strong>{{ borrower.user_username }}</strong></p>
+                            <p><i class="fas fa-id-badge"></i> User ID: <strong>{{ borrower.user_id }}</strong></p>
+                        </div>
+                    </div>
+                    <div class="status-badge {% if borrower.is_overdue %}overdue{% else %}active{% endif %}">
+                        {{ borrower.status|upper }}
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h5><i class="fas fa-box"></i> {{ borrower.product_name }}</h5>
+                    <p class="category"><i class="fas fa-tag"></i> {{ borrower.product_category }}</p>
+                </div>
+                
+                <div class="borrow-details">
+                    <div class="detail-row">
+                        <span class="label">Borrowed:</span>
+                        <span class="value">{{ borrower.borrow_date|date:"M d, Y" }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Due:</span>
+                        <span class="value">{{ borrower.expected_return_date|date:"M d, Y" }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-data-card">
+            <i class="fas fa-info-circle"></i>
+            <p>No current borrowers</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Borrowing Overview Section -->
+    <div class="borrowing-overview-section">
+        <div class="section-header">
+            <h2>
+                <i class="fas fa-chart-line"></i>
+                Borrowing Overview
+            </h2>
+        </div>
+        
+        <div class="overview-grid">
+            <!-- Items to Return -->
+            <div class="overview-card">
+                <div class="overview-header">
+                    <h3><i class="fas fa-undo"></i> Items to Return</h3>
+                    <div class="overview-count">{{ items_to_return }}</div>
+                </div>
+                <p class="overview-description">Total items currently borrowed and need to be returned</p>
+            </div>
+            
+            <!-- Overdue Items -->
+            <div class="overview-card overdue">
+                <div class="overview-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Overdue Items</h3>
+                    <div class="overview-count">{{ overdue_product_list|length }}</div>
+                </div>
+                
+                {% if overdue_product_list %}
+                <div class="overdue-list">
+                    {% for item in overdue_product_list %}
+                    <div class="overdue-item">
+                        <div class="overdue-product">
+                            <strong>{{ item.product_name }}</strong>
+                            <span class="category-tag">{{ item.product_category }}</span>
+                        </div>
+                        <div class="overdue-info">
+                            <span class="borrower">{{ item.borrower_name }}</span>
+                            <span class="overdue-days">{{ item.days_overdue }} day{{ item.days_overdue|pluralize }} overdue</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="overview-description">No overdue items</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
     <!-- Charts and Reports -->
     <div class="reports-grid">
         <!-- Category Distribution -->
@@ -70,11 +170,11 @@
                 {% for category in category_data %}
                 <div class="category-item">
                     <div class="category-bar">
-                        <div class="category-fill" style="width: {{ category.percentage }}%"></div>
+                        <div class="category-fill" data-width="{{ category.percentage|default:0 }}"></div>
                     </div>
                     <div class="category-info">
-                        <span class="category-name">{{ category.name }}</span>
-                        <span class="category-count">{{ category.count }}</span>
+                        <span class="category-name">{{ category.name|default:"Uncategorized" }}</span>
+                        <span class="category-count">{{ category.count|default:0 }}</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -240,6 +340,7 @@
         height: 100%;
         background: var(--primary-blue);
         transition: width 0.3s ease;
+        width: 0%; /* Default width */
     }
 
     .category-info {
@@ -396,6 +497,313 @@
         font-weight: 500;
     }
 
+    /* Current Borrowers Section */
+    .current-borrowers-section,
+    .borrowing-overview-section {
+        margin-bottom: 3rem;
+    }
+
+    .section-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header h2 {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0;
+    }
+
+    .section-header h2 i {
+        color: var(--primary-blue);
+    }
+
+    .borrowers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .borrower-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+
+    .borrower-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .borrower-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .borrower-info h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .borrower-details p {
+        margin: 0.25rem 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .borrower-details i {
+        width: 16px;
+        margin-right: 0.5rem;
+        color: var(--primary-blue);
+    }
+
+    .status-badge {
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status-badge.active {
+        background: rgba(76, 175, 80, 0.1);
+        color: #27ae60;
+        border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+
+    .status-badge.overdue {
+        background: rgba(244, 67, 54, 0.1);
+        color: #e74c3c;
+        border: 1px solid rgba(244, 67, 54, 0.3);
+        animation: pulse-red 2s infinite;
+    }
+
+    @keyframes pulse-red {
+        0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+    }
+
+    .product-info {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: rgba(66, 133, 244, 0.05);
+        border-radius: 8px;
+    }
+
+    .product-info h5 {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-color);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .product-info h5 i {
+        color: var(--primary-blue);
+    }
+
+    .product-info .category {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .product-info .category i {
+        color: var(--primary-blue);
+    }
+
+    .borrow-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .detail-row .label {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .detail-row .value {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    /* Borrowing Overview Section */
+    .overview-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+    }
+
+    .overview-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .overview-card.overdue {
+        border-color: rgba(244, 67, 54, 0.3);
+        background: linear-gradient(135deg, var(--card-bg) 0%, rgba(244, 67, 54, 0.05) 100%);
+    }
+
+    .overview-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .overview-header h3 {
+        margin: 0;
+        color: var(--text-color);
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .overview-header h3 i {
+        color: var(--primary-blue);
+    }
+
+    .overview-card.overdue .overview-header h3 i {
+        color: #e74c3c;
+    }
+
+    .overview-count {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+    }
+
+    .overview-card.overdue .overview-count {
+        color: #e74c3c;
+    }
+
+    .overview-description {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .overdue-list {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 1rem;
+    }
+
+    .overdue-item {
+        padding: 1rem;
+        border: 1px solid rgba(244, 67, 54, 0.2);
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        background: rgba(244, 67, 54, 0.05);
+    }
+
+    .overdue-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .overdue-product {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .overdue-product strong {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    .category-tag {
+        background: rgba(66, 133, 244, 0.1);
+        color: var(--primary-blue);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .overdue-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+
+    .overdue-info .borrower {
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    .overdue-info .overdue-days {
+        color: #e74c3c;
+        font-weight: 600;
+    }
+
+    .no-data-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 3rem;
+        text-align: center;
+        color: var(--text-muted);
+    }
+
+    .no-data-card i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary-blue);
+        opacity: 0.5;
+    }
+
+    .no-data-card p {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .borrowers-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .overview-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .borrower-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+    }
+
     .health-metrics {
         display: flex;
         flex-direction: column;
@@ -494,4 +902,14 @@
         }
     }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set category bar widths from data attributes
+    document.querySelectorAll('.category-fill').forEach(function(fill) {
+        const width = fill.getAttribute('data-width') || 0;
+        fill.style.width = width + '%';
+    });
+});
+</script>
 {% endblock %}

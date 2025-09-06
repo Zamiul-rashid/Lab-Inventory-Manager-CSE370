@@ -198,12 +198,6 @@
                 <h3>Add User</h3>
                 <p>Create new account</p>
             </a>
-
-            <a href="{% url 'admin_manage_returns' %}" class="action-card">
-                <i class="fas fa-undo"></i>
-                <h3>Borrowing Overview</h3>
-                <p>{{ active_borrows }} items to return</p>
-            </a>
         </div>
     </div>
 
@@ -239,8 +233,39 @@
         
         {% if recent_borrows or recent_products %}
         <div class="activity-list">
-            <!-- Product Additions -->
-            {% for product in recent_products %}
+            <!-- Admin Borrow Actions (Priority) -->
+            {% for borrow in recent_borrows %}
+                {% if borrow.status == 'approved' %}
+                <div class="activity-item">
+                    <div class="activity-icon status-approved">
+                        <i class="fas fa-thumbs-up"></i>
+                    </div>
+                    
+                    <div class="activity-content">
+                        <h4>
+                            Approved {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                        </h4>
+                        <p>{{ borrow.created_at|timesince }} ago</p>
+                    </div>
+                </div>
+                {% elif borrow.status == 'rejected' %}
+                <div class="activity-item">
+                    <div class="activity-icon status-rejected">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    
+                    <div class="activity-content">
+                        <h4>
+                            Rejected {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                        </h4>
+                        <p>{{ borrow.created_at|timesince }} ago</p>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Product Additions (Limited) -->
+            {% for product in recent_products|slice:":3" %}
             <div class="activity-item">
                 <div class="activity-icon status-added">
                     <i class="fas fa-plus"></i>
@@ -256,32 +281,6 @@
                     <p>{{ product.created_at|timesince }} ago</p>
                 </div>
             </div>
-            {% endfor %}
-            
-            <!-- Admin Borrow Actions -->
-            {% for borrow in recent_borrows %}
-                {% if borrow.status == 'approved' or borrow.status == 'rejected' %}
-                <div class="activity-item">
-                    <div class="activity-icon status-{{ borrow.status }}">
-                        {% if borrow.status == 'approved' %}
-                            <i class="fas fa-thumbs-up"></i>
-                        {% elif borrow.status == 'rejected' %}
-                            <i class="fas fa-times"></i>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="activity-content">
-                        <h4>
-                            {% if borrow.status == 'approved' %}
-                                Approved {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
-                            {% elif borrow.status == 'rejected' %}
-                                Rejected {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
-                            {% endif %}
-                        </h4>
-                        <p>{{ borrow.created_at|timesince }} ago</p>
-                    </div>
-                </div>
-                {% endif %}
             {% endfor %}
         </div>
         {% else %}
@@ -619,9 +618,9 @@
     .activity-icon.status-pending { background: #f57c00; }
     .activity-icon.status-approved { background: var(--primary-blue); }
     .activity-icon.status-active { background: var(--success-green); }
-    .activity-icon.status-returned { background: #9e9e9e; }
+    .activity-icon.status-returned { background: #4caf50; }
     .activity-icon.status-rejected { background: #c62828; }
-    .activity-icon.status-added { background: #4caf50; }
+    .activity-icon.status-added { background: #9e9e9e; }
 
     .activity-content {
         flex: 1;

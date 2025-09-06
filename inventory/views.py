@@ -46,11 +46,13 @@ def admin_dashboard(request):
         expected_return_date__lt=timezone.now().date()
     ).count()
     
-    # Get recent borrow activity for the activity feed
-    recent_borrows = Borrow.objects.select_related('user', 'product', 'added_by').order_by('-created_at')[:10]
+    # Get recent borrow activity for the activity feed (admin actions only)
+    recent_borrows = Borrow.objects.filter(
+        status__in=['approved', 'rejected']
+    ).select_related('user', 'product', 'added_by').order_by('-created_at')[:15]
     
-    # Get recent product additions
-    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:5]
+    # Get recent product additions (limited)
+    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:3]
     
     # Get category breakdown
     category_stats = Product.objects.values('category').annotate(
@@ -569,11 +571,15 @@ def reports(request):
     ).order_by('-count')
     
     for category in category_stats:
-        percentage = (category['count'] / total_products_for_category * 100) if total_products_for_category > 0 else 0
+        # Ensure category name is not None and handle division by zero
+        category_name = category['category'] if category['category'] is not None else 'Uncategorized'
+        category_count = category['count'] if category['count'] is not None else 0
+        
+        percentage = (category_count / total_products_for_category * 100) if total_products_for_category > 0 else 0
         category_data.append({
-            'name': category['category'],
-            'count': category['count'],
-            'percentage': round(percentage, 1)
+            'name': category_name,
+            'count': category_count,
+            'percentage': round(percentage, 1) if percentage is not None else 0
         })
     
     # Top borrowers
@@ -661,6 +667,44 @@ def reports(request):
     # Recent product additions
     recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:5]
     
+    # Current borrowers with product details
+    current_borrowers = Borrow.objects.filter(
+        status='active'
+    ).select_related('user', 'product').order_by('-borrow_date')
+    
+    # Add overdue status to current borrowers
+    current_borrowers_list = []
+    for borrow in current_borrowers:
+        is_overdue = borrow.expected_return_date < timezone.now().date()
+        current_borrowers_list.append({
+            'user_full_name': borrow.user.get_full_name() or borrow.user.username,
+            'user_username': borrow.user.username,
+            'user_id': borrow.user.user_id,
+            'product_name': borrow.product.name,
+            'product_category': borrow.product.category,
+            'borrow_date': borrow.borrow_date,
+            'expected_return_date': borrow.expected_return_date,
+            'is_overdue': is_overdue,
+            'status': 'overdue' if is_overdue else 'active'
+        })
+    
+    # Borrowing overview data
+    items_to_return = Borrow.objects.filter(status='active').count()
+    overdue_products = Borrow.objects.filter(
+        status='active',
+        expected_return_date__lt=timezone.now().date()
+    ).select_related('product')
+    
+    overdue_product_list = []
+    for borrow in overdue_products:
+        overdue_product_list.append({
+            'product_name': borrow.product.name,
+            'product_category': borrow.product.category,
+            'borrower_name': borrow.user.get_full_name() or borrow.user.username,
+            'expected_return_date': borrow.expected_return_date,
+            'days_overdue': (timezone.now().date() - borrow.expected_return_date).days
+        })
+
     context = {
         'total_items': total_items,
         'available_items': available_items,
@@ -680,6 +724,9 @@ def reports(request):
         'ontime_rate': ontime_rate,
         'recent_activity': recent_activity,
         'recent_products': recent_products,
+        'current_borrowers': current_borrowers_list,
+        'items_to_return': items_to_return,
+        'overdue_product_list': overdue_product_list,
         'is_admin': True,
     }
     
