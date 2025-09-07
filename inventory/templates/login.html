@@ -195,26 +195,6 @@
         left: 100%;
     }
 
-    .theme-toggle-login {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: rgba(255,255,255,0.2);
-        border: none;
-        color: white;
-        padding: 12px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-    }
-
-    .theme-toggle-login:hover {
-        background: rgba(255,255,255,0.3);
-        transform: scale(1.1);
-    }
-
     .errorlist {
         background: rgba(234, 67, 53, 0.1);
         color: var(--error-color);
@@ -251,15 +231,6 @@
         background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
     }
 
-    [data-theme="dark"] .theme-toggle-login {
-        background: rgba(0,0,0,0.3);
-        color: white;
-    }
-
-    [data-theme="dark"] .theme-toggle-login:hover {
-        background: rgba(0,0,0,0.5);
-    }
-
     @media (max-width: 480px) {
         .login-card {
             margin: 20px;
@@ -284,10 +255,6 @@
 
 {% block content %}
 <div class="login-container">
-    <button class="theme-toggle-login" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
-    
     <div class="login-card">
         <div class="login-header">
             <div class="login-logo">
