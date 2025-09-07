@@ -231,56 +231,51 @@
             Recent Activity
         </h2>
         
-        {% if recent_borrows or recent_products %}
+        {% if recent_activities %}
         <div class="activity-list">
-            <!-- Admin Borrow Actions (Priority) -->
-            {% for borrow in recent_borrows %}
-                {% if borrow.status == 'approved' %}
+            {% for activity in recent_activities %}
+                {% if activity.type == 'borrow' %}
+                    {% if activity.action == 'approved' %}
+                    <div class="activity-item">
+                        <div class="activity-icon status-approved">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        
+                        <div class="activity-content">
+                            <h4>
+                                Approved {{ activity.user }}'s borrow request for {{ activity.product }}
+                            </h4>
+                            <p>{{ activity.timesince }} ago</p>
+                        </div>
+                    </div>
+                    {% elif activity.action == 'rejected' %}
+                    <div class="activity-item">
+                        <div class="activity-icon status-rejected">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        
+                        <div class="activity-content">
+                            <h4>
+                                Rejected {{ activity.user }}'s borrow request for {{ activity.product }}
+                            </h4>
+                            <p>{{ activity.timesince }} ago</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% elif activity.type == 'product' %}
                 <div class="activity-item">
-                    <div class="activity-icon status-approved">
-                        <i class="fas fa-thumbs-up"></i>
+                    <div class="activity-icon status-added">
+                        <i class="fas fa-plus"></i>
                     </div>
                     
                     <div class="activity-content">
                         <h4>
-                            Approved {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
+                            Added new product: {{ activity.product }} by {{ activity.created_by }}
                         </h4>
-                        <p>{{ borrow.created_at|timesince }} ago</p>
-                    </div>
-                </div>
-                {% elif borrow.status == 'rejected' %}
-                <div class="activity-item">
-                    <div class="activity-icon status-rejected">
-                        <i class="fas fa-times"></i>
-                    </div>
-                    
-                    <div class="activity-content">
-                        <h4>
-                            Rejected {{ borrow.user.username }}'s borrow request for {{ borrow.product.name }}
-                        </h4>
-                        <p>{{ borrow.created_at|timesince }} ago</p>
+                        <p>{{ activity.timesince }} ago</p>
                     </div>
                 </div>
                 {% endif %}
-            {% endfor %}
-            
-            <!-- Product Additions (Limited) -->
-            {% for product in recent_products|slice:":3" %}
-            <div class="activity-item">
-                <div class="activity-icon status-added">
-                    <i class="fas fa-plus"></i>
-                </div>
-                
-                <div class="activity-content">
-                    <h4>
-                        Added new product: {{ product.name }}
-                        {% if product.created_by %}
-                            by {{ product.created_by.username }}
-                        {% endif %}
-                    </h4>
-                    <p>{{ product.created_at|timesince }} ago</p>
-                </div>
-            </div>
             {% endfor %}
         </div>
         {% else %}

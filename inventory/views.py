@@ -47,12 +47,46 @@ def admin_dashboard(request):
     ).count()
     
     # Get recent borrow activity for the activity feed (admin actions only)
+    # For better recent activity, we want to show recently acted upon requests (where added_by is set)
+    # We'll order by the borrow_id to get the most recently processed ones
     recent_borrows = Borrow.objects.filter(
-        status__in=['approved', 'rejected']
-    ).select_related('user', 'product', 'added_by').order_by('-created_at')[:15]
+        status__in=['approved', 'active', 'rejected'],
+        added_by__isnull=False  # Only show borrows that have been processed by an admin
+    ).select_related('user', 'product', 'added_by').order_by('-borrow_id')[:8]
     
-    # Get recent product additions (limited)
-    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:3]
+    # Get recent product additions
+    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:8]
+    
+    # Combine and sort all activities by date
+    recent_activities = []
+    
+    # Add borrow activities
+    for borrow in recent_borrows:
+        # Display "approved" for both 'approved' and 'active' statuses since 'active' means approved and currently borrowed
+        display_action = 'approved' if borrow.status in ['approved', 'active'] else borrow.status
+        recent_activities.append({
+            'type': 'borrow',
+            'action': display_action,
+            'user': borrow.user.username,
+            'product': borrow.product.name,
+            'created_by': borrow.added_by.username if borrow.added_by else 'admin',
+            'created_at': borrow.created_at,
+            'timesince': timesince(borrow.created_at)
+        })
+    
+    # Add product activities
+    for product in recent_products:
+        recent_activities.append({
+            'type': 'product',
+            'action': 'added',
+            'product': product.name,
+            'created_by': product.created_by.username if product.created_by else 'admin',
+            'created_at': product.created_at,
+            'timesince': timesince(product.created_at)
+        })
+    
+    # Sort all activities by created_at in descending order (newest first)
+    recent_activities = sorted(recent_activities, key=lambda x: x['created_at'], reverse=True)[:8]
     
     # Get category breakdown
     category_stats = Product.objects.values('category').annotate(
@@ -70,8 +104,7 @@ def admin_dashboard(request):
         'pending_requests': pending_requests,
         'active_borrows': active_borrows,
         'overdue_items': overdue_items,
-        'recent_borrows': recent_borrows,
-        'recent_products': recent_products,
+        'recent_activities': recent_activities,
         'category_stats': category_stats,
         'is_admin': True,
     }
