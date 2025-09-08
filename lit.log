@@ -12382,3 +12382,125 @@ Watching for file changes with StatReloader
 "GET /register/ HTTP/1.1" 200 9499
 "GET /login/ HTTP/1.1" 200 28163
 "GET /register/ HTTP/1.1" 200 9499
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 29013
+"GET /static/bg.jpg HTTP/1.1" 304 0
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 49569
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /static/bg2.jpg HTTP/1.1" 304 0
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 106454
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/pending-requests/ HTTP/1.1" 200 30470
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42687
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /reports/ HTTP/1.1" 200 60694
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET / HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 29013
+"GET /static/bg.jpg HTTP/1.1" 200 235463
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49305
+"GET /login/ HTTP/1.1" 200 32064
+"POST /login/ HTTP/1.1" 302 0
+"GET /admin-dashboard/ HTTP/1.1" 200 49558
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49316
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /items/ HTTP/1.1" 200 106454
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/users/ HTTP/1.1" 200 42687
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /manage/add-user/ HTTP/1.1" 200 32742
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49317
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49317
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin-dashboard/ HTTP/1.1" 200 49317
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 49144
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/lmh/Documents/LITproject/inventory/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin-dashboard/ HTTP/1.1" 200 49307
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Watching for file changes with StatReloader
+"GET /admin-dashboard/ HTTP/1.1" 200 46641
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /admin-dashboard/ HTTP/1.1" 200 46641
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+Watching for file changes with StatReloader
+"GET /admin-dashboard/ HTTP/1.1" 200 46574
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19
+"GET /api/notifications/count/ HTTP/1.1" 200 19

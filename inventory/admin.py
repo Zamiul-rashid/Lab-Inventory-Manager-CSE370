@@ -3,9 +3,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils import timezone
 from django.contrib import messages
-from .models import User, Product, Borrow, Notification, LoanHistory
+from .models import User, Product, Borrow, Notification, LoanHistory # Import all models here..
 
-@admin.register(User)
+@admin.register(User) #register the User model with the admin site
 class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'firstname', 'lastname', 'role', 'date_created', 'is_active')
     list_filter = ('role', 'is_active', 'date_created')
@@ -20,7 +20,7 @@ class CustomUserAdmin(UserAdmin):
     
     readonly_fields = ('date_created',)
 
-@admin.register(Product)
+@admin.register(Product) # Register the Product model with the admin site
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'category', 'brand', 'status', 'quantity_available', 'current_location', 'created_at')
     list_filter = ('status', 'category', 'brand', 'created_at')

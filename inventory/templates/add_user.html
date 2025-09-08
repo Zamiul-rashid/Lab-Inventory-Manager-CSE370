@@ -33,10 +33,6 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <small class="form-help">
-                            <i class="fas fa-info-circle"></i>
-                            Must be unique and contain only letters, numbers, and underscores
-                        </small>
                     </div>
                     
                     <div class="form-group">
@@ -49,17 +45,16 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <small class="form-help">Will be used for notifications and account recovery</small>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="{{ form.firstname.id_for_label }}">First Name</label>
-                        {{ form.firstname }}
-                        {% if form.firstname.errors %}
+                        <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
                             <div class="error-message">
-                                {% for error in form.firstname.errors %}
+                                {% for error in form.first_name.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
@@ -67,11 +62,11 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="{{ form.lastname.id_for_label }}">Last Name</label>
-                        {{ form.lastname }}
-                        {% if form.lastname.errors %}
+                        <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
                             <div class="error-message">
-                                {% for error in form.lastname.errors %}
+                                {% for error in form.last_name.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
@@ -97,10 +92,6 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <small class="form-help">
-                            <i class="fas fa-lock"></i>
-                            Must be at least 8 characters with a mix of letters and numbers
-                        </small>
                     </div>
                     
                     <div class="form-group">
@@ -113,10 +104,41 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        <small class="form-help">Re-enter the password to confirm</small>
                     </div>
                 </div>
             </div>
+
+            {% if form.role %}
+            <div class="form-section">
+                <h3>
+                    <i class="fas fa-user-tag"></i>
+                    Role & Permissions
+                </h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.role.id_for_label }}">Role</label>
+                        {{ form.role }}
+                        {% if form.role.errors %}
+                            <div class="error-message">
+                                {% for error in form.role.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <small class="form-help">Select the appropriate role for this user</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="is_staff" {% if form.is_staff.value %}checked{% endif %}>
+                            Admin privileges
+                        </label>
+                        <small class="form-help">Give this user administrative access</small>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
@@ -138,24 +160,12 @@
                 <i class="fas fa-info-circle"></i>
                 User Creation Guidelines
             </h4>
-            <div class="help-grid">
-                <div class="help-item">
-                    <span class="help-label">Username:</span>
-                    <span class="help-value">Must be unique and contain only letters, numbers, and underscores</span>
-                </div>
-                <div class="help-item">
-                    <span class="help-label">Email:</span>
-                    <span class="help-value">Must be a valid email address and will be used for notifications</span>
-                </div>
-                <div class="help-item">
-                    <span class="help-label">Password:</span>
-                    <span class="help-value">Must be at least 8 characters with a mix of letters and numbers</span>
-                </div>
-                <div class="help-item">
-                    <span class="help-label">Role:</span>
-                    <span class="help-value">Determines what features the user can access in the system</span>
-                </div>
-            </div>
+            <ul>
+                <li><strong>Username:</strong> Must be unique and contain only letters, numbers, and underscores</li>
+                <li><strong>Email:</strong> Must be a valid email address and will be used for notifications</li>
+                <li><strong>Password:</strong> Must be at least 8 characters with a mix of letters and numbers</li>
+                <li><strong>Role:</strong> Determines what features the user can access in the system</li>
+            </ul>
         </div>
     </div>
 </div>
@@ -163,47 +173,6 @@
 
 {% block extra_css %}
 <style>
-    /* Theme-aware styling for add user page */
-    
-    /* Light Theme (Default) */
-    .container {
-        background: var(--bg-color);
-        color: var(--text-color);
-        min-height: 100vh;
-        padding: 2rem;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .page-header {
-        background: var(--card-bg);
-        color: var(--text-color);
-        padding: 2rem;
-        border-radius: 12px;
-        margin-bottom: 2rem;
-        border: 1px solid var(--border-color);
-        box-shadow: var(--shadow);
-        transition: all 0.3s ease;
-    }
-
-    .page-title {
-        color: var(--text-color);
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .page-title i {
-        color: var(--primary-blue);
-    }
-
-    .page-subtitle {
-        color: var(--text-muted);
-        font-size: 1.1rem;
-        margin: 0;
-    }
-
     .form-container {
         max-width: 800px;
         margin: 0 auto 2rem auto;
@@ -212,7 +181,6 @@
         border-radius: 12px;
         padding: 2rem;
         box-shadow: var(--shadow);
-        transition: all 0.3s ease;
     }
 
     .form-section {
@@ -229,11 +197,6 @@
         color: var(--text-color);
         padding-bottom: 1rem;
         border-bottom: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-    }
-
-    .form-section h3 i {
-        color: var(--primary-blue);
     }
 
     .form-row {
@@ -252,11 +215,15 @@
         font-weight: 600;
         margin-bottom: 0.5rem;
         color: var(--text-color);
-        font-size: 1rem;
-        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
-    /* Form Inputs - Light Theme */
+    .form-group input[type="checkbox"] {
+        margin-right: 0.5rem;
+    }
+
     .form-group input,
     .form-group select {
         padding: 0.75rem;
@@ -264,8 +231,7 @@
         border-radius: 8px;
         font-size: 1rem;
         transition: all 0.2s ease;
-        background: #ffffff;
-        color: #2c3e50;
+        background: white;
     }
 
     .form-group input:focus,
@@ -273,66 +239,17 @@
         outline: none;
         border-color: var(--primary-blue);
         box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
-        background: #ffffff;
-        color: #2c3e50;
-    }
-
-    /* Checkbox styling */
-    .checkbox-group {
-        margin-bottom: 0.5rem;
-    }
-
-    .checkbox-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        cursor: pointer;
-        font-weight: 500;
-        color: var(--text-color);
-        padding: 0.75rem;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        background: var(--card-bg);
-        transition: all 0.2s ease;
-    }
-
-    .checkbox-label:hover {
-        background: var(--hover-bg);
-        border-color: var(--primary-blue);
-    }
-
-    .checkbox-label input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        accent-color: var(--primary-blue);
-        margin: 0;
-        padding: 0;
-        border: none;
-        background: transparent;
-    }
-
-    .checkbox-text {
-        font-weight: 500;
-        color: var(--text-color);
     }
 
     .form-help {
         margin-top: 0.5rem;
         color: var(--text-muted);
         font-size: 0.875rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: color 0.3s ease;
-    }
-
-    .form-help i {
-        color: var(--primary-blue);
     }
 
     .error-message {
         margin-top: 0.5rem;
-        color: var(--error-color);
+        color: #c62828;
         font-size: 0.875rem;
     }
 
@@ -345,7 +262,6 @@
         gap: 1rem;
         padding-top: 2rem;
         border-top: 1px solid var(--border-color);
-        transition: border-color 0.3s ease;
     }
 
     .btn {
@@ -364,13 +280,12 @@
 
     .btn-primary {
         background: var(--primary-blue);
-        color: #ffffff;
+        color: white;
     }
 
     .btn-primary:hover {
-        background: var(--primary-blue-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+        background: #1976d2;
+        transform: translateY(-1px);
     }
 
     .btn-outline {
@@ -380,9 +295,8 @@
     }
 
     .btn-outline:hover {
-        background: var(--hover-bg);
+        background: var(--border-color);
         color: var(--text-color);
-        transform: translateY(-1px);
     }
 
     .help-section {
@@ -391,12 +305,10 @@
     }
 
     .help-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
+        background: rgba(66, 133, 244, 0.05);
+        border: 1px solid rgba(66, 133, 244, 0.2);
         border-radius: 12px;
         padding: 1.5rem;
-        box-shadow: var(--shadow);
-        transition: all 0.3s ease;
     }
 
     .help-card h4 {
@@ -408,105 +320,21 @@
         font-size: 1.125rem;
     }
 
-    .help-grid {
-        display: grid;
-        gap: 0.75rem;
+    .help-card ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        line-height: 1.6;
     }
 
-    .help-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem 0;
-        border-bottom: 1px solid var(--border-color);
-        transition: border-color 0.3s ease;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .help-item:last-child {
-        border-bottom: none;
-    }
-
-    .help-label {
-        font-weight: 500;
-        color: var(--text-muted);
-        transition: color 0.3s ease;
-        min-width: 120px;
-        flex-shrink: 0;
-    }
-
-    .help-value {
+    .help-card li {
+        margin-bottom: 0.5rem;
         color: var(--text-color);
-        transition: color 0.3s ease;
-        line-height: 1.4;
     }
 
-    /* Select options styling */
-    select option {
-        background: #ffffff;
-        color: #2c3e50;
+    .help-card strong {
+        color: var(--primary-blue);
     }
 
-    /* Placeholder styling */
-    input::-webkit-input-placeholder { color: #999; }
-    input::-moz-placeholder { color: #999; }
-    input:-ms-input-placeholder { color: #999; }
-    input::placeholder { color: #999; }
-
-    /* Dark Theme Overrides */
-    [data-theme="dark"] .form-group input,
-    [data-theme="dark"] .form-group select {
-        background: #1a1a1a;
-        color: #ffffff;
-        border-color: #404040;
-    }
-
-    [data-theme="dark"] .form-group input:focus,
-    [data-theme="dark"] .form-group select:focus {
-        background: #1a1a1a;
-        color: #ffffff;
-        border-color: var(--primary-blue);
-        box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3);
-    }
-
-    [data-theme="dark"] .checkbox-label {
-        background: #1a1a1a;
-        border-color: #404040;
-    }
-
-    [data-theme="dark"] .checkbox-label:hover {
-        background: #2a2a2a;
-        border-color: var(--primary-blue);
-    }
-
-    [data-theme="dark"] select option {
-        background: #1a1a1a;
-        color: #ffffff;
-    }
-
-    [data-theme="dark"] input::-webkit-input-placeholder { color: #666; }
-    [data-theme="dark"] input::-moz-placeholder { color: #666; }
-    [data-theme="dark"] input:-ms-input-placeholder { color: #666; }
-    [data-theme="dark"] input::placeholder { color: #666; }
-
-    /* Dark theme button adjustments */
-    [data-theme="dark"] .btn-outline {
-        border-color: #404040;
-        color: #b0b0b0;
-    }
-
-    [data-theme="dark"] .btn-outline:hover {
-        background: #404040;
-        color: #ffffff;
-    }
-
-    /* Password field security styling */
-    input[type="password"] {
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.1em;
-    }
-
-    /* Responsive Design */
     @media (max-width: 768px) {
         .form-row {
             grid-template-columns: 1fr;
@@ -524,16 +352,6 @@
 
         .btn {
             justify-content: center;
-        }
-
-        .help-item {
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .help-label {
-            min-width: auto;
-            font-weight: 600;
         }
     }
 </style>

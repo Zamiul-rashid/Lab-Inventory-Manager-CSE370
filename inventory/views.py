@@ -7,11 +7,31 @@ from django.http import JsonResponse, HttpResponse
 from django.db.models import Q, Count, F
 from django.utils import timezone
 from datetime import datetime, timedelta
-from .models import User, Product, Borrow, Notification, LoanHistory
+from .models import User, Product, Borrow, Notification, LoanHistory # Import all models here..
 from .forms import UserRegistrationForm, CustomLoginForm, ProductForm, BorrowForm, UserProfileForm, UserSearchForm, ProductSearchForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.defaultfilters import timesince
+from datetime import datetime, timedelta
+
+def simple_timesince(created_at):
+    """Create a simple 'X days ago' format instead of detailed timesince"""
+    now = timezone.now()
+    diff = now - created_at
+    
+    if diff.days == 0:
+        if diff.seconds < 3600:  # Less than 1 hour
+            minutes = diff.seconds // 60
+            if minutes < 1:
+                return "just now"
+            return f"{minutes} minutes"
+        else:  # Less than 24 hours
+            hours = diff.seconds // 3600
+            return f"{hours} hours"
+    elif diff.days == 1:
+        return "1 day"
+    else:
+        return f"{diff.days} days"
 import json
 import csv
 
@@ -47,31 +67,26 @@ def admin_dashboard(request):
     ).count()
     
     # Get recent borrow activity for the activity feed (admin actions only)
-    # For better recent activity, we want to show recently acted upon requests (where added_by is set)
-    # We'll order by the borrow_id to get the most recently processed ones
     recent_borrows = Borrow.objects.filter(
-        status__in=['approved', 'active', 'rejected'],
-        added_by__isnull=False  # Only show borrows that have been processed by an admin
-    ).select_related('user', 'product', 'added_by').order_by('-borrow_id')[:8]
+        status__in=['approved', 'rejected']
+    ).select_related('user', 'product', 'added_by').order_by('-created_at')[:10]
     
     # Get recent product additions
-    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:8]
+    recent_products = Product.objects.select_related('created_by').order_by('-created_at')[:10]
     
     # Combine and sort all activities by date
     recent_activities = []
     
     # Add borrow activities
     for borrow in recent_borrows:
-        # Display "approved" for both 'approved' and 'active' statuses since 'active' means approved and currently borrowed
-        display_action = 'approved' if borrow.status in ['approved', 'active'] else borrow.status
         recent_activities.append({
             'type': 'borrow',
-            'action': display_action,
+            'action': borrow.status,
             'user': borrow.user.username,
             'product': borrow.product.name,
             'created_by': borrow.added_by.username if borrow.added_by else 'admin',
             'created_at': borrow.created_at,
-            'timesince': timesince(borrow.created_at)
+            'timesince': simple_timesince(borrow.created_at)
         })
     
     # Add product activities
@@ -82,11 +97,11 @@ def admin_dashboard(request):
             'product': product.name,
             'created_by': product.created_by.username if product.created_by else 'admin',
             'created_at': product.created_at,
-            'timesince': timesince(product.created_at)
+            'timesince': simple_timesince(product.created_at)
         })
     
     # Sort all activities by created_at in descending order (newest first)
-    recent_activities = sorted(recent_activities, key=lambda x: x['created_at'], reverse=True)[:8]
+    recent_activities = sorted(recent_activities, key=lambda x: x['created_at'], reverse=True)[:10]
     
     # Get category breakdown
     category_stats = Product.objects.values('category').annotate(
