@@ -19,22 +19,7 @@ This system provides a complete solution for managing laboratory equipment with 
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 🗄️ Database Schema
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│     User     │     │   Product    │     │    Borrow    │
-├──────────────┤     ├──────────────┤     ├──────────────┤
-│ user_id (PK) │     │product_id(PK)│     │borrow_id (PK)│
-│ username     │     │ name         │     │ user_id (FK) │
-│ email        │     │ category     │     │product_id(FK)│
-│ role         │     │ status       │     │ status       │
-│ is_active    │     │ location     │     │ borrow_date  │
-│ created_at   │     │ created_by   │     │ return_date  │
-└──────────────┘     └──────────────┘     └──────────────┘
-```
-
-## 🚀 Key Features
+##  Key Features
 
 ### User Management
 - **Registration System**: New user registration with admin approval workflow
@@ -78,20 +63,8 @@ This system provides a complete solution for managing laboratory equipment with 
 ## 👥 Contributors
 
 ### [Azra Humayra Alam Prova](https://github.com/username1) - 23301277
-**Frontend Development & Core Backend**
-- 🎨 User Interface Design & Implementation
-- 🔐 Authentication System & User Management
-- 📱 Responsive Design & User Experience
-- 🔔 Notification System Implementation
-- 🧪 Unit Testing & Quality Assurance
-
 ### [Zamiul Rashid](https://github.com/username2) - 23301465
-**Admin Features & Data Management**
-- ⚙️ Admin Dashboard & Management Tools
-- 📊 Reporting System & Analytics
-- 🗃️ Database Design & Optimization
-- 📈 Performance Tuning & Scalability
-- 🔧 Product Management System
+
 
 ## 📋 Installation & Setup
 
@@ -154,13 +127,6 @@ export DJANGO_SETTINGS_MODULE=lit_project.settings
 4. **Monitor**: Track overdue items and send reminders
 5. **Analyze**: Generate reports and export data
 
-## 📊 Database Normalization
-
-The database follows **Third Normal Form (3NF)**:
-- **1NF**: All attributes contain atomic values
-- **2NF**: No partial dependencies (single-column primary keys)
-- **3NF**: No transitive dependencies identified
-
 ## 🔮 Future Enhancements
 
 - 📱 **Mobile App**: React Native mobile application
@@ -172,15 +138,34 @@ The database follows **Third Normal Form (3NF)**:
 
 ## 📝 License
 
-This project is developed as part of CSE 370 Database Systems course at BRAC University.
+This project is licensed under the MIT License - see the details below:
+
+**MIT License**
+
+Copyright (c) 2025 Lab Inventory Manager Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*This project was developed as part of CSE 370 Database Systems course at BRAC University.*
 
 ## 🤝 Contributing
 
 This is an academic project. For suggestions or improvements, please open an issue.
 
 ---
-
-<div align="center">
-  <strong>Built with ❤️ for BRAC University CSE 370</strong><br>
-  <em>Database Systems Project - Fall 2025</em>
-</div>
