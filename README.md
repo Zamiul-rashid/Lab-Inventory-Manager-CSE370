@@ -62,8 +62,8 @@ This system provides a complete solution for managing laboratory equipment with 
 
 ## 👥 Contributors
 
-### [Azra Humayra Alam Prova](https://github.com/username1) - 23301277
-### [Zamiul Rashid](https://github.com/username2) - 23301465
+### [Azra Humayra Alam Prova](https://github.com/you-know-wh0)
+### [Zamiul Rashid](https://github.com/Zamiul-rashid)
 
 
 ## 📋 Installation & Setup
